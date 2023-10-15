@@ -1,0 +1,1138 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Java on Always Exploring</title><link>https://hi-ernest.github.io/tags/java/</link><description>Recent content in Java on Always Exploring</description><generator>Hugo -- gohugo.io</generator><language>zh</language><managingEditor>chenhuarui2472071@gmail.com (Ernest Chen)</managingEditor><webMaster>chenhuarui2472071@gmail.com (Ernest Chen)</webMaster><copyright>2023 ErnestChen All rights reserved</copyright><lastBuildDate>Mon, 13 Dec 2021 01:21:40 +0800</lastBuildDate><atom:link href="https://hi-ernest.github.io/tags/java/index.xml" rel="self" type="application/rss+xml"/><item><title>垃圾回收GC</title><link>https://hi-ernest.github.io/blog/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6gc/</link><pubDate>Mon, 13 Dec 2021 01:21:40 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6gc/</guid><description>&lt;h2 id="什么是gc">什么是GC&lt;/h2>
+&lt;blockquote>
+&lt;p>GC指一种自动的&lt;a href="https://zh.wikipedia.org/wiki/%E8%A8%98%E6%86%B6%E9%AB%94%E7%AE%A1%E7%90%86">存储器管理&lt;/a>机制，当某个程序占用的一部分内存空间不再被这个程序访问时，这个程序会借助&lt;strong>垃圾回收&lt;/strong>算法向操作系统归还这部分内存空间。垃圾回收器可以减轻程序员的负担，也减少程序中的错误。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>-from wiki&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="垃圾回收算法有哪些-分别的优缺点">垃圾回收算法有哪些 分别的优缺点&lt;/h2>
+&lt;p>================&lt;/p>
+&lt;h2 id="引用计数法">引用计数法&lt;/h2>
+&lt;hr>
+&lt;p>对每个对象设置引用计数，当对象被引用+1，失去引用/销毁-1，当计数为0的时回收对象内存&lt;/p>
+&lt;p>优点：简单直接，回收速度快&lt;/p>
+&lt;p>缺点：需要额外空间维护引用计数，无法解决对象的循环引用问题&lt;/p>
+&lt;h2 id="标记清除法">标记清除法&lt;/h2>
+&lt;hr>
+&lt;p>从根对象开始遍历所有引用对象，引用的对象打上标记tag，遍历完成，将没有标记的进行回收&lt;/p>
+&lt;p>优点：解决引用计数法的缺点&lt;/p>
+&lt;p>缺点：会产生大量不连续的内存碎片，导致无法给大对象分配内存&lt;/p>
+&lt;h2 id="标记整理法">标记整理法&lt;/h2>
+&lt;hr>
+&lt;p>让所有存活的对象都向一端移动，然后直接清理掉端边界以外的内存&lt;/p>
+&lt;p>优点：不会产生内存碎片&lt;/p>
+&lt;p>缺点：需要移动大量对象，处理效率比较低。&lt;/p>
+&lt;h2 id="复制">#复制&lt;/h2>
+&lt;p>&amp;ndash;&lt;/p>
+&lt;p>将内存划分为大小相等的两块，每次只使用其中一块，当这一块内存用完了就将还存活的对象复制到另一块上面，然后再把使用过的内存空间进行一次清理&lt;/p>
+&lt;p>优点：不会产生内存碎片，每次清除针对的都是整块内存&lt;/p>
+&lt;p>缺点：只使用了内存的一半、移动对象需要耗费时间，效率低于标记清除法&lt;/p>
+&lt;h2 id="分代收集法">分代收集法&lt;/h2>
+&lt;hr>
+&lt;p>按照对象的生命周期长短划分代空间，生命周期长的放在老年代，生命周期短的放在新生代&lt;/p>
+&lt;p>优点：回收性能好&lt;/p>
+&lt;p>缺点：算法复杂&lt;/p>
+&lt;h2 id="go的垃圾回收采用是哪个gc方法">go的垃圾回收采用是哪个GC方法&lt;/h2>
+&lt;p>================&lt;/p>
+&lt;p>go采用的是标记清除法，核心就是标记出哪些是内存还在使用（被引用的），哪些内存不再使用（未被引用），把未被引用的内存回收掉，供后续内存分配使用。&lt;/p>
+&lt;p>暂时无法在飞书文档外展示此内容&lt;/p>
+&lt;p>特殊case：如果内存块存放的是指针，那还需要递归的进行标记，全部标记完后，只保留标记的内存，未被标记的内存全部进行回收&lt;/p>
+&lt;h2 id="为什么go采用标记清除法而不是其他的方法">为什么Go采用标记清除法，而不是其他的方法？&lt;/h2>
+&lt;p>======================&lt;/p>
+&lt;p>引用计数无法解决循环引用，排除&lt;/p>
+&lt;p>标记整理好处在于解决内存碎片化的问题，但是Go运行时的分配算法基于tcmalloc，基本上没有碎片问题，对于gc并没有提升&lt;/p>
+&lt;p>复制只能用一半的内存，还需要大量移动，效率低&lt;/p>
+&lt;p>分代收集的话也不适用，因为go的gc主要目标是新创建的对象上，即存活时间短更利回收，而不是频繁的检查所有对象&lt;/p>
+&lt;blockquote>
+&lt;p>逃逸分析：编译器决定内存分配的位置，不需要程序员指定。函数中申请一个新的对象&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>如果分配到栈，则函数执行结束就可自动将内存回收&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>如果分配到堆，则函数执行结束可交给GC(垃圾回收)处理&lt;/p>
+&lt;/blockquote>
+&lt;p>go编译器的逃逸分析，将大部分新生对象存储在栈里面，直接被回收，生命周期短的对象直接回收并不需要gc处理，长期存在的/比较大的对象会分配到堆中，才被gc回收，所以分代回收并没有实质上提升&lt;/p>
+&lt;h2 id="什么是三色标记法mark-sweep">什么是三色标记法？mark-sweep&lt;/h2>
+&lt;p>===================&lt;/p>
+&lt;p>人为的用三种颜色好描述go的gc过程，内存中的对象并无颜色区分&lt;/p>
+&lt;p>三色对应了垃圾回收中的三种状态：&lt;/p>
+&lt;p>灰色：对象放入“标记队列”中等待（待处理的对象）&lt;/p>
+&lt;p>黑色：对象已被标记为使用&lt;/p>
+&lt;p>白色：对象未被标记&lt;/p>
+&lt;p>步骤：&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>开始gc初，所有对象放入白色队列&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>从根对象开始遍历，将所有可达的对象，标记为灰色，放入灰色队列（待处理队列）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>从灰色队列中取出灰色对象，将它引用的对象标记灰色放入灰色队列，它自己标黑色，放入黑色队列&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>重复步骤3，直到灰色队列为空，这时候白色对象是不可达对象，回收白色对象&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="什么是根对象根对象有哪些">什么是根对象，根对象有哪些？&lt;/h2>
+&lt;p>==============&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>全局变量：程序在编译期就能确定的那些存在于程序整个生命周期的变量&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>执行栈：每个 goroutine 都包含自己的执行栈，这些执行栈上包含栈上的变量及指向分配的堆内存区块的指针&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>寄存器：寄存器的值可能表示一个指针，参与计算的这些指针可能指向某些赋值器分配的堆内存区块&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="怎么的条件会触发go的gc">怎么的条件会触发Go的GC&lt;/h2>
+&lt;p>=============&lt;/p>
+&lt;ul>
+&lt;li>GOGC threshold&lt;/li>
+&lt;/ul>
+&lt;p>每次内存分配时检查当前内存分配量是否达到阀值，达到则会触发gc&lt;/p>
+&lt;p>阀值 = 上次gc内存分配量 * 内存增长率&lt;/p>
+&lt;p>内存增长率是由环境变量GCGO控制，默认是100，即当内存扩大一倍的时候启动gc&lt;/p>
+&lt;ul>
+&lt;li>runtime.GC()&lt;/li>
+&lt;/ul>
+&lt;p>类似Java的system.gc api手动代码触发gc&lt;/p>
+&lt;ul>
+&lt;li>runtime.forcegcperiod（2min）&lt;/li>
+&lt;/ul>
+&lt;p>强制定期gc，默认2min触发一次gc，在runtime/proc.go:forcegcperiod&lt;/p>
+&lt;h2 id="go的gc有哪些优化">go的GC有哪些优化&lt;/h2>
+&lt;p>==========&lt;/p>
+&lt;p>标记-清理需要stw，需要暂停所有的goruntine，做gc然后再恢复。&lt;/p>
+&lt;p>减少stw时间，可以提升go的gc性能&lt;/p>
+&lt;h2 id="写屏障write-barrier">写屏障(Write Barrier) &lt;/h2>
+&lt;p>本质就是每次内存写操作时候，额外执行一小段代码&lt;/p>
+&lt;p>写屏障就是让goroutine与GC同时运行的手段，虽然写屏障不能完全消除stw，但是可以大大减少stw时间，类似开关，gc的特定时候开启，开启后指针传递时，把指针标记，即本轮不回收，下次gc再确定&lt;/p>
+&lt;h2 id="辅助gcmutator-assist">辅助GC(Mutator Assist) &lt;/h2>
+&lt;blockquote>
+&lt;p>为了防止内存分配过快，在GC执行过程中，如果goroutine需要分配内存，那么这个goroutine会参与一部分GC的 工作，即帮助GC做一部分工作，这个机制叫作Mutator Assist&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="代码gc编程">代码GC编程&lt;/h2>
+&lt;p>多制造inline的机会，将新对象尽可能都分配到栈而不是堆，因为go实现了退栈即释放，不影响gc&lt;/p>
+&lt;h3 id="代码减少逃逸分析">代码减少逃逸分析：&lt;/h3>
+&lt;ol>
+&lt;li>
+&lt;p>尽量使用局部变量（编译器会根据变量是否被外部引用来决定是否逃逸）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>参数、返回数值传递值（传指针还是数值，需要修改原值或者内存比较大结构体传指针，而对于只读的占内存较少的结构体，传值获取较好性能）&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="代码简单直白制造inline机会">代码简单直白，制造inline机会&lt;/h3>
+&lt;h3 id="减少分配次数">减少分配次数&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">a&lt;/span> = make([]&lt;span style="color:#66d9ef">int&lt;/span>, &lt;span style="color:#ae81ff">0&lt;/span>, &lt;span style="color:#ae81ff">1234&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">b&lt;/span> = make(&lt;span style="color:#66d9ef">map&lt;/span>[&lt;span style="color:#66d9ef">string&lt;/span>]&lt;span style="color:#66d9ef">int&lt;/span>, &lt;span style="color:#ae81ff">2048&lt;/span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="缓存对象">缓存对象&lt;/h3>
+&lt;h1 id="什么是inline">什么是inline&lt;/h1>
+&lt;blockquote>
+&lt;p>&lt;strong>内联扩展&lt;/strong>或&lt;strong>内联&lt;/strong>是一种手动或&lt;a href="https://en.wikipedia.org/wiki/Compiler_optimization">编译器优化&lt;/a>，它用被调用函数的主体替换函数&lt;a href="https://en.wikipedia.org/wiki/Call_site">调用站点&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>from wiki&lt;/p>
+&lt;/blockquote>
+&lt;p>通过参数-gflags=&amp;quot;-m&amp;quot;查看&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">add&lt;/span> (&lt;span style="color:#a6e22e">x&lt;/span>, &lt;span style="color:#a6e22e">y&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#a6e22e">x&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#a6e22e">y&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    &lt;span style="color:#a6e22e">x&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    &lt;span style="color:#a6e22e">y&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    &lt;span style="color:#a6e22e">a&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">add&lt;/span>(&lt;span style="color:#a6e22e">x&lt;/span>,&lt;span style="color:#a6e22e">y&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    &lt;span style="color:#a6e22e">fmt&lt;/span>.println(&lt;span style="color:#a6e22e">a&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">\&lt;/span>&lt;span style="color:#f92672">-&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    &lt;span style="color:#a6e22e">x&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    &lt;span style="color:#a6e22e">y&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    &lt;span style="color:#75715e">//inline function add replace by the body of the function
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>    &lt;span style="color:#a6e22e">a&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">x&lt;/span> &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#a6e22e">y&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>    &lt;span style="color:#a6e22e">fmt&lt;/span>.println(&lt;span style="color:#a6e22e">a&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>不用使用内联的case：闭包调用、select、for、defer、go关键词创建的协程&lt;/p>
+&lt;p>总结：采用越简单的实现，对于傻瓜式语言性能越好&lt;/p>
+&lt;h1 id="逃逸分析">逃逸分析&lt;/h1>
+&lt;p>通过命令go build -gcflags &amp;lsquo;-m&amp;rsquo;命令查看&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-go" data-lang="go">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">refs&lt;/span> = make([]&lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>, &lt;span style="color:#ae81ff">32&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">fc&lt;/span>()  {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>   &lt;span style="color:#a6e22e">refs&lt;/span>[&lt;span style="color:#ae81ff">0&lt;/span>] = new(&lt;span style="color:#66d9ef">int&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>   &lt;span style="color:#a6e22e">fc&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Java知识点记忆点-补充</title><link>https://hi-ernest.github.io/blog/%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AE%B0%E5%BF%86%E7%82%B9-%E8%A1%A5%E5%85%85/</link><pubDate>Sun, 11 Apr 2021 10:52:00 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/%E7%9F%A5%E8%AF%86%E7%82%B9%E8%AE%B0%E5%BF%86%E7%82%B9-%E8%A1%A5%E5%85%85/</guid><description>&lt;h3 id="什么是微服务">什么是微服务？&lt;/h3>
+&lt;p>将单体系统拆分职责相对于单一的一个个项目，每个项目提供不同的服务内容，服务之间的通过rpc来调用&lt;/p>
+&lt;p>一个服务的宕机、不可用，不会影响上下游服务，做到服务熔断隔离。根据每个服务访问流量的大小，指定服务的扩容和缩容，更加独立的进行，减少不必要资源的消耗。&lt;/p>
+&lt;hr>
+&lt;h3 id="java基础">Java基础&lt;/h3>
+&lt;p>&lt;em>&lt;strong>抽象类和接口的区分？什么时候用接口 什么时候用抽象类?&lt;/strong>&lt;/em>&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>抽象类主要是复用代码，将不同类具有相同行为A属性，交给抽象类实现，避免子类都去实现&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>接口只能定义方法（类行为的约束），类可以实现接口重写必须实现的方法，也可以额外写其他行为方法&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h3 id="java虚拟机">Java虚拟机&lt;/h3>
+&lt;h4 id="gc-roots指的是哪些对象">GC Roots指的是哪些对象？&lt;/h4>
+&lt;ol>
+&lt;li>
+&lt;p>JVM栈中本地变量表中引用的对象&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>方法区中类静态属性引用变量&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>方法区中常量引用对象&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>本地方法栈中Native方法&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h4 id="方法区的回收有哪些对象">方法区的回收有哪些对象？&lt;/h4>
+&lt;p>&lt;em>&lt;strong>废弃常量的回收、无用类的回收&lt;/strong>&lt;/em>&lt;/p>
+&lt;ul>
+&lt;li>该类所有的实例都已经被回收，也就是 Java 堆中不存在该类及其任何派生子类的实例。
+加载该类的类加载器已经被回收，这个条件除非是经过精心设计的可替换类加载器的场景，如 OSGi、JSP 的重加载等，否则通常是很难达成的。&lt;/li>
+&lt;li>该类对应的 java.lang.Class 对象没有在任何地方被引用，无法在任何地方通过反射访问该类的方法&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="spring框架">Spring框架&lt;/h3>
+&lt;h4 id="spring和springboot的区别">Spring和SpringBoot的区别？&lt;/h4>
+&lt;ul>
+&lt;li>
+&lt;p>springboot极大简化spring所需要的配置&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>内嵌了tomcat容器 简化部署&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>引入starters 集合应用依赖包 快速搭建业务框架&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h4 id="spring的事务隔离级别有哪些四种">Spring的事务隔离级别有哪些？（四种）&lt;/h4>
+&lt;p>采用默认的隔离级别（DB是怎样隔离级别 那Spring就是怎样的隔离级别）[MySQL默认是&lt;strong>可重复读&lt;/strong>]&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>读未提交（read uncommited）[脏读、不可重复读、幻读]&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>读已提交（read commited）[避免脏读，但可能不可重复读、幻读]&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>可重复读（repeatable read）[避免脏读和不可重复读，但可能幻读]&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>串行化（Serializable）[避免以上问题]&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h4 id="spring的事务传播级别有哪些七种传播行为">Spring的事务传播级别有哪些？（七种传播行为）&lt;/h4>
+&lt;p>&lt;em>&lt;strong>支持当前事务：&lt;/strong>&lt;/em>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>当前有事务加入事务，没有事务，新建事务&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>当前有事务加入事务，没有事务，以非事务方式运行&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>当前有事务加入事务，没有事务，抛弃异常&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;p>&lt;em>&lt;strong>不支持当前事务情况：&lt;/strong>&lt;/em>&lt;/p>
+&lt;p>前提：t &amp;lt;- 事务（transaction）&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>if 当前 ∃ t -&amp;gt; t 挂起，创建新的事务t'&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>以非事务的方式运行，if 当前 ∃ t -&amp;gt; t 挂起&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>以非事务的方式运行，if 当前 ∃ t -&amp;gt; thows exception&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>If 当前∃ t -&amp;gt; 则创建一个事务作为当前事务的嵌套事务运行&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h4 id="spring中有哪些设计模式分别有哪些">Spring中有哪些设计模式？分别有哪些&lt;/h4>
+&lt;p>IOC：工厂模式 + 反射&lt;/p>
+&lt;p>AOP：代理模式&lt;/p>
+&lt;p>JDBCTemplate：模版模式&lt;/p>
+&lt;p>Spring中Bean：单例模式&lt;/p>
+&lt;p>SpringMVC中的适配器HandlerAdatper：适配器模式&lt;/p>
+&lt;p>spring的事件驱动模型（ApplicationListener）：观察者模式&lt;/p>
+&lt;p>Spring中Observer模式常用的地方是listener的实现&lt;/p>
+&lt;p>Spring装饰器模式：在类名上有两种表现：一种是类名中含有Wrapper，另一种是类名中含有Decorator。&lt;/p>
+&lt;p>&lt;a href="https://cloud.tencent.com/developer/article/1593982">https://cloud.tencent.com/developer/article/1593982&lt;/a>&lt;/p>
+&lt;hr>
+&lt;h4 id="代理模式和装饰器模式的区别">代理模式和装饰器模式的区别？&lt;/h4>
+&lt;p>代理模式是对代理对象加以控制，比如在对象前置或者后置，帮助你完成其他不用关心的事情，比如日志&lt;/p>
+&lt;p>装饰器模式是对装饰对象功能的增强，还是调用之前的方法，但有新的功能，是继承的替代模式&lt;/p>
+&lt;hr>
+&lt;h4 id="有哪些方法可以实现单例模式">有哪些方法可以实现单例模式？&lt;/h4>
+&lt;p>懒汉式（当只有在使用时才进行类对象创建）&lt;/p>
+&lt;p>饿汉式（静态常量、静态代码块）&lt;/p>
+&lt;p>双重检验锁也是懒汉式&lt;/p>
+&lt;p>&lt;strong>静态内部类（静态属性只有在第一次加载类的时候初始化，通过getInstance）&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>枚举&lt;/strong>&lt;/p>
+&lt;hr>
+&lt;h3 id="数据库mysql">数据库MySQL&lt;/h3>
+&lt;h4 id="数据库的事务特性四个">数据库的事务特性？（四个）&lt;/h4>
+&lt;p>原子性、一致性、隔离性、持久性&lt;/p>
+&lt;hr>
+&lt;h3 id="mysql的事物并发问题">MySQL的事物并发问题&lt;/h3>
+&lt;p>脏读、不可重复读、幻读&lt;/p>
+&lt;hr>
+&lt;h3 id="mysql事物隔离级别">MySQL事物隔离级别&lt;/h3>
+&lt;p>读未提交、读已提交、可重复读、可串行化&lt;/p>
+&lt;hr>
+&lt;h4 id="什么是mvcc怎么解决并发一致性问题">什么是MVCC？怎么解决并发一致性问题&lt;/h4>
+&lt;p>多版本并发控制，创建版本号和删除版本号（创建数据行的快照时的系统版本号）&lt;/p>
+&lt;p>可重复读下，对数据行修改事务T1，读取的数据行快照的创建版本号 &amp;lt; 事务T的版本号（比较）&lt;/p>
+&lt;p>读取的数据行快照的删除版本号 &amp;gt; 事务T的版本号 否则表示这行数据已被删除&lt;/p>
+&lt;hr>
+&lt;h4 id="mvcc解决了哪两种隔离级别">MVCC解决了哪两种隔离级别？&lt;/h4>
+&lt;p>提交读 和 可重复读&lt;/p>
+&lt;hr>
+&lt;h4 id="如何解决幻读问题在x隔离级别使用xx和xx">如何解决幻读问题？（在X隔离级别使用XX和XX）&lt;/h4>
+&lt;p>&lt;em>&lt;strong>可重复读隔离级别 + Next-key locks&lt;/strong>&lt;/em>&lt;/p>
+&lt;pre tabindex="0">&lt;code>Next-key Lock: {
+1. record lock (锁一个记录上的索引，而不是记录本身，没有索引自动在主键上创建聚簇索引)
+2. gap lock （锁定索引之间的间隙，但不包括索引本身）
+}
+&lt;/code>&lt;/pre>&lt;h4 id="间隙锁锁的是哪些范围什么操作导致间隙锁">间隙锁锁的是哪些范围？什么操作导致间隙锁&lt;/h4>
+&lt;h4 id="快照读和当前读的区别">快照读和当前读的区别？&lt;/h4>
+&lt;p>select XXX 进行快照读 从undo log中快照获取&lt;/p>
+&lt;p>select XX for update 加锁保证拿取最新的数据&lt;/p>
+&lt;p>每条记录更新同时记录一条回滚记录（回滚操作记录undo log）&lt;/p>
+&lt;hr>
+&lt;h4 id="数据库三范式">数据库三范式？&lt;/h4>
+&lt;p>第一范式：表中所有属性为最小原子属性，不可在分割 不能表中嵌套表&lt;/p>
+&lt;p>第二范式：属性对主键不存在部分函数依赖（学号、姓名、性别、年龄、课程号、分数）主键[学号、课程号]&lt;/p>
+&lt;p>第三范式：属性对主键不存在传递函数依赖（学号、姓名、学院、院长）主键[学号]&lt;/p>
+&lt;p>&lt;strong>如何解决第二、第三？（看业务场景使用不同的范式）&lt;/strong>&lt;/p>
+&lt;hr>
+&lt;h4 id="undo日志用来干嘛binlog日志redo日志">undo日志用来干嘛？binlog日志？redo日志？&lt;/h4>
+&lt;ol>
+&lt;li>
+&lt;p>mvcc使用undo log（&lt;em>&lt;strong>回滚日志：记录每行数据的版本&lt;/strong>&lt;/em>）来实现快照 保存事务发生之前数据的快照版本，可以回滚&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>redo log innoDB引擎层日志（&lt;em>&lt;strong>重做日志【往前滚- 数据页的物理修改，且只能恢复最后一次提交的位置】&lt;/strong>&lt;/em>）：记录事务操作变化后数据修改之后的值，不管事务是否提交都会记录。万一DB宕机异常启动，使用redo log恢复数据。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>binlog（归档日志）是二进制文件，是MySQL Server层记录的日志。MySQL主从复制中，从库用主库的binlog进行复制&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>&lt;strong>（binlog只记录对数据的修改操作，用于主从复制、增量恢复）&lt;/strong>&lt;/p>
+&lt;hr>
+&lt;h5 id="redo-log">redo log&lt;/h5>
+&lt;p>是innoDB存储引擎层的日志，用来记录数据库事务操作的变化，记录是的数据修改之后的值，无论事物是否提交都会记录。在实例或者介质crash，redolog派上用场，用来恢复数据，保证数据的完整性。&lt;/p>
+&lt;p>更新操作涉及到write ahead loging，先写日志在写磁盘。inndb先把更新语句写redo log再更新内存，语句执行完毕后，在空闲的时候或者按照设定的更新策略将redo log中内容更新到磁盘当中。&lt;/p>
+&lt;p>有了redo log，在db异常重启时候，根据redo log恢复，实现crash-safe&lt;/p>
+&lt;p>&lt;img src="https://img-blog.csdnimg.cn/img_convert/1af0b4169b7d248fdb05e9d1d189b854.png" alt="RUNOOB 图标">&lt;/p>
+&lt;p>&lt;em>&lt;strong>redo日志有固定大小，写满需要重头写&lt;/strong>&lt;/em>&lt;/p>
+&lt;p>&lt;img src="https://img-blog.csdnimg.cn/img_convert/4101e39d0acf0d31a758f0ecc2cca829.png" alt="RUNOOB 图标">&lt;/p>
+&lt;h4 id="innodb是如何实现事务">InnoDB是如何实现事务？&lt;/h4>
+&lt;p>InnoDB实现事务 -&amp;gt; ACID：使用这三个日志 + 锁（排他锁/共享锁）&lt;/p>
+&lt;p>原子性：undo log(回滚日志)：记录数据修改前的状态，万一回滚恢复之前的状态&lt;/p>
+&lt;p>一致性：redo log(重做日志)：记录数据修改后的状态&lt;/p>
+&lt;p>隔离性：锁（行级锁、表锁），可分共享锁、排他锁&lt;/p>
+&lt;p>持久性：undo log(回滚日志) + redo log(重做日志)&lt;/p>
+&lt;hr>
+&lt;h4 id="binlog文件是什么存储的数据形式有哪些有什么优缺">binlog文件是什么？存储的数据形式有哪些？有什么优缺？&lt;/h4>
+&lt;p>bin log(二进制日志文件)，只记录对数据的修改操作，主要是&lt;strong>主从复制&lt;/strong>和&lt;strong>增量恢复&lt;/strong>&lt;/p>
+&lt;p>MySQL binlog日志三种格式？&lt;/p>
+&lt;ol>
+&lt;li>Statement：每一条会修改的SQL都会记录到binlog中&lt;/li>
+&lt;/ol>
+&lt;p>（优点：减少日志量 - 缺点：主从复制中，带有特定函数的SQL，从库执行可能出现不一致问题）&lt;/p>
+&lt;ol start="2">
+&lt;li>Row：不记录SQL语句上下文信息，仅保存哪条记录被修改成什么样&lt;/li>
+&lt;/ol>
+&lt;p>（优点：不需要记录SQL的上下文信息，以每行记录的修改来记录，解决SQL带有特定函数的问题&lt;/p>
+&lt;p>缺点：biglog日志量大（update多条，每一条修改都会记录））&lt;/p>
+&lt;ol start="3">
+&lt;li>Mixedlevel：以上两种level混合使用&lt;/li>
+&lt;/ol>
+&lt;p>[一般语句的修改使用Statement格式保存，一些函数无法则使用Row格式]&lt;/p>
+&lt;p>会根据每一条具体的SQL语句来区分记录的日志形式&lt;/p>
+&lt;hr>
+&lt;h4 id="mysql主从复制怎么实现">MySQL主从复制怎么实现？&lt;/h4>
+&lt;p>&lt;strong>binlog线程、io线程、sql线程&lt;/strong>&lt;/p>
+&lt;p>1.binlog dump线程将主服务器上的数据更改写入二进制文件（Binary log）&lt;/p>
+&lt;p>2.io线程负责从主服务器中读取binlog，并写入从服务器的中继日志（Relay log）&lt;/p>
+&lt;p>3.sql线程读取中继日志，解析主服务器已执行的数据修改，并在从服务器进行重放（Replay）&lt;/p>
+&lt;hr>
+&lt;h4 id="mysql的crash-safe怎么实现的">MySQL的crash-safe怎么实现的？？&lt;/h4>
+&lt;p>三个日志+WAL+2PC&lt;/p>
+&lt;p>&lt;a href="https://cloud.tencent.com/developer/article/1631999">https://cloud.tencent.com/developer/article/1631999&lt;/a>&lt;/p>
+&lt;hr>
+&lt;h4 id="为什么需要分库分表">为什么需要分库分表？&lt;/h4>
+&lt;p>数据量太大，查询效率低下&lt;/p>
+&lt;hr>
+&lt;h4 id="怎样分库分表">怎样分库分表？&lt;/h4>
+&lt;p>垂直拆分：按照业务（订单、商品）放在不同数据库，独立出来，就算一个业务出错不影响另一个业务，提高并发&lt;/p>
+&lt;p>缺点：无法解决单表数据越来越大的问题&lt;/p>
+&lt;p>水平拆分：将单表数据拆分多表，甚至放在不同库当中。按照日期时间划分、按照hash取模划分&lt;/p>
+&lt;p>采用Apace sharding-jdbc来作分库分表中间件&lt;/p>
+&lt;p>注意⚠️！需要做不同纬度的数据冗余，方便根据不同纬度的查询（空间换时间的方式）&lt;/p>
+&lt;hr>
+&lt;h4 id="索引优化有哪些哪些情况下索引会失效">索引优化有哪些？（哪些情况下索引会失效？）&lt;/h4>
+&lt;p>只针对频繁查询的字段 设置索引&lt;/p>
+&lt;p>可以使用覆盖索引&lt;/p>
+&lt;p>避免索引失效（使用全值匹配、符合最左前缀原则[中间索引不能断]）&lt;/p>
+&lt;p>&lt;strong>失效：&lt;/strong>&lt;/p>
+&lt;p>where条件后用函数、运算符&lt;/p>
+&lt;p>模糊查询 like&amp;rsquo;%冰&amp;rsquo;（使用通配符开头）&lt;/p>
+&lt;p>不符合最左原则的联合索引&lt;/p>
+&lt;p>索引字段上!= &amp;lt;&amp;gt;这样会导致索引失效（is NULL / is not NULL）&lt;/p>
+&lt;hr>
+&lt;h4 id="索引case注意">索引case！！！注意⚠️&lt;/h4>
+&lt;p>联合索引（a、b、c）&lt;/p>
+&lt;p>a = &amp;rsquo;&amp;rsquo; and b = &amp;rsquo;&amp;rsquo; and c = &amp;lsquo;&amp;rsquo;（全都命中索引）&lt;/p>
+&lt;p>c = &amp;rsquo;&amp;rsquo; and b = &amp;rsquo;&amp;rsquo; and a = &amp;lsquo;&amp;rsquo;（全都命中索引，有SQL优化器）&lt;em>&lt;strong>[连接器、查询缓存、分析器、优化器、执行器]&lt;/strong>&lt;/em>&lt;/p>
+&lt;p>a = &amp;rsquo;&amp;rsquo; and c = &amp;lsquo;&amp;rsquo;（只有a命中，因为b没有，联合索引中间索引无）&lt;/p>
+&lt;p>a = &amp;rsquo;&amp;rsquo; and b &amp;gt; &amp;rsquo;&amp;rsquo; and c = &amp;lsquo;&amp;rsquo;（只有a和b命中，因为b时一个范围值，算是断点）&lt;/p>
+&lt;p>如果联合索引中有主键a&lt;/p>
+&lt;p>b = &amp;rsquo;&amp;rsquo; and a = &amp;rsquo;&amp;rsquo; （只会走主键a，因为B+树索引结构）&lt;/p>
+&lt;hr>
+&lt;h4 id="where和order-by-索引字段">Where和Order by 索引字段&lt;/h4>
+&lt;p>使用联合索引idx（a,b）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-sql" data-lang="sql">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">//&lt;/span>&lt;span style="color:#960050;background-color:#1e0010">可以走索引&lt;/span>idx
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">where&lt;/span> a &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#e6db74">&amp;#34;xx&amp;#34;&lt;/span> &lt;span style="color:#66d9ef">order&lt;/span> &lt;span style="color:#66d9ef">by&lt;/span> b
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Mysql的order by 会根据创建联合索引顺序进行排序 且asc&lt;/p>
+&lt;p>&lt;a href="https://stackoverflow.com/questions/9641463/mysql-not-using-index-for-order-by/38071094">https://stackoverflow.com/questions/9641463/mysql-not-using-index-for-order-by/38071094&lt;/a>&lt;/p>
+&lt;hr>
+&lt;h3 id="redis">Redis&lt;/h3>
+&lt;h4 id="redis的五大基本类型">Redis的五大基本类型？&lt;/h4>
+&lt;ul>
+&lt;li>String&lt;/li>
+&lt;li>List&lt;/li>
+&lt;li>Set&lt;/li>
+&lt;li>SortSet&lt;/li>
+&lt;li>Hash&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h4 id="sortset底层数据结构是怎么存储的">SortSet底层数据结构是怎么存储的？&lt;/h4>
+&lt;p>有两种数据结构：&lt;strong>压缩表ziplist和跳表skiplist&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>压缩表（如果有序保存元素数&amp;lt;128 || 长度&amp;lt;64byte）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>skiplist按序保存元素分值，使用dict来保存分值和元素的对应关系（有序链表 + 多级索引结构（关键节点））&lt;/p>
+&lt;p>时间复杂度：O(logN) 空间复杂度：O(N)&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;p>&lt;strong>跳表插入数据&lt;/strong>&lt;/p>
+&lt;p>1.新节点和各层索引节点逐一比较，确定原链表的插入位置。O（logN）&lt;/p>
+&lt;p>2.把索引插入到原链表。O（1）&lt;/p>
+&lt;p>3.利用抛硬币的随机方式，决定新节点是否提升为上一级索引。&lt;/p>
+&lt;p>结果为“正”则提升并继续抛硬币，结果为“负”则停止。O（logN）&lt;/p>
+&lt;p>总体上，跳跃表插入操作的时间复杂度是O（logN），而这种数据结构所占空间是2N，既空间复杂度是 O（N）。&lt;/p>
+&lt;p>&lt;strong>跳表删除数据&lt;/strong>&lt;/p>
+&lt;p>1.自上而下，查找第一次出现节点的索引，并逐层找到每一层对应的节点 O(logN)&lt;/p>
+&lt;p>2.删除每一层查找到的节点，如果该层只有一个节点，删除整一层（除去原链表之外）O(logN)&lt;/p>
+&lt;p>总体来说，删除O(logN)&lt;/p>
+&lt;hr>
+&lt;h4 id="如何解决redis存储string类型大的json数据格式的问题">如何解决Redis存储String类型大的JSON数据格式的问题？&lt;/h4>
+&lt;p>可以使用中间件，对大的JSON字符串格式数据进行压缩&lt;/p>
+&lt;hr>
+&lt;h4 id="redis的过期时间是怎么实现的">Redis的过期时间是怎么实现的？&lt;/h4>
+&lt;p>RedisDB中有Expires字典保存DB中所有key的过期时间（过期字典）&lt;/p>
+&lt;p>键是一个指针指向数据库键&lt;/p>
+&lt;p>值是一个long类型的毫秒unix时间戳&lt;/p>
+&lt;p>判断key -&amp;gt; 找过期字典 -&amp;gt; 判断现在unix时间戳是否大于key的value&lt;/p>
+&lt;hr>
+&lt;h4 id="redis的过期键删除策略有哪些三种分别是怎样优缺点">Redis的过期键删除策略有哪些（三种）分别是怎样，优缺点&lt;/h4>
+&lt;p>定时删除：key一旦到达过期时间，立马删除&lt;/p>
+&lt;p>惰性删除：当getKey的时候，发现已到过期时间就删除返回nil&lt;/p>
+&lt;p>定期删除：每隔一段时间，扫描过期key，进行删除&lt;/p>
+&lt;p>定时删除：对内存友好，但对CPU时间不友好[降低服务器吞吐量和响应时间]&lt;/p>
+&lt;p>惰性删除：对内存不友好，大量过期的key放在DB中一直不被删除&lt;/p>
+&lt;p>定期删除：前两者折中方式，每隔一段时间执行删除过期key操作，限制删除key执行时长和频率&lt;/p>
+&lt;p>惰性删除：通过读写DB之前执行expireIfNeeded函数对输入key检查（过滤器）&lt;/p>
+&lt;p>定期删除：调用activeExpireCycle函数 在规定时间内分多次遍历服务器中各个数据库，从数据库Expires字典中随机检查一部分键的过期时间，过期则删除。&lt;/p>
+&lt;hr>
+&lt;h4 id="redis的持久化机制会有哪些两种分别是怎样的优缺点">Redis的持久化机制会有哪些（两种）分别是怎样的，优缺点&lt;/h4>
+&lt;p>RDB：对数据生成快照方式，保存键值对记录数据库，存储二进制的RDB文件（可设置每隔一段时间进行save）&lt;/p>
+&lt;p>AOF：保存对Redis执行写的操作命令，通过追加append方式添加命令&lt;/p>
+&lt;p>AOP可以设置同步参数，一秒同步，redis宕机最多丢失一秒前数据&lt;/p>
+&lt;p>如果需要对大规模数据进行恢复，对于数据完整性不是非常敏感，RDB对AOF更加高效&lt;/p>
+&lt;p>对数据量较大的进行RDB持久化，没法做到秒级来save/bgsave&lt;/p>
+&lt;p>反之，对数据完整性敏感性十足，使用AOF，做到最多丢失一秒之前的redis数据&lt;/p>
+&lt;hr>
+&lt;h4 id="aof重写是怎样的">AOF重写是怎样的？&lt;/h4>
+&lt;p>Redis通过创建一个新的AOF文件来替换现在的AOF文件（新旧文件保存DB状态相同）&lt;/p>
+&lt;p>不读取现有的AOF文件，而直接读取服务器当前DB的键现在的值，然后用一条命令记录 代替之前多条命令&lt;/p>
+&lt;p>首先从数据库中读取键现在的值，然后用一条命令去记录键值对，代替之前记录这个键值对的多条命令，这就是AOF重写功能的实现原理。&lt;/p>
+&lt;p>&lt;strong>为了不影响处理其他命令请求，将AOF重写交给子进程（带有Master进程的副本，避免使用锁，保证数据安全）&lt;/strong>&lt;/p>
+&lt;hr>
+&lt;h4 id="aof重写期间服务器进行命令处理导致数据不一致怎么办">AOF重写期间服务器进行命令处理，导致数据不一致怎么办？&lt;/h4>
+&lt;p>Redis创建一个AOF重写缓冲区，在创建子进程后使用&lt;/p>
+&lt;p>AOF重写期间，服务器进程工作：&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>执行客户端命令&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>将执行后命令追加AOF缓冲区&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>将执行命令追加AOF重写缓冲区&lt;/p>
+&lt;p>当子进程完成AOF重写后，向父进程发信号，父进程接收到将AOF重写缓冲区中所有内容写入新AOF文件中&lt;/p>
+&lt;p>再进行新的AOF改名 原子性覆盖现有的AOF文件，完成替换&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h4 id="aofrdb和复制功能对过期键的处理">AOF、RDB和复制功能对过期键的处理？&lt;/h4>
+&lt;h5 id="rdb">RDB&lt;/h5>
+&lt;ul>
+&lt;li>
+&lt;p>生成RDB文件：创建RDB文件，对数据库中key检查，会忽略过期键，只保存有用的key&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>载入RDB文件：（但主从服务器进行RDB文件载入，主会忽略，从会加载已过期key进去）&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h5 id="aof">AOF&lt;/h5>
+&lt;ul>
+&lt;li>
+&lt;p>AOF文件写入：AOF会追加append 该key被删除的del命令到AOF文件中&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>AOF重写：和生成RDB文件一样，对DB中key检查，已过期的不会保存&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h4 id="为什么redis支持高并发量速度快">为什么Redis支持高并发量，速度快？&lt;/h4>
+&lt;ol>
+&lt;li>
+&lt;p>Redis是内存型DB，直接对内存读写速度快&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Redis使用io多路复用，可以处理并发请求，采用epoll单线程轮询多个socket方式，处理事件。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>（非阻塞io采用epoll，读、写、关闭、连接转化成事件，减少io时间）&lt;/p>
+&lt;ol start="3">
+&lt;li>Redis是单线程的，io多路处理的需要执行命令放在队列当中，单线程逐个执行，保证不会同时执行&lt;/li>
+&lt;/ol>
+&lt;p>避免产生多线程上下文切换，或者产生死锁等，性能消耗&lt;/p>
+&lt;ol start="4">
+&lt;li>
+&lt;p>Redis底层数据结构，压缩表、跳表、hash..高效的存取数据结构&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>采用io多路复用，监听多个客户端socket，将socket事件放在队列当中，单线程处理&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>再交给文件事件分配器处理，分给不同的事件处理器进行处理（set、get、连接请求等处理）&lt;/p>
+&lt;hr>
+&lt;h4 id="select和epoll的区别阻塞io-非阻塞io-io多路复用-异步io分别">select和epoll的区别？阻塞io 非阻塞io io多路复用 异步io分别？&lt;/h4>
+&lt;ol>
+&lt;li>
+&lt;p>select、poll用监视多个socket描述符，单线程轮询来判断数据是否就绪，就绪返回信号。还需要再一下轮询找到确定socket进行处理，而是epoll会把轮询已就绪的socket事件放在自己创建的链表中，epoll只关心链表有无数据就可。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>epoll不需要通过遍历的方式，而是在内核中建立了file节点，并且通过注册响应事件的方式，当有响应事件发生时采取相应的措施，并把准备就绪的事件放入链表中，从而epoll只关心链表中是否有数据即可。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>epoll只需要一次拷贝就可以 其他select需要每次遍历过后在用户态-内核态中相互拷贝&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h4 id="redis分片有了解吗">Redis分片有了解吗?&lt;/h4>
+&lt;p>&lt;a href="https://developer.aliyun.com/article/692428">https://developer.aliyun.com/article/692428&lt;/a>&lt;/p>
+&lt;hr>
+&lt;h4 id="redis主从复制">Redis主从复制？&lt;/h4>
+&lt;p>&lt;a href="https://www.cnblogs.com/kismetv/p/9236731.html">https://www.cnblogs.com/kismetv/p/9236731.html&lt;/a>&lt;/p>
+&lt;hr>
+&lt;h4 id="redis的高可用是怎么实现的">Redis的高可用是怎么实现的？&lt;/h4>
+&lt;ol>
+&lt;li>
+&lt;p>Redis提供持久化机制、主从复制（读写分离）、集群+哨兵&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>持久化：针对于单机备份（从内存到磁盘）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>主从复制：侧重在于多机的数据备份，实现读写分离、读的负载均衡和故障恢复&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>从节点保存主节点（masterhost和masterip）存储主节点的ip和port信息&lt;/p>
+&lt;p>从节点会每秒调用定时函数replicationCron，发现主节点可以连接那就进行socket连接&lt;/p>
+&lt;p>从节点建立事件收集器，比如接收RDB文件、接收命令&lt;/p>
+&lt;p>&lt;strong>集群+哨兵：&lt;/strong>&lt;/p>
+&lt;p>在复制基础上，哨兵解决自动化的故障恢复&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>哨兵监控：不断检查主节点和从节点是否运行正常&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>自动故障转移：当主节点不可用，升级其中一个从节点为主节点，其他从节点修改复制目标节点&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>配置提供者：客户端连接时通过连接哨兵，拿到当前redis主节点的地址&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>通知：哨兵会将故障转移的结果通知客户端&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>集群：通过集群，Redis解决了写操作无法负载均衡，以及存储能力受到单机限制的问题，实现了较为完善的高可用方案。&lt;/p>
+&lt;hr>
+&lt;h4 id="redis的内存淘汰策略有哪些">Redis的内存淘汰策略有哪些？&lt;/h4>
+&lt;p>已设置过期时间的数据集 LRU数据淘汰&lt;/p>
+&lt;p>已设置过期时间的数据集 即将过期的数据淘汰&lt;/p>
+&lt;p>已设置过期时间的数据集 选择任意数据淘汰&lt;/p>
+&lt;p>全局数据集keys LRU最近最少使用key淘汰&lt;/p>
+&lt;p>全局数据集 任意选择数据淘汰&lt;/p>
+&lt;p>禁止驱逐数据（满了存新的数据 直接报错）&lt;/p>
+&lt;hr>
+&lt;h4 id="redis中会出现哪些问题雪崩击穿穿透">Redis中会出现哪些问题？（雪崩、击穿、穿透）&lt;/h4>
+&lt;ol>
+&lt;li>
+&lt;p>雪崩：keys的过期时间设置随机数值&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>击穿（缓存 db都没有的数据）：缓存空对象设置较短的过期时间（五分钟），或者使用bitmap设置布隆过滤器&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>（一定不存在的数据请求会直接过滤 无法打到db）&lt;/p>
+&lt;ol start="3">
+&lt;li>穿透（热点数据缓存过期）：互斥锁，只要有一个请求访问来DB带来新的缓存，再释放锁&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h3 id="消息队列">消息队列&lt;/h3>
+&lt;h4 id="rocketmq的实现原理是怎样">RocketMQ的实现原理是怎样？&lt;/h4>
+&lt;p>RocketMQ由NameServer提供服务注册、Product生产者、Consumer消费者、Broker（RocketMQ进程）&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Broker在启动时，向所有的NameServe注册，并保持长连接，每30s发送心跳&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Product发送消息时，先从NameServer上获取Broker服务器地址，然后根据负载均衡算法选择一台服务器&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>来发送消息&lt;/p>
+&lt;ol start="3">
+&lt;li>Consumer消费消息时，从NameServer上获取Broker地址，然后主动拉取消息&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h4 id="rocketmq怎么实现这么高的吞吐量的高可用">RocketMQ怎么实现这么高的吞吐量的（高可用）？&lt;/h4>
+&lt;p>RocketMQ分Product、Consumer、Broker、Name Server&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>都是以集群的方式部署（可以支持多master 模式、多master多slave异步复制模式、多 master多slave同步双写模式）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>支持10亿级别的消息堆积，不会因为堆积导致性能下降&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>支持海量的topic&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h4 id="rocketmq怎么保证消息不丢失">RocketMQ怎么保证消息不丢失？&lt;/h4>
+&lt;ol>
+&lt;li>
+&lt;p>producer端
+采用同步发送消息，回调获得发送结果是否success&lt;/p>
+&lt;p>发送失败，会发送重试（三次）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>broker端&lt;/p>
+&lt;p>设置同步刷盘（默认是异步刷盘）持久化采用CommitLog来落盘&lt;/p>
+&lt;p>集群部署，主从模式，高可用（万一master挂，使用slave继续转发[master接受到消息会同步slave]）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>consumer端&lt;/p>
+&lt;p>at least once消息消费会发ack确认给broker&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h4 id="rocketmq的消费信息是以什么样的形式进行存储">RocketMQ的消费信息是以什么样的形式进行存储？&lt;/h4>
+&lt;p>ByteBuffer msgStoreItemMemory&lt;/p>
+&lt;p>[存储编码后的消息，即将消息转换成字节的方式&lt;/p>
+&lt;p>和对象的序列化不同，不仅仅有消息体内容，还加上额外信息（消息创建时间、消息生产者的host、消息体的长度、topic&amp;hellip;）]&lt;/p>
+&lt;p>（需要查看源码确认）&lt;/p>
+&lt;hr>
+&lt;h4 id="rocketmq怎么保证消息不重复消费">RocketMQ怎么保证消息不重复消费？&lt;/h4>
+&lt;p>生产者没必要做幂等性&lt;/p>
+&lt;p>消费者端做好幂等性，确保重复的请求不会造成影响。&lt;/p>
+&lt;p>比如：判断DB是否消费，在数据库使用唯一索引，保证消息只被消费一次。&lt;/p>
+&lt;ol>
+&lt;li>消费端处理消息的业务逻辑保持幂等性&lt;/li>
+&lt;li>保证每条消息都有唯一编号且保证消息处理成功和去重表的日志同时出现&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h4 id="rocketmq怎么保证消息的有序性顺序消费">RocketMQ怎么保证消息的有序性（顺序消费）？&lt;/h4>
+&lt;p>同一topic，同一个queue，发消息的时候一个线程去发送消息，消费的时候 一个线程去消费一个queue里的消息&lt;/p>
+&lt;blockquote>
+&lt;p>2021.11补充：&lt;/p>
+&lt;/blockquote>
+&lt;h5 id="消费者的消费queue和协程关系是怎么的一对一还是多无序和有序消费区别是什么">消费者的消费queue和协程关系是怎么的？一对一还是多？无序和有序消费区别是什么？&lt;/h5>
+&lt;p>顺序消费是每个queue分配一个协程去处理，比如workerA从queue1中拉取，会放在buffer中&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>虽然是messageBuffer数组，但无序对应是一个同一个messageChan（存放message）&lt;/p>
+&lt;p>无序：每个协程对应是同一个messageBuffer&lt;/p>
+&lt;p>有序：每个协程对应不同的messageBuffer&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>名称\比例&lt;/th>
+&lt;th>消息queue&lt;/th>
+&lt;th>messageBuffer&lt;/th>
+&lt;th>协程worker&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>无序disOrderly&lt;/td>
+&lt;td>n&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>n&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>有序orderly&lt;/td>
+&lt;td>n&lt;/td>
+&lt;td>n&lt;/td>
+&lt;td>n&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;hr>
+&lt;h5 id="多个协程怎么分配到对应的message进行获取对应消息进行消费">多个协程怎么分配到对应的message，进行获取对应消息进行消费？&lt;/h5>
+&lt;p>无论无序消费还是有序消费，都是从协程分配的messageBuffer从获取message进行处理&lt;/p>
+&lt;ul>
+&lt;li>不同之处：
+&lt;ol>
+&lt;li>无序，就算消费组重启需要变更，rebalance，需要给多个queue（消息）重新分配对应的协程，但多个协程对应还是同一个buffer，消息继续发，可能其他协程停了，但其他协程继续直接拿来就消费。&lt;/li>
+&lt;li>有序，则多个协程序对应多个buffer，可能有协程停了，对应的buffer channel没法消费，持续积压，只有rebalance完分配了新协程就可以继续消费，消费速度降低，会导致积压上升。&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h5 id="同个comsumer对应多个协程从自己对应的messagebuffer获取message消费是跟拿取的一样并发消费的吗-有序无序">同个comsumer对应多个协程从自己对应的messageBuffer获取message消费，是跟拿取的一样并发消费的吗 （有序无序）？&lt;/h5>
+&lt;ul>
+&lt;li>源码中，并发的开多协程从buffer获取消息，然后各个协程消费buffer channel，说明协程也是并发消费消息，消息分发到各个协程当中，互不影响一起消费。&lt;/li>
+&lt;li>感觉看作每个协程消费也是一个队列，多个队列并发消费。&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h5 id="有序如何设置无限重试的设置retrytime控制次数可不可以">有序如何设置无限重试的？设置retryTime控制次数可不可以？&lt;/h5>
+&lt;p>可以（两个条件是或者的关系）&lt;/p>
+&lt;hr>
+&lt;p>一个topic下有多个队列，为了保证有序，RocketMQ提供了MessageQueueSelector队列选择机制&lt;/p>
+&lt;p>我们可使用Hash取模法，让同一个订单发送到同一个队列中，再使用同步发送，只有同个订单的创建消息发送成功，再发送支付消息。这样，我们保证了发送有序。&lt;strong>【在同个队列中消息是有序】&lt;/strong>&lt;/p>
+&lt;hr>
+&lt;p>RocketMQ仅保证顺序发送，顺序消费由消费者业务保证!!!（消费端幂等性）&lt;/p>
+&lt;p>生产者顺序发送，消费者顺序消费setOrderly = true&lt;/p>
+&lt;hr>
+&lt;h3 id="计算机网络">计算机网络&lt;/h3>
+&lt;h4 id="osi七层模型">OSI七层模型&lt;/h4>
+&lt;p>应用层 表示层 会话层 传输层 网络层 数据链路层 物理层&lt;/p>
+&lt;hr>
+&lt;h4 id="tcpip四层体系模型">TCP/IP四层体系模型？&lt;/h4>
+&lt;p>应用层、传输层、网际层、网络接口层&lt;/p>
+&lt;hr>
+&lt;h4 id="tcpip参考模型与osi七层模型有什么异同">TCP/IP（参考）模型与OSI七层模型有什么异同？&lt;/h4>
+&lt;p>OSI七层模型是站在完整、宏观纬度上计算机网络分层&lt;/p>
+&lt;p>TCP/IP四层模型是围绕TCP/IP网络中通信协议来进行分层&lt;/p>
+&lt;hr>
+&lt;h4 id="http基本组成">HTTP基本组成？&lt;/h4>
+&lt;p>header + body&lt;/p>
+&lt;h4 id="http常见字段有哪些">HTTP常见字段有哪些？&lt;/h4>
+&lt;p>Host字段（服务器域名）&lt;/p>
+&lt;p>Content-length（服务端返回的数据长度）&lt;/p>
+&lt;p>Content-type（服务端回应，告诉客户端这次数据是什么格式，text/html; charset=utf-8）&lt;/p>
+&lt;p>Content-Encoding：gzip（服务端返回数据是什么压缩格式）&lt;/p>
+&lt;p>Connection（客户端要求服务器TCP持久连接，请求复用keep-alive）&lt;/p>
+&lt;hr>
+&lt;h4 id="http常见的状态码有哪些">HTTP常见的状态码有哪些？&lt;/h4>
+&lt;p>200 请求ok&lt;/p>
+&lt;p>301 永久重定向&lt;/p>
+&lt;p>302 临时重定向&lt;/p>
+&lt;p>400 bad request 客户端请求报文有误&lt;/p>
+&lt;p>404 not found客户端请求资源服务端不存在&lt;/p>
+&lt;p>403 forbidden 客户端无权限访问资源&lt;/p>
+&lt;p>500 内部服务器错误&lt;/p>
+&lt;p>502 bad gatway 服务端作为网关或者代理时返回错误码&lt;/p>
+&lt;p>503 服务器忙，无法回应&lt;/p>
+&lt;hr>
+&lt;h4 id="301-302状态码的区别">301 302状态码的区别？&lt;/h4>
+&lt;p>301永久重定向&lt;/p>
+&lt;p>302临时重定向&lt;/p>
+&lt;hr>
+&lt;h4 id="http有哪些请求操作分别">HTTP有哪些请求操作？分别&lt;/h4>
+&lt;p>get、post、put、delete、head、options、patch&lt;/p>
+&lt;p>Get和Post区别&lt;/p>
+&lt;p>HTTP哪些请求是安全和幂等的？&lt;/p>
+&lt;p>get head options&lt;/p>
+&lt;h4 id="http的优缺点分别是">HTTP的优缺点分别是？&lt;/h4>
+&lt;p>明文传输（易窃听）&lt;/p>
+&lt;p>无法验证通信双方的身份（易伪装）&lt;/p>
+&lt;p>无法证明报文的完整性（易篡改）&lt;/p>
+&lt;h4 id="为什么http是无状态的">为什么HTTP是无状态的？&lt;/h4>
+&lt;p>使用无状态的，应对大量的请求只需要来了服务端接收请求，处理完断开连接。&lt;/p>
+&lt;p>减轻服务端设计，不然每个访问网站的用户，服务器都要保存他们信息，是服务器负担&lt;/p>
+&lt;p>cookie和session？&lt;/p>
+&lt;p>HTTP和HTTPS有什么区别？&lt;/p>
+&lt;p>什么是对称加密/非对称加密？&lt;/p>
+&lt;p>HTTPS怎么加密的(混合加密)？&lt;/p>
+&lt;p>TCP的三次握手、四次挥手过程是怎样？&lt;/p>
+&lt;hr>
+&lt;h4 id="为什么说tcp是可靠的超时重传">为什么说TCP是可靠的？（超时重传）&lt;/h4>
+&lt;p>TCP的流量控制、拥塞控制是怎样实现？（丢包）&lt;/p>
+&lt;p>（慢开始、拥塞避免、快重传、快恢复）&lt;/p>
+&lt;p>发送方维护一个拥塞窗口（cwnd）状态变量&lt;/p>
+&lt;p>慢开始：发送的报文数令cwnd=1，发送方只能发送一个报文段；当收到确认后，将cwnd加倍&lt;/p>
+&lt;p>2、4、8、16&amp;hellip;.（报文段数量）&lt;/p>
+&lt;p>拥塞避免：设置了（阈值）ssthresh，当cwnd &amp;gt;= ssthresh，进入拥塞避免，每轮只将cwnd + 1&lt;/p>
+&lt;p>超时情况：如果出现了超时，将ssthresh = cwnd/2，重新执行 -&amp;gt; 慢启动&lt;/p>
+&lt;p>快重传：接收方每次接收到报文段，都会对最后一个有序报文段进行确认。ex：已收到M1、M2、现在接收到M4，&lt;/p>
+&lt;p>应当对M2进行确认。发送方接收到&lt;strong>三次重复&lt;/strong>的确认，就知道下一个报文段丢失，立即快重传M3&lt;/p>
+&lt;p>属于个别报文段丢失，执行快恢复，ssthresh = cwnd/2，cwnd = ssthresh，直接进入拥塞避免&lt;/p>
+&lt;h5 id="tcp和udp的区别">TCP和UDP的区别？&lt;/h5>
+&lt;p>使用TCP、UDP的例子？&lt;/p>
+&lt;p>什么是ARP协议&lt;/p>
+&lt;p>什么是ICMP协议&lt;/p>
+&lt;p>什么是DNS&lt;/p>
+&lt;p>什么DHCP&lt;/p>
+&lt;hr>
+&lt;h3 id="海量数据场景问题">海量数据场景问题&lt;/h3>
+&lt;p>bitMap&lt;/p>
+&lt;p>使用最小堆&lt;/p>
+&lt;p>spring三级缓存&lt;/p>
+&lt;p>cms和g1垃圾收集器&lt;/p>
+&lt;hr>
+&lt;h3 id="操作系统">操作系统&lt;/h3>
+&lt;h4 id="进程的几种状态">进程的几种状态&lt;/h4>
+&lt;p>&lt;a href="https://www.jianshu.com/p/ac9ce2afd126">https://www.jianshu.com/p/ac9ce2afd126&lt;/a>&lt;/p>
+&lt;p>就绪、进行、阻塞&lt;/p>
+&lt;h4 id="线程的几种状态">线程的几种状态&lt;/h4>
+&lt;p>&lt;a href="https://blog.csdn.net/pange1991/article/details/53860651">https://blog.csdn.net/pange1991/article/details/53860651&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://www.liaoxuefeng.com/wiki/1252599548343744/1306580742045730">https://www.liaoxuefeng.com/wiki/1252599548343744/1306580742045730&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>New：新创建的线程，尚未执行；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Runnable：运行中的线程，正在执行&lt;code>run()&lt;/code>方法的Java代码；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Blocked：运行中的线程，因为某些操作被阻塞而挂起；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Waiting：运行中的线程，因为某些操作在等待中；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Timed Waiting：运行中的线程，因为执行&lt;code>sleep()&lt;/code>方法正在计时等待；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Terminated：线程已终止，因为&lt;code>run()&lt;/code>方法执行完毕。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="输入url到返回数据有用到哪些协议">输入url到返回数据有用到哪些协议？&lt;/h4>
+&lt;p>DNS协议、TCP协议、IP协议、ARP协议、HTTP协议&lt;/p>
+&lt;h5 id="过程">过程？&lt;/h5>
+&lt;blockquote>
+&lt;p>DNS解析、TCP连接、发送HTTP请求、服务端处理请求返回HTTP报文、浏览器解析渲染、连接结束&lt;/p>
+&lt;/blockquote>
+&lt;h5 id="mysql-explain-各字段解释">Mysql explain 各字段解释&lt;/h5>
+&lt;blockquote>
+&lt;p>&lt;a href="https://juejin.cn/post/6850418120998256654">https://juejin.cn/post/6850418120998256654&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://blog.csdn.net/argleary/article/details/104189850">https://blog.csdn.net/argleary/article/details/104189850&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;hr>
+&lt;h3 id="线程池">线程池&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>有哪些参数？怎么设置？工作机制？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>拒绝策略有哪些？&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>核心线程数、最大线程数、空闲时间存活时间、存活时间单位unit、阻塞队列、拒绝策略&lt;/p>
+&lt;p>拒绝策略：静默丢弃、直接抛异常、交给调用方处理、丢弃队伍中最老的任务&lt;/p>
+&lt;/blockquote></description></item><item><title>Java基础知识点归纳</title><link>https://hi-ernest.github.io/blog/java-basic-knowledge-points/</link><pubDate>Fri, 02 Apr 2021 20:56:09 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/java-basic-knowledge-points/</guid><description>&lt;h3 id="面向对象">面向对象&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>怎么理解什么是面向对象？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>怎么理解Java中封装、继承、多态？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>为什么需要接口？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>接口和抽象类的区别？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Object有哪些方法？9个&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Object中hashcode是干什么？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Collection集合容器迭代器Itertor是什么？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>“==”和equals区别？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>hashcode和equals有什么联系&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>浅拷贝和深拷贝是什么 区别？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Java反射？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Java异常有哪些？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Java的error有哪些？&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="java有哪些容器每个容器底层需要理解掌握--应用场景">Java有哪些容器？（每个容器底层需要理解掌握 + 应用场景）&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>HashMap底层是怎样的？ jdk1.7和1.8有什么区别&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>HashMap怎么扩容的？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>HashMap在扩容的时候插入元素会怎样？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>为什么HashMap在多线程下会出现线程安全问题-死循环？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>ConcurrentHashMap怎么实现线程安全的？ jdk1.7和1.8&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>LinkedHashMap底层是怎样的，怎么实现有序插入？&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="进程和线程的区别ps协程是什么">进程和线程的区别？ps：协程是什么&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>进程的通信方式有哪些？哪个比较高效，为什么？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>线程的通信方式有哪些？（线程通信指的是线程互斥同步）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>线程有哪些状态？每个状态具体操作是？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>如何创建线程？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>继承Thread和实现Runnable区别&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>实现Runnable和Callable有什么区别&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>线程池有哪些？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>线程池有哪些参数，每个代表什么？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>线程池的拒绝策略有哪些？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>线程池工作机制，每一步是怎样的？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>有哪些阻塞队列？分别作用？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>CyclicBarrier、CountDownLatch、Semaphore 的用法&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>start和run的区别？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>wait和sleep的区别？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>如何解决多线程并发问题？加锁有哪些？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>synchronized 和 ReentrantLock的区别&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>什么是CAS、AQS 应用场景有哪里？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>CountDownLatch是什么？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>ThreadLocal是什么？（线程本地变量/存储）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Java内存模型是怎样的？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Volatile是解决什么问题？&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Volatile和Synchronized区别&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>synchronized怎么优化加锁过程？锁升级、锁消除过程&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>什么是AQS？（AbstractQueuedSynchronizer）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>什么是乐观锁、悲观锁？&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="java虚拟机">Java虚拟机&lt;/h3>
+&lt;ul>
+&lt;li>运行时数据区域&amp;lt;图&amp;gt; 各个区域分别的指责是什么？&lt;/li>
+&lt;li>垃圾回收？在哪些区域GC？&lt;/li>
+&lt;li>如何判断一个对象是否可回收？&lt;/li>
+&lt;li>GCRoot包含哪些内容？&lt;/li>
+&lt;li>方法区的回收有哪些对象&lt;/li>
+&lt;li>垃圾回收算法有哪些？分别是怎样GC过程？ 分代收集算法指的是？&lt;/li>
+&lt;li>垃圾收集器有哪些？ 重点CMS和G1收集器（concurrent mark sweep）&lt;/li>
+&lt;li>回收策略：什么时候会发生YoungGC / FullGC（场景）（考虑Eden、Survivor）&lt;/li>
+&lt;li>什么时候会发生FullGC？(Concurrent Mode Failure)（具体使用场景会是怎样会）&lt;/li>
+&lt;li>内存分配策略有哪些？对象分配优先在哪？如果是大对象尼？&lt;/li>
+&lt;li>是不是一收集完就开始GC？为什么&lt;/li>
+&lt;li>类加载机制是怎样？每个步骤分别指责是？&lt;/li>
+&lt;li>类加载器有哪些？（三种）&lt;/li>
+&lt;li>什么是双亲委派模型？作用是什么？(可以加上自定义类加载器extends ClassLoader 重写findClass方法)（ClassNotFoundException）&lt;/li>
+&lt;li>什么NIO&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="spring">Spring&lt;/h3>
+&lt;ul>
+&lt;li>Spring和SpringBoot的区别&lt;/li>
+&lt;li>Spring的IOC 和 AOP&lt;/li>
+&lt;li>依赖注入DI有哪些&lt;/li>
+&lt;li>Spring的实现事务的方式有哪些&lt;/li>
+&lt;li>Spring的事务传播级别有哪些&lt;/li>
+&lt;li>Spring的事务隔离级别有哪些&lt;/li>
+&lt;li>@Autowird怎么注入（类型 名称）&lt;/li>
+&lt;li>Spring中有哪些设计模式？分别有哪些&lt;/li>
+&lt;li>Spring的单例模式是严格的单例模式吗？为什么&lt;/li>
+&lt;li>有哪些方法可以实现单例模式？&lt;/li>
+&lt;li>Spring的三级缓存了解吗&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="数据库">数据库&lt;/h3>
+&lt;ul>
+&lt;li>数据库的事务特性？（四个）&lt;/li>
+&lt;li>事务并发一致性问题有哪些？分别过程是怎样？（丢失修改）&lt;/li>
+&lt;li>怎么分别解决并发一致性问题？&lt;/li>
+&lt;li>事务隔离级别有哪些？&lt;/li>
+&lt;li>什么是MVCC？怎么解决并发一致性问题&lt;/li>
+&lt;li>MVCC解决了哪两种隔离级别？&lt;/li>
+&lt;li>undo日志用来干嘛？biglog日志？redo日志？&lt;/li>
+&lt;li>如何解决幻读问题？（在X隔离级别使用XX和XX）&lt;/li>
+&lt;li>Net-Key Lock包含什么？&lt;/li>
+&lt;li>快照读和当前读的区别？&lt;/li>
+&lt;li>数据库三范式指的哪些？&lt;/li>
+&lt;li>select where group by having&lt;/li>
+&lt;li>inner join left join right join&lt;/li>
+&lt;li>between order by 顺序&lt;/li>
+&lt;li>SQL优化有哪些？（结构优化 + 查询优化）&lt;/li>
+&lt;li>MySQL主从复制怎样实现？&lt;/li>
+&lt;li>为什么读写分离？&lt;/li>
+&lt;li>为什么需要分库分表？&lt;/li>
+&lt;li>怎样分库分表？&lt;/li>
+&lt;li>行级锁和表级锁？（基于索引）&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="索引">索引&lt;/h3>
+&lt;ul>
+&lt;li>MySQL索引底层怎么实现的？&lt;/li>
+&lt;li>为什么使用B+树而不是二叉搜索树或者红黑树？&lt;/li>
+&lt;li>聚簇索引和非聚簇索引是什么？&lt;/li>
+&lt;li>自适应哈希索引？&lt;/li>
+&lt;li>联合索引？最左匹配原则？&lt;/li>
+&lt;li>索引优化有哪些？（哪些情况下索引会失效？）&lt;/li>
+&lt;li>索引的优点有哪些？&lt;/li>
+&lt;li>索引使用条件，是不是越多越好？为什么&lt;/li>
+&lt;li>查询性能优化方式有哪些？&lt;/li>
+&lt;li>innoDB和MyISAM有什么区别？&lt;/li>
+&lt;li>MySQL数据类型有哪些（tinyint、smallInt、mediumInt、int、bigInt）[8,16,24,32,64位]&lt;/li>
+&lt;li>int（11）数字代表什么？&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="redis的五大基本类型">Redis的五大基本类型&lt;/h3>
+&lt;ul>
+&lt;li>键都是字符串，值是不同的对象类型&lt;/li>
+&lt;li>Redis的过期键删除策略有哪些（三种）分别是怎样，优缺点&lt;/li>
+&lt;li>Redis的持久化机制会有哪些（两种）分别是怎样的，优缺点&lt;/li>
+&lt;li>如果一边执行持久化机制，一边执行过期删除策略，redis会是怎样的操作行为？&lt;/li>
+&lt;li>Redis的AOF是怎样实现？&lt;/li>
+&lt;li>AOF重写是怎样的？&lt;/li>
+&lt;li>AOF重写期间服务器进行命令处理，导致数据不一致怎么办？&lt;/li>
+&lt;li>为什么Redis支持高并发量，速度快？&lt;/li>
+&lt;li>Redis单线程是指的是什么单线程?&lt;/li>
+&lt;li>Redis分片有了解吗?&lt;/li>
+&lt;li>Redis怎么实现主从复制？&lt;/li>
+&lt;li>Redis的内存淘汰策略有哪些？&lt;/li>
+&lt;li>Redis中会出现哪些问题？（雪崩、击穿、穿透）&lt;/li>
+&lt;li>如何保证redis和DB数据一致性问题？https://dler.cloud/subscribe/C7CwhGaDo3h1s1hH?mu=ssr&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="rocketmq">RocketMQ&lt;/h3>
+&lt;ul>
+&lt;li>RocketMQ怎么实现这么高的吞吐量的？&lt;/li>
+&lt;li>RocketMQ怎么保证消息不丢失？&lt;/li>
+&lt;li>RocketMQ怎么保证消息不重复消费？&lt;/li>
+&lt;li>RocketMQ怎么保证消息的有序性？&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="补充">补充&lt;/h3>
+&lt;ul>
+&lt;li>Java的序列化有哪些？&lt;/li>
+&lt;li>关于spring的问题补充&lt;/li>
+&lt;li>rocketMQ的问题补充&lt;/li>
+&lt;li>mySQL的问题&lt;/li>
+&lt;li>Redis的问题补充&lt;/li>
+&lt;li>bitmap&lt;/li>
+&lt;li>topK的问题&lt;/li>
+&lt;li>场景设计题目补充&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="sql和算法">SQL和算法&lt;/h3></description></item></channel></rss>
