@@ -1,4 +1,475 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>生活 on Always Exploring</title><link>https://hi-ernest.github.io/tags/%E7%94%9F%E6%B4%BB/</link><description>Recent content in 生活 on Always Exploring</description><generator>Hugo -- gohugo.io</generator><language>zh</language><managingEditor>chenhuarui2472071@gmail.com (Ernest Chen)</managingEditor><webMaster>chenhuarui2472071@gmail.com (Ernest Chen)</webMaster><copyright>2023 ErnestChen All rights reserved</copyright><lastBuildDate>Mon, 19 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://hi-ernest.github.io/tags/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml"/><item><title>2021/04/19有感</title><link>https://hi-ernest.github.io/blog/2021-04-19/</link><pubDate>Mon, 19 Apr 2021 00:00:00 +0000</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/2021-04-19/</guid><description>&lt;p>周五晚上回老家看望了阿婆，老人1934年生人，今年也87了。有时候不免感到生老病死，时光流转更替，老一辈是这个时代甩在身后的人了，他们不懂抖音，不懂游戏，但饱饭、电视和熟人之间的闲聊也是他们最大的娱乐方式，对于老一辈的岁数难免疾病缠身，我们身为后辈其实能做的就只有常回家看看，围绕在她跟前聆听唠叨听听那些简单到不能简单的琐事，说说自己现在目前的情况，不懂他们懂不懂尽可能用简单话语解释，其实就是虽然偶尔遇到困难，但总体一切顺利，一直在路上，勿念我会照顾好自己。这次回去最大触动，就是阿婆那句话，她看着大伯给我钱，在一旁说道，“阿婆没有钱给你了，都花在看病上了”&amp;hellip;现在想想，心里的弦仿佛被狠狠的触动，泪水小小的在眼眶中打转，对时间不断向前谁也改变不了，生老病死是人一生的必修课，很残忍但也必须去面对去经历&amp;hellip;.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>生活 on Always Exploring</title><link>https://hi-ernest.github.io/tags/%E7%94%9F%E6%B4%BB/</link><description>Recent content in 生活 on Always Exploring</description><generator>Hugo -- gohugo.io</generator><language>zh</language><managingEditor>chenhuarui2472071@gmail.com (Ernest Chen)</managingEditor><webMaster>chenhuarui2472071@gmail.com (Ernest Chen)</webMaster><copyright>2023 ErnestChen All rights reserved</copyright><lastBuildDate>Thu, 20 Jul 2023 14:58:37 +0800</lastBuildDate><atom:link href="https://hi-ernest.github.io/tags/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml"/><item><title>经典项目问题</title><link>https://hi-ernest.github.io/blog/work-porject/</link><pubDate>Thu, 20 Jul 2023 14:58:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/work-porject/</guid><description>&lt;h3 id="经典问题">经典问题&lt;/h3>
+&lt;ul>
+&lt;li>主要负责模块是哪块？整体业务流程是怎样的？云仓是什么？&lt;/li>
+&lt;li>讲一下做的项目中遇到的问题（挑战和复杂是什么）？怎么解决的？（技术难点问题、业务复杂度问题）&lt;/li>
+&lt;li>项目中你觉得block遇到的问题 ，如何解决的&lt;/li>
+&lt;li>项目有做代码层面的抽象和复用吗？怎么做的？&lt;/li>
+&lt;/ul>
+&lt;h3 id="团队承担指责业务复杂度">团队承担指责（业务复杂度）&lt;/h3>
+&lt;ul>
+&lt;li>作为最上游、下发调用下游不同的系统（链路长，问题第一接触方排查流转不同系统）&lt;/li>
+&lt;li>监控告警、对账、业务数据看板分析、查询离线数据分析&lt;/li>
+&lt;li>做对账最上游和最下游单据对状态（影响卡单的问题），数据可视化分析推动各个方修复和优化&lt;/li>
+&lt;li>根据架构孵化inbound，解耦平台和行业逻辑（业务层面+代码层面）&lt;/li>
+&lt;/ul>
+&lt;h3 id="项目背景前后做了什么取得效果是什么">项目背景[前后]、做了什么、取得效果是什么&lt;/h3>
+&lt;p>业务复杂&lt;/p>
+&lt;ul>
+&lt;li>需要根据货品绑定的商品类目（日杂、电器、食品、美妆），展示不同的质检模块（ex生鲜类别、3c数码类目不同，需要展示说明书等以及各个模块文字操作提示、示例图片、上传图片的最大和最少数量等），设计模版配置中心（抽象不同模块，设置对应模块编号、文字描述、示例图片url配置等都存储在动态配置中心tcc，能够灵活跟着业务变化而修改）&lt;/li>
+&lt;li>表设计（以货品纬度的货品质检表，一个货品可能会发起多次质检外键是质检任务ID；货品版本表，货品可能会出现新老包裹交替场景；货品质检明细表，将模块和图片信息拍平，存的明细以单个图片为一条记录，多个记录的模块字段会是相同的；表关系1:N:N）&lt;/li>
+&lt;li>幂等（兜底+告警）&lt;/li>
+&lt;li>查询（CQRS）&lt;/li>
+&lt;/ul>
+&lt;h3 id="技术上遇到的问题">技术上遇到的问题&lt;/h3>
+&lt;ul>
+&lt;li>链路处理：请求下游和更新自身、或者更新自身后请求下游再更新（使用考虑）&lt;/li>
+&lt;li>统计业务指标，接入把脉bmq上传每个请求数据，业务分析；rpc重试打点监控配置告警等；使用wire实现生成代码来依赖注入，分层handle service等&lt;/li>
+&lt;li>其他问题：作为poc遇到下游链路沟通和协调&lt;/li>
+&lt;/ul>
+&lt;h4 id="技术优化">技术优化：&lt;/h4>
+&lt;ul>
+&lt;li>查询数仓badcase17s -&amp;gt; ClickHouse善于OLAP查询100ms-5s,电商只有一个公用集群不稳定 -&amp;gt; 根据业务场景设置abase理解redis key为每七天和三十天，value是json对象日期+物流分 -&amp;gt; 降到100ms，实现了性能的优化&lt;/li>
+&lt;li>在项目优化期间，查询数仓平台rpc是按照列返回数据形式，不方便解析，沉淀sdk封装序列化类似gorm方便后续接入&lt;/li>
+&lt;/ul>
+&lt;h4 id="项目应用设计模式">项目应用设计模式&lt;/h4>
+&lt;ul>
+&lt;li>
+&lt;p>对接不同的链路（toBtoC出入、open/奇门）走不通逻辑（工厂模式+策略）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>toB入库单创建卡单校验(判断xx效期)（工厂+观察者）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Go里面使用wire进行依赖注入，handle、service、dao通过组合方式调用（单例模式）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Go使用sync.Once，初始化db、redis等外部依赖资源（单例模式）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>技术问题：表设计和链路处理（请求下游和更新自身、或者更新自身后请求下游再更新）；针对不同的模块需要配置不同文字提示和图片示例，需要方便业务调整，设计json通用结构配置到动态配置中心；统计业务指标，接入把脉bmq上传每个请求数据，业务分析；rpc重试打点监控配置告警等；使用wire实现生成代码来依赖注入，分层handle service等&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>其他问题：作为poc遇到下游链路沟通和协调&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>查询数仓badcase17s -&amp;gt; ClickHouse善于OLAP查询100ms-5s,电商只有一个公用集群不稳定 -&amp;gt; 根据业务场景设置abase理解redis key为每七天和三十天，value是json对象日期+物流分 -&amp;gt; 降到100ms，实现了性能的优化&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>在项目优化期间，查询数仓平台rpc是按照列返回数据形式，不方便解析，沉淀sdk封装序列化类似gorm方便后续接入&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>规划和设计（xx）&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="微服务实现查询">微服务实现查询&lt;/h3>
+&lt;ol>
+&lt;li>API组合方式查询，api组合器作为客户端查询多个服务，查询出的数据组合join展示（商家数据、仓数据等）&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>确定哪个组件作为查询操作的API聚合器？（客户端、API gateway、API组合器实现为独立服务）&lt;/li>
+&lt;li>如何编写有效聚合逻辑？
+优点：简单方便直观
+缺点：需要查询多个服务和查询多个数据库额外的开销；可用性降低的风险（查询多个服务可能某服务不可用）；缺乏事务数据一致性（涉及多个数据库查询，返回不一致的数据问题）&lt;/li>
+&lt;/ul>
+&lt;ol start="2">
+&lt;li>CQRS（Command Query Responsibility. Segregation）
+使用事件维护从多个服务复制的数据视图，借此实现对多个服务的数据查询。拆分将持久化数据模型和查询数据模块（命令端、查询端）&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>&lt;strong>命令端&lt;/strong>：数据模型的创建、更新删除；&lt;strong>查询端&lt;/strong>：数据的查询；&lt;/li>
+&lt;li>查询端通过订阅命令端发布的事件，使其数据模型和命令端模型保持同步
+实践场景：fass消费MySQL的binLog信息，AC单据同步ES（查询uas、wms、货主信息）组合同步到ES中
+优点：降低查询多个服务的开销；提升查询模块高可用；具有数据一致性
+缺点：实现比api组合方式复杂&lt;/li>
+&lt;/ul></description></item><item><title>母亲的话&amp;自己思考</title><link>https://hi-ernest.github.io/blog/23-05-20-think/</link><pubDate>Sat, 20 May 2023 23:06:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/23-05-20-think/</guid><description>&lt;p>焦虑的事情多半源于三个字：不甘心！容易陷于患得患失情绪当中，既放不下现在所得到的又对未来不确定性担忧以及大环境不好带来忧虑。&lt;/p>
+&lt;p>Q：如何解决？&lt;/p>
+&lt;p>A: 自己要清楚，什么是自己能控制，什么是自己不能控制的。&lt;/p>
+&lt;hr>
+&lt;p>对于不可控的事情保持乐观和自信，对可控的事情保持谨慎和全力以赴。你的焦虑和恐惧于事无补，改变不了明天，反而影响今天的心情，因为人生唯一恐惧的就是恐惧本身。对于不可控的事做最坏的打算，就算事情发展最严重后预防针后只道不过如此。多说几句大不了，打开自己的视野，着眼未来的五年十年发展！&lt;/p>
+&lt;p>焦虑时候，找到适合自己的放松方式，可能是音乐、跑步等，让自己跳脱当下焦虑情绪当中，不要一直沉浸怎么做怎么处理如果失败循环重复的思考，而是大口吸气呼气，平复心境，认真审视自己内心case by case例举焦虑点，针对这些有哪些应对的解决方案，评判其可行性做出选择，然后就坚定的执行！开始执行，那就成功了一半，就像大海中航行的水手，有了罗盘指明了方向，剩下就是追逐，过程会痛苦会收获会开心，享受过程!&lt;/p>
+&lt;p>&lt;strong>因为人生只不过一场体验，尽可能去经历去体验丰富自己经历。在追逐目标同时，不要丢了西瓜捡了芝麻，生命当中还有很多重要的事情，身心健康、多花时间陪伴家人才是我们终生重要课题之一!&lt;/strong>&lt;/p>
+&lt;blockquote>
+&lt;p>“勇敢是当你还未开始就已知道自己会输，可你依然要去做，而且无论如何都要把它坚持到底。你很少能赢，但有时也会”
+《杀死一只知更鸟》&lt;/p>
+&lt;/blockquote></description></item><item><title>2022-07-20</title><link>https://hi-ernest.github.io/blog/22-07-20/</link><pubDate>Wed, 20 Jul 2022 23:00:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/22-07-20/</guid><description>&lt;p>今天开会错过了按摩时间，今天在某个瞬间感觉事情的多和杂造成时间的紧迫。再加上好久没做需求了，这次一做总会有细小的点没有考虑周全。&lt;/p>
+&lt;p>对于需求的方案设计以及流转上，还需要更加深刻理解和钻研，不仅仅在处理我方侧功能更好的实现上，还需要多问为什么，去关心别人链路是怎样的，他们这样设计的优缺点是什么，我想只有这样在各种不同场景下，考虑问题思考问题能力才能步步提升，增强自我的系统设计能力。梳理系统的链路，发现是否存在不合理的地方，以及想办法去解决，与其埋怨抱怨烦闷，不如主动出击，拥抱问题，思考和解决问题。只有遇到各种各样的棘手的问题，靠自己能力攻克，个人能力才能得以提升。&lt;/p>
+&lt;p>今天是修复了QA提出了bug，针对发起/取消拦截进行解耦，现在回想：是不是可以抽成接口、结构体对象来处理，针对创建、更新、调rpc、记录日志等操作。这个需要评估一下是否需要修改，感觉如果是有精力和资源在投入也不迟。以及调用rpc，目前是for循环一个个调用，是否改成多协程调用，这样方式的写法需要考量一下。
+导出功能发现，货主端是已完成配置并导出，解决了字段的问题，这个需要验证下商家端导出，显示导出成功但页面的查询展示并没有展示，这个需要排查订正
+以及关键的灰度方案计划。&lt;/p>
+&lt;p>今天聊了40来分钟，过程中头脑思绪杂乱无章，我很容易被他人言语影响，这种场景我回想，应该先听清楚问题，自己先思考用假设的方式，进一步推敲是否可行，为什么可行/不可行。方案没有十全十美的，可以先抛出来，有的方案不一定需要技术来解决，而是通过其他途径就可以解决，换各个角度来思考，别人能想到，我却没有想到是什么原因呢，这个也是需要深入挖掘的，填补自己的短板，走的更好更远。
+旭总反馈的销退入库单的消息根据某条件见过滤，以及自己测出来的取消日志会生成多个fixed
+还有就是拦截状态，可能系统拦截-&amp;gt;工单拦截（72小时未发货的场景），方案如下：
+接收消息，拦截中-&amp;gt;拦截中，取类型字段，if系统拦截then更新为工单拦截，需要增加日志，否者特判逻辑恶心
+同步调用接口，拦截中的不返回拦截类型字段，在消息移步回告时更新（拦截成功、失败、取消等）需要详细再看看&lt;/p>
+&lt;p>目前遗留问题：&lt;/p>
+&lt;ul>
+&lt;li>&lt;input disabled="" type="checkbox"> 创建/取消是否抽象下-解耦清晰些&lt;/li>
+&lt;li>&lt;input disabled="" type="checkbox"> 上线新加的逻辑 - setEexpress&lt;/li>
+&lt;li>&lt;input disabled="" type="checkbox"> Ppe刷数据-要写好-用一次之后不再用了&lt;/li>
+&lt;li>&lt;input disabled="" type="checkbox"> Ppe的准备工作（上线的准备）&lt;/li>
+&lt;li>&lt;input checked="" disabled="" type="checkbox"> 修改调用lo -&amp;gt; 多协程&lt;/li>
+&lt;li>&lt;input checked="" disabled="" type="checkbox"> 确定灰度方案 - 写灰度控制逻辑&lt;/li>
+&lt;li>&lt;input checked="" disabled="" type="checkbox"> 三端的导出&lt;/li>
+&lt;/ul></description></item><item><title>记22/05/14夜跑思考</title><link>https://hi-ernest.github.io/blog/night-run-think/</link><pubDate>Sun, 15 May 2022 21:55:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/night-run-think/</guid><description>&lt;p>晚上九点多开始户外漫无目的的跑步，五公里的酣畅淋漓给我前进方向多了许多有用思考
+为了什么学习算法和数据结构？目前自己最重要的任务是什么？未来的我该何去何从？
+书到用时方恨少，现在的勤勉孜孜不倦的学习是为了不错过未来的好机会，机会/机遇是最难得的，人生能有几次改变命运的机会，纵观历史长河中那些前人重大选择和改变的机会是屈指可数的，我们不知道什么命运时刻会什么时候到来，我们能做的就是在来之前，竭尽全力完善自己、沉淀自己，宝剑锋从磨砺出，梅花香自苦寒来，趁年轻机会成本低，勇于尝试和探索，不畏惧失败，积极乐观心态迎接问题，思考问题，解决问题。
+既然选择了这个行业，那就认清现实，先把这个行业所需要具备的能力，学习到不断实践将其融会贯通，成为自己的知识/能力体系。万事万物都是有迹可循，总结规律，沉淀自己方法论，根据场景调整和适配，大胆实践。&lt;/p>
+&lt;h3 id="重要的任务">重要的任务：&lt;/h3>
+&lt;ol>
+&lt;li>数据结构和算法 -&amp;gt; 英文阅读、数学思维思考、编码技巧规范、测试边界/鲁棒性&lt;/li>
+&lt;li>英文阅读、拼写、敢于口语表达&lt;/li>
+&lt;li>需要具备2-2(高级工程师)的能力，方案设计个人cover住该模块、和同部门/跨部门沟通协调&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>系统/方案设计（自己工作上实践总结、别人工作的实践、书上的实践总结）&lt;/li>
+&lt;li>数据指标的敏感度，需要关注系统稳定性指标/业务数据指标，不断计算和看、思考，需要前后对比&lt;/li>
+&lt;li>中间件的选型上，中间件的学习（公司内部文档/课程、官网文档/博客、书/技术文章）&lt;/li>
+&lt;li>编码（go的设计模式学习、写出efficient go code）&lt;/li>
+&lt;li>其他：减少娱乐时间投入，看一些哲学/思考的书，继续坚持写文章（短：推特、长：博客）&lt;/li>
+&lt;/ul>
+&lt;h3 id="这周目标">这周目标：&lt;/h3>
+&lt;ul>
+&lt;li>算法和数据结构：DP&lt;/li>
+&lt;li>中间件：ES&lt;/li>
+&lt;li>工作上：同步ES的灰度放量指标、思考业务指标看版【积极主动而不是别人给什么做什么，想象如何自己创业】&lt;/li>
+&lt;li>需要养成的习惯：高效和心无旁骛的完成各项任务&lt;/li>
+&lt;/ul>
+&lt;h3 id="未来">未来&lt;/h3>
+&lt;ul>
+&lt;li>能够有机会去外面的世界看看 首选新加坡、西雅图 趁年轻看看外面的世界是怎样的&lt;/li>
+&lt;li>其次外企、明星创业公司、开源软件公司remote岗位&lt;/li>
+&lt;/ul>
+&lt;h3 id="fake-it-until-you-make-it">Fake it until you make it&lt;/h3>
+&lt;p>需要改掉小毛病：&lt;/p>
+&lt;ul>
+&lt;li>减少说脏话，让心态总趋向平静，不对外散发负能量情绪&lt;/li>
+&lt;li>不要过于表达，有时候说的精简有力好过冗余软绵绵&lt;/li>
+&lt;/ul></description></item><item><title>「Software Engineering at Google」</title><link>https://hi-ernest.github.io/blog/software-engineering-at-google/</link><pubDate>Wed, 11 May 2022 23:23:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/software-engineering-at-google/</guid><description>&lt;blockquote>
+&lt;p>&lt;a href="https://qiangmzsx.github.io/Software-Engineering-at-Google/#/./zh-cn/Chapter-1_What_Is_Software_Engineering/Chapter-1_What_Is_Software_Engineering">《Software Engineering at Google》online&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="第一章什么是软件工程">第一章「什么是软件工程」&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>编程和软件工程之间有三个关键的区别：时间、规模和权衡取舍。
+在软件工程项目中，工程师更多关注时间成本和需求变更
+时间和规模增长的不确定性的预估&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>”软件工程是随着时间推移的编程“
+编程任务（开发）
+软件工程任务（开发、修改、维护、时间维度）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>软件工程”与“编程”在维度上不同：编程是关于编写代码的。软件工程扩展了这一点，包括在代码的生命周期内对其进行维护。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>海勒姆定律：当一个 API 有足够的用户的时候，在约定中你承诺的什么都无所谓，所有在你系统里面被观察到的行为都会被一些用户直接依赖。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>客观数据驱动，大多数决策都是基于数据、假设、先例、论据的混合
+随着时间的推移，数据驱动意味当数据变化时，需要改变方向&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>编程是产生代码的直接行为。软件工程是一组策略、实践和工具，这些策略、实践和工具是使代码在需要使用的时间内发挥作用，并允许整个团队的协作。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>学而不思则罔，思而不学则殆
+Fail Early, Fail Fast, Fail Often&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="第二章如何融入团队">第二章「如何融入团队」&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>结对编程：The Bus Factor
+Best work：编写一个新函数compile，添加一个测试，编译。重构一些代码，编译
+当前DevOps对技术生产力的理念明确了这些目标：尽早获得反馈，尽早进行测试，尽早考虑安全和生产环境。这一切都与开发人员工作流程中的“左移”思想捆绑在一起；我们越早发现问题，修复它的成本就越低。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Best团队的讨论：我们觉得折中的方案是最好的解决方法。在小房间（或大办公室）将四至八人组成小组，方便大家轻松（且不令人尴尬）地自由对话。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>In short, don’t hide
+软件工程是一个团队的努力
+humility, respect, and trust&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;ol>
+&lt;li>支柱1：谦逊 你不是宇宙的中心（你的代码也不是！）。你既不是全方位的，也不是绝对正确的。你愿意不断提升自我。 &lt;/li>
+&lt;li>支柱2：尊重 你真诚地关心与你一起工作的人。你善待他们，欣赏他们的能力和成就。 &lt;/li>
+&lt;li>支柱3：信任 你相信其他人有能力并且会做正确的事情，你可以让他们在适当的时候牵头。&lt;/li>
+&lt;/ol>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>寓意是：不要低估社交游戏的力量。这不是欺骗或操纵人们；这是关于建立关系来完成事情。关系总是比项目更长久。当你和你的同事关系更融洽时，他们会更愿意在你需要他们的时候帮助你。&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>
+&lt;p>编程是一项与其他技能一样的技能：它随着实践而提高
+“嘿，我对这部分的控制流感到困惑。我想知道XYZY代码模式是否能让这更清晰、更容易维护？”&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>托马斯·爱迪生的话说：“如果我发现有一万种方法不能成功，我就没有失败。我并不气馁，因为每一个被抛弃的错误尝试都是向前迈出的另一步”&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Best 事后文化：正确事后总结应该总是包含对所学到的内容的解释，以及作为学习经验作为后续的改进落地
+工程本质上是关于权衡的&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>重视反馈、走出舒适区、客户第一、关心团队、做正确的事&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="第十二章单元测试">第十二章「单元测试」&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>Best：与其为每个方法写一个测试，不如为每个行为写一个测试
+绝大多数的单元测试只需要一个 &amp;ldquo;when &amp;ldquo;和一个 &amp;ldquo;then &amp;ldquo;块&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>以被测试的行为进行命名测试&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>在测试代码中，坚持使用直线代码而不是复杂的逻辑，并在测试更具描述性的时候考虑容忍一些重复
+好的库可以帮助我们更容易写出有用的失败信息&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>DRY—“Don’t Repeat Yourself.” &lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>DAMP—that is, to promote “Descriptive And Meaningful Phrases.”&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Oops!&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="知识共享-文档">知识共享-文档&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>code review时注意事项：LGTM、PTAL
+在假设该方法是错误的之前，最好先问一下为什么要这样做&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>虽然第一行应该是整个更改的摘要，但描述仍然应该详细说明更改的内容和原因&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>os: 个人对CR严格的公司好感很多&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="第五章如何领导团队">第五章「如何领导团队」&lt;/h3>
+&lt;ul>
+&lt;li>谷歌通常通过要求一个人在晋升到该级别之前，必须在其目前的级别上完成高于当前水平的工作一段时间（即达到 &amp;ldquo;超出预期 &amp;ldquo;的目前级别）来避免这种情况。&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>os：怪不得需要晋升的话，必须拿到至少两次m+，或者一次e，说明在当前等级完成超出预期表现&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>
+&lt;p>彼得原理推导：每一个职位最终都将被一个不能胜任其工作的职工所占据。层级组织的工作任务多半是由尚未达到胜任阶层的员工完成的。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>抵制管人的冲动，应该“服务性领导”，你能做的最重要的事情就是为你的团队服务，就像一个管家或大管家关心一个家庭的健康和福祉一样。作为一个服务型领导者，你应该努力营造一种谦逊、尊重和信任的氛围。这可能意味着消除团队成员自己无法消除的官僚主义障碍，帮助团队达成共识
+尽管单纯关注团队的技术健康可能很诱人，但团队的氛围健康也同样重要（但往往更难管理）。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>从事大型代码库工作的软件工程师可能需要几个月的时间才能在一个新的团队中适应。与可替换的装配线工人不同，这些人需要培养、时间和空间来思考和创造。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>不应该保姆级关注成员们工作情况，高效完成只关注得到的成果/效果&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>os：我目前就需要搞清楚关键、重要的事情是哪些，集中精力专心致志的、高效完成
+复盘，总结不断提升不足的地方，编码、技术方案设计、一开始没考虑的地方，为什么没考虑到，后续怎么处理&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>
+&lt;p>失败是允许的，失败也是快速学习的方式，只要不要在同一件事情上重复犯错。重要的是把失败看作是一个学习的机会，而不是指责或推责。相反，目标是强烈关注问题的核心，并一劳永逸地解决它。这非常困难，但相当有效（和宣泄）。不要担心身边比你优秀的出现，他们的出现反过来，定期的挑战（除了在你犯错时只有你自己知道），能更大程度的指导自己&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>如果你立即处理一个低绩效员工，你往往会发现他们只需要一些鼓励或指导就能走向更高的生产效率状态。如果你等待很长时间再来处理低绩效员工，他们与团队的关系就会变得非常糟糕，你也会感到非常沮丧，以至于你无法帮助他们。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>os：&lt;strong>讲的太好了，不管低绩效还是其他绩效的普通成员视角，上头的帮助和鼓励是多么的重要和鼓舞人心！&lt;/strong>&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>当有人质疑你的决定或声明时，记住这个人通常只是想更好地了解你。如果你鼓励询问，你就更有可能得到那种建设性的批评，使你成为一个更好的团队的领导者。&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>os：&lt;strong>转化思路，获取内心轻盈和收获建设性方案！&lt;/strong>&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>“他会把一只手放在胸前，用手托着下巴，对问题进行提问，通常是向完全惊慌失措的工程师提问”&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>os：&lt;strong>需要真正掌握了在任何时候都保持冷静的能力！情绪稳定太重要了！&lt;/strong>&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>问问题。当一个团队成员向你征求意见时，这通常是非常令人兴奋的，因为你终于有机会解决一些问题了。这正是你在进入领导岗位之前多年所做的事情，所以你通常会立即进入解决方案模式，但这是你最不应该做的。寻求建议的人通常不希望你解决他们的问题，而是希望你能帮助他们解决问题，而最简单的方法就是向这个人提问。这并不是说你应该用 &amp;ldquo;魔力8球 &amp;ldquo;来代替你自己，那样做会让人发疯，而且没有帮助。相反，你可以运用一些谦逊、尊重和信任，通过尝试完善和探索问题，尝试帮助这个人自己解决这个问题。这通常会引导员工找到答案，而且这将是这个人的答案，这又回到了我们在本章前面所讲的所有权和责任。无论你是否有答案，使用这种技巧几乎总是会给员工留下你有答案的印象。很狡猾，是吗？苏格拉底会为你感到骄傲的。&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>os：&lt;strong>狡猾至极！学会自我提问，会把没考虑的细节考虑到，和锻炼表达的能力！&lt;/strong>&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>这可能是一个技术上或组织上的障碍，但帮助团队重新行动是一种常见的领导技巧
+在许多情况下，了解正确的人比知道正确的答案更有价值。
+成为一名导师：对团队的流程和系统的经验，向别人解释事情的能力，以及衡量被指导者需要多少帮助的能力&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>os: &lt;strong>保持一颗真诚助人的心，保持稳定的情绪，帮忙别人同样是帮助自己！（回顾复习知识+帮忙合作方大家任务早点完成下班）&lt;/strong>&lt;/p>
+&lt;/blockquote></description></item><item><title>「时间之书」余世存</title><link>https://hi-ernest.github.io/blog/book-of-time/</link><pubDate>Sat, 30 Apr 2022 23:19:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/book-of-time/</guid><description>&lt;blockquote>
+&lt;p>年轻人，你的职责是平整土地，而非焦虑时光。你做三四月的事，在八九月自有答案&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>千万不要否定自己，你只是没经验，多思考多练习就会越来越好.生命充满了劳绩，但还要诗意地栖居在这块土地上 -荷尔德林&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>立春作为春季的开始2月2～5,立夏为5月5～7日&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>清人的《燕京岁时记》中记 载： “立春先一日，顺天府官员，在东直门外一里春场迎春。立春日， 礼部呈进春山宝座，顺天府呈进春牛图，礼毕回署，引春牛而击之，曰 打春。“&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>立春三候中，东风是中国人理解的八风之一，即四时八节之风
+八风：立春、春分、立夏、夏至、立秋、秋分、立冬、冬至
+“东风不与周郎便，铜雀春深锁二乔”&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>细雨飘然而至，春来不言离愁。 有麦青青于野，有你在我心头&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>君子之所以教者五：有如时雨化之者，有成德者，有达财者，有 答问者，有私淑艾者。此五者，君子之所以教也。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>每年的农历二月初二晚上，苍龙星宿开始从东方露头，角宿，代表龙角，开 始从东方地平线上显现；大约一个钟头后，亢宿，即龙的咽喉，升至地 平线以上；接近子夜时分，氐宿，即龙爪也出现了。这就是“龙抬 头”的过程。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>“青年男子谁个不善钟情？ 妙龄女人谁个不善怀春？这是我们人性中的至圣至神。”&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>春分虽为二十四节气之 一，却是最早的二分之一（春分、秋分），四时之一（前二分再细划出 冬至、夏至，即春夏秋冬四季），八节之一（前四时再细划出立春、立夏、立秋、立冬）。一个太阳回归年为太极，太极生两仪（二分），两仪生四象（即四时四季），四象生八卦（即八节）。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>中国的寒食节则以冬至后一百零五天为计，一般在清明节前一两 天。又称“禁烟节”“冷节”“百五节”，是远古人在春天改火形成的习俗。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>古人就在此时把上一年传下来的火种全部熄灭，即是“禁火”，过几天再 钻燧取出新火，作为新一年生产与生活的起点，谓之“改火”或“请新 火”。在这几天无火的日子里，人们只能以冷食度日，即为“寒食”， 故而得名“寒食节”。寒食禁火、清明取火的现象，在唐代诗人韦庄的 诗中是： “寒食花开千树雪，清明火出万家烟。”&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>“君子以制数度，议德行。”而人生 或日常生活能否清明，一个人是否是一个干净的人？就像清明节名称本 身提示的境界，在清明节期间，值得我们扪心自问。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>古人称说的长夏即指农历四五六月的初夏、仲夏和季夏，相当于太阳历的 5月、6月和7月三个月。古人还把夏季最热的伏天称为“盛夏”，暑伏 天时酷热难耐，人们盼着快点度过，故又有“消夏”“消暑”之俗称。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>《燕京岁时记》记载说： “那时的四大冰食佳品， 一是酸梅汤，二是西瓜汁，三是杏仁豆腐，四是什锦盘，均以冰镇 之。”&lt;/p>
+&lt;/blockquote></description></item><item><title>来字节的一周年了</title><link>https://hi-ernest.github.io/blog/bytedancer-one-year/</link><pubDate>Tue, 26 Apr 2022 23:37:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/bytedancer-one-year/</guid><description>&lt;p>今天是来字节的一周年。从刚开始的跌跌撞撞，磨磨碰碰，想过逃离、想过放弃，到后面打开自己封闭的内心，用积极的心态去迎接每一天所遇到的难题，去不断思考、去和团队伙伴进行讨论，积极的推进让事情更好更快解决。千言万语还是一句话，勿忘初心！&lt;/p>
+&lt;ul>
+&lt;li>想清楚自己到底是为了什么？&lt;/li>
+&lt;li>为什么来到这儿，什么东西对自己是最最重要的？&lt;/li>
+&lt;li>自己最想得到的是什么？怎样才能收获自己想要的东西？&lt;/li>
+&lt;/ul>
+&lt;p>对于未知的领域，未知的难题，如何快速调整心态和找到合适方法解决，没有人天生就会，是需要后天日复一日，年复一年，日拱一卒的勤勉的思考和探索，不断练习才能积累出对应的经验，沉淀出属于自己的一套方法论，训练自己拥有清晰的富有逻辑的解题思维。&lt;/p>
+&lt;p>我们就是在庞大的社会机器下的螺丝钉，看似微不足道但依然有存在的价值，都希望能在有限的时间长河中迸发出自己的那一抹绚丽的光彩。光靠一颗螺丝头掀不起惊涛骇浪，千千万万螺丝钉与螺母…组合成航母，才能带来巨大的生产力，个人价值在集体中飞跃提升。所以江湖不是大大杀杀，而是人情世故。&lt;/p>
+&lt;p>经历一年多社会的毒打，才入门理解前人道出这句话的苦涩和智慧。在工作中，人之间合作实在太重要了，交流沟通是人成长路上必修课，敢于拒绝不合适的需求/要求，关键处据理力争、冲突时于情委婉的表达，各自求同存异，找到平衡多方的解决方案等等。一开始总想一件一件的事情，按序就班解决，后面发现其实不然，很多情况下就是开多线程进行多任务的处理，而且事情的最终结果也不是个人能决定的，不要抱有太多的希望，期望会是最理想的方式去导向，大多情况不然，积极推进做好自己能做的部分，剩下的慢慢推动就好，有问题不要死扛，而是同步老板进度，尤其需求/优化的调研思考过后产出方案各有优缺，可以有自己倾向，但拍板的事就交给老板好了，一定要想好了再去做，否者可能直接做其实都是无用功。&lt;/p>
+&lt;blockquote>
+&lt;p>最近晚上困的早，早上醒的早，最近状态还是蛮舒服！希望自己继续探索找到最长的坡和最厚的雪!&lt;/p>
+&lt;/blockquote></description></item><item><title>梳理历史代码结论</title><link>https://hi-ernest.github.io/blog/sorting-out-historical-code/</link><pubDate>Wed, 13 Apr 2022 10:48:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/sorting-out-historical-code/</guid><description>&lt;ul>
+&lt;li>业务的校验和处理进行分开，避免杂糅在一起&lt;/li>
+&lt;li>方法名和参数名需要见名直意&lt;/li>
+&lt;li>方法内聚合、模块化，对外职责单一&lt;/li>
+&lt;li>方法的传参尽量少，需要什么就传什么，而不是直接一个结构体，然后取其他一个字段&lt;/li>
+&lt;li>方法By哪个参数A进行唯一确定，建议把参数A放在方法入参第一位置&lt;/li>
+&lt;/ul></description></item><item><title>25岁的一年</title><link>https://hi-ernest.github.io/blog/in-25-year-old/</link><pubDate>Mon, 04 Apr 2022 12:36:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/in-25-year-old/</guid><description>&lt;p>随着时间，发现自己就是一个普通人，想让生活过着不那么苟且，多一些阳光和憧憬
+接受自己的普通，接受自己不足，过好眼前的生活&lt;/p>
+&lt;p>发现的不足：&lt;/p>
+&lt;ol>
+&lt;li>与人沟通交谈，老是喜欢说原因，不直接说结论，老是对结论进行解释或者思考过程等阐述一遍没有意义
+有的话不需要这么强的表达欲&lt;/li>
+&lt;li>思考比较混乱跳跃，条理不清晰。冥想演示场景，把需要说的话先排练，记录下来再说&lt;/li>
+&lt;li>不善于倾听，老是沉浸自己的世界当中，重复同样的话。知之为知之不知为不知，是智也&lt;/li>
+&lt;li>空想家，有想法容易胡思乱想，行动力不足，动力不足没有特别想要的信念感&lt;/li>
+&lt;li>自信心不够，增加冥想&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>我很讨厌别人带人来住处 这到底是什么样的心理活动
+很烦很讨厌的感受，一应该是自己很讨厌不认识的人，二不喜欢需要共享的方式，自己想用的时候别人占有&lt;/p>
+&lt;/blockquote></description></item><item><title>绩效沟通前准备</title><link>https://hi-ernest.github.io/blog/performance-communication/</link><pubDate>Mon, 04 Apr 2022 02:18:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/performance-communication/</guid><description>&lt;blockquote>
+&lt;p>Q: 说一下一年了感觉&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>A: 嗯嗯 略加停顿思索 在字节工作得到收获和自身变化我想用三个词概况一下&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="心理上">心理上&lt;/h3>
+&lt;p>第一词语是从容，原因我认为越加融入公司和团队，开发流程了然于胸，需求prd到设计方案，落地上线流程都，上线打点观察等，点点滴滴成为习惯，，每天很充实，有清晰的目的和需要解决的问题，遇到问题应该找谁沟通，如何沟通，产出沟通结论。工作上有点感觉进入心流的状态&lt;/p>
+&lt;h3 id="思想上">思想上&lt;/h3>
+&lt;p>激发思考，做业务、技术需求..之前多思考，好的方案设计是好的基础，避免后续业务的坑。比如需求来了不是一股脑写，而是质疑需求、思考它的业务价值，多沟通才能得到好的解决方案，与人多碰碰问题，就多一个视角看问题，噢还能这样，这样更好，像挖到宝藏一样感觉很兴奋。而且超哥牵头组织每周五分享，让大家能了解对方再做哪个内容，涉及哪些系统交互，他们设计是怎样的。无形中了解和借鉴别人好的设计，开阔自己视野&lt;/p>
+&lt;h3 id="行为上">行为上&lt;/h3>
+&lt;p>技术沉淀，转go并发控制，反射怎么写比较好，而且咱们物流就像烧的越来越旺的炼丹炉，足够多业务场景去锤炼自己，怎么解决BIC履约监控上mq消息乱序、db磁盘满了不停机无影响怎么迁移数据、怎样同步写入ES、查询和聚合ES等，积累一方面的经验&lt;/p>
+&lt;h3 id="不好">不好&lt;/h3>
+&lt;p>遇到问题的拆解，可能没有独自完成拆分，方向不能自己很好的把控
+在业务中，先列大纲，找methor沟通碰，确定方向再完善&lt;/p>
+&lt;h3 id="之前打算目前">之前打算目前&lt;/h3>
+&lt;p>问题的拆解，把大的抽象业务问题，拆解小的可实施的小任务 【多练习】
+多学习别人好的业务模型设计，流程交互
+在咱们物流团队承担更多的职责，多锻炼自己跨部门沟通能力&lt;/p></description></item><item><title>「人生的智慧」叔本华</title><link>https://hi-ernest.github.io/blog/schopenhauer/</link><pubDate>Tue, 08 Feb 2022 13:00:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/schopenhauer/</guid><description>&lt;blockquote>
+&lt;p>所说的钟摆，人生就在这两头之间摆来摆
+去，在一端的人总想摆到另一端，其实只有摆的那一瞬间是快乐的&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>人生就是在痛苦和无聊这二者之间像钟摆一样摆来摆去：当你需要为生存而劳作时，你是痛苦的；当你的基本需求满足之后，你会感到无聊。&lt;/p>
+&lt;/blockquote>
+&lt;blockquote>
+&lt;p>“拥有丰富的内在，即丰富的精神才是人生幸福的关键，才能避免痛苦和无聊。要想保持幸福的内在源泉畅通无阻，条件是拥有独立和闲暇，而独立和闲暇则是以俭朴和节制来换取的。一个人自身的精神价值越高的时候，他就越能耐得住简单的生活和孤独的侵袭。”&lt;/p>
+&lt;/blockquote></description></item><item><title>四人语录(禹神、达咩、啊焦、睿总)</title><link>https://hi-ernest.github.io/blog/four-people-talk/</link><pubDate>Tue, 08 Feb 2022 13:00:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/four-people-talk/</guid><description>&lt;blockquote>
+&lt;p>最近工作小组成员口头禅&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>“我透”&lt;/li>
+&lt;li>“小事小事 不慌哈 都是小事”&lt;/li>
+&lt;li>“我知道…我知道”&lt;/li>
+&lt;li>“拔四拔四（不是不是）”&lt;/li>
+&lt;li>“焦总 达总 睿总…”想喊一人全部喊一遍才对&lt;/li>
+&lt;li>“别叹气 好运气都叹没了”&lt;/li>
+&lt;li>“xiaoyu 下班吗 走了走了”&lt;/li>
+&lt;li>“我都睡了一觉了”&lt;/li>
+&lt;li>“我只是去散24小时的步”&lt;/li>
+&lt;li>“撤回吧 别丢人了”&lt;/li>
+&lt;li>“早干啥去了”&lt;/li>
+&lt;li>“别别别 我劝你别”&lt;/li>
+&lt;li>“行吗 可以吗 你确定？”&lt;/li>
+&lt;li>“不行呗”&lt;/li>
+&lt;li>“不行？不喜欢？”&lt;/li>
+&lt;li>“ Trust 得me”&lt;/li>
+&lt;li>“看灯吗 老壁灯”&lt;/li>
+&lt;li>“自信放光芒”&lt;/li>
+&lt;li>“短板 木桶最短的那块板”&lt;/li>
+&lt;li>“我说 去不去吃饭呀 都几点了”&lt;/li>
+&lt;li>“你去不去厕所”&lt;/li>
+&lt;li>“你是真没事干”&lt;/li>
+&lt;li>“你不干有的是人干”&lt;/li>
+&lt;li>“别闹了”&lt;/li>
+&lt;li>“撤回吧 别丢人了”&lt;/li>
+&lt;li>“写的很好 下次别写了”&lt;/li>
+&lt;/ul></description></item><item><title>2022年1月28日下午1:56</title><link>https://hi-ernest.github.io/blog/go-home-2022/</link><pubDate>Fri, 28 Jan 2022 14:20:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/go-home-2022/</guid><description>&lt;p>自从确定了回家的日期，每天上班的动力就是离回家的日子越来越近了。从刚开始的漫长到最后临近，心里也从充溢的期盼到有些空荡荡的。来北京的这九个月，有过痛苦有过迷茫，想过逃避想过放弃，但终归坚持下来，虽然年中绩效考核不是理想，但自己也做了一些改变，到现在感觉自己掌握些什么但又好像没掌握，有几种可能性&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;ol>
+&lt;li>这些知识和经验都藏在脑海记忆中，没遇到一样的所以没有唤醒，&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;ol start="2">
+&lt;li>自己没有像刚开始想的那样时刻记录下来，导致回顾时候没有记忆点，&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;ol start="3">
+&lt;li>其实还是没有掌握，不能说什么都不会不懂，只能说略懂皮毛。我仔细想想都有，是前两个原因导致第三个原因。每次需要记录的时候，一拖延和懒惰就忘记了，恶性循环。回到家也不能彻底放松下来肆意妄为，需要陪伴母亲与谈心，做一些力所能及的事情，在保护自己和别人安全下跑步锻炼，晚上2点之后休息，日更博客(日记/技术与业务总结)，坚持leetcode每日一题，每天看相关数据指标，学习跨境代码结构和思路，梳理退货和国内监控业务交互，结合目前业务需求学习ES，思维导图+整理文档，配合idl看owms的代码逻辑，结合oncall来看，自己梳理整理文档，写下2021的完整版年终总结，和2022的目标和期望。&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;p>｜上空 11582km&lt;/p></description></item><item><title>2021/04/19有感</title><link>https://hi-ernest.github.io/blog/2021-04-19/</link><pubDate>Mon, 19 Apr 2021 00:00:00 +0000</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/2021-04-19/</guid><description>&lt;p>周五晚上回老家看望了阿婆，老人1934年生人，今年也87了。有时候不免感到生老病死，时光流转更替，老一辈是这个时代甩在身后的人了，他们不懂抖音，不懂游戏，但饱饭、电视和熟人之间的闲聊也是他们最大的娱乐方式，对于老一辈的岁数难免疾病缠身，我们身为后辈其实能做的就只有常回家看看，围绕在她跟前聆听唠叨听听那些简单到不能简单的琐事，说说自己现在目前的情况，不懂他们懂不懂尽可能用简单话语解释，其实就是虽然偶尔遇到困难，但总体一切顺利，一直在路上，勿念我会照顾好自己。这次回去最大触动，就是阿婆那句话，她看着大伯给我钱，在一旁说道，“阿婆没有钱给你了，都花在看病上了”&amp;hellip;现在想想，心里的弦仿佛被狠狠的触动，泪水小小的在眼眶中打转，对时间不断向前谁也改变不了，生老病死是人一生的必修课，很残忍但也必须去面对去经历&amp;hellip;.&lt;/p>
 &lt;p>有时候不敢前面的道路有多难，我都会想到那些支持我的人，还有我自己要相信自己，相信的力量一直会坚持着我！&lt;/p>
 &lt;p>信念感！！&lt;/p>
 &lt;p>付出行动：有了工资和积蓄，过年过节给阿婆红包表达自己一份孝心的挂念（转给大姑让大姑代为转达）&lt;/p>
