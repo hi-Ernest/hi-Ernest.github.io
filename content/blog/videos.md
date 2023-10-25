@@ -10,7 +10,15 @@ This is a video test post.
 
 {{< youtube ZJthWmvUzzc >}}
 
+
 <br>
+
+{{< youtube _-6p4_q6iiY >}}
+
+
+
+{{< youtube 2x2_tA07wxU >}}
+
 
 ---
 <!--more-->
