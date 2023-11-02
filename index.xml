@@ -1,4 +1,43 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Always Exploring</title><link>https://hi-ernest.github.io/</link><description>Recent content on Always Exploring</description><generator>Hugo -- gohugo.io</generator><language>zh</language><managingEditor>chenhuarui2472071@gmail.com (Ernest Chen)</managingEditor><webMaster>chenhuarui2472071@gmail.com (Ernest Chen)</webMaster><copyright>2023 ErnestChen All rights reserved</copyright><lastBuildDate>Wed, 25 Oct 2023 23:55:37 +0800</lastBuildDate><atom:link href="https://hi-ernest.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>毕业多年才知道工作的唯一意义就是赚钱</title><link>https://hi-ernest.github.io/blog/why-work/</link><pubDate>Wed, 25 Oct 2023 23:55:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/why-work/</guid><description>&lt;h3 id="工作的唯一意义就是赚钱">工作的唯一意义就是赚钱&lt;/h3>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Always Exploring</title><link>https://hi-ernest.github.io/</link><description>Recent content on Always Exploring</description><generator>Hugo -- gohugo.io</generator><language>zh</language><managingEditor>chenhuarui2472071@gmail.com (Ernest Chen)</managingEditor><webMaster>chenhuarui2472071@gmail.com (Ernest Chen)</webMaster><copyright>2023 ErnestChen All rights reserved</copyright><lastBuildDate>Thu, 02 Nov 2023 09:24:00 +0800</lastBuildDate><atom:link href="https://hi-ernest.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>和前端沟通问题个人复盘</title><link>https://hi-ernest.github.io/blog/review-fe-cooperation-issues/</link><pubDate>Thu, 02 Nov 2023 09:24:00 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/review-fe-cooperation-issues/</guid><description>&lt;h3 id="回顾整个过程">回顾整个过程&lt;/h3>
+&lt;p>前天1031和前端沟通还是着急了，确实有点控制不住自几。主要是他老是说的有的没的，对解决当下问题没有任何帮助，感觉还把甩锅到我这边，大致意思他们还在解决问题，等解决了才能一起投入测试，不是他们不测试，说正常都是前端测一遍没问题，才让后端测试回归的。我笑了，这样算前后端联调？现在前端问题不断，那什么时候能解决，还没解决我后端就不投入测试了吗？在这干坐等你们解决？现在我发现问题大多集中前端样式？按照这样个人感觉无法达上线标准的。每个人都有各自的课题，我的课题是在排期内完成开发和自测，在前后端联调，测试全流程发现问题，解决问题，后端问题就修复，前端就抛给前端修复。你不需要对我个人评价，对事不对人，这件事你们做的不好，没有给我任何有益的输入点，整个联调测试压力都放在后端，这事情本身就是不合理的！&lt;/p>
+&lt;h3 id="沟通推进中我自身可以改进的地方">沟通推进中我自身可以改进的地方&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>（找准漏洞，言简意赅强而有力回击）&lt;/strong> 沉住气深呼吸，先不着急发言，先听合作方说，如果是甩锅点，找漏洞反问句式有效回击&lt;/li>
+&lt;li>&lt;strong>（抛出问题后，让合作方给出明确解决时间，并群里同步会议结论，到时间再询问进度，什么时候没问题再进入下一阶段联调）&lt;/strong> 联调发现一方问题不断，存在上线延期风险，及时向上汇报，如果哪一方问题比较多，先让其自测解决大部分问题后在集中联调&lt;/li>
+&lt;li>&lt;strong>（项目把控风险上，谁来评估和拍板延期多久，如果延期发现还是有问题尼）合作流程中，谁来评估上线是否有风险（把控后端/前端整体进度）&lt;/strong> ，如果出现了风险应该找谁统一收口来判断是否延期，需要延期几天。（而不是后端抛出风险，前端说没问题这两天可以改完，结果还是没改完，这种情况怎么办）&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>这种case和小组长聊完，确定找对应小组长来评判，毕竟现在做的toD对内，而不是着急的业务需求，以及有对应的PM和业务方催促&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>（梳理现状不合理性和寻找解决方法）&lt;/li>
+&lt;/ul>
+&lt;ol>
+&lt;li>正常流程中后端在技术方案评审时候，列出所有涉及接口，前端需要了解业务背景和接口设计，以及给予输入补充可能缺少的接口，避免漏需求&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>现状前端人力不足和个人能力差异，对业务需求理解不够无法在技术评审阶段时理清接口list，给予其他输入补充方案也好像也不太能够。目前解法：在技术评审还是列出涉及的接口，以及页面交互中如何使用该接口，给予接口时候分批给予，比如先做完xx模块的CRUD就先给，出入参和返回数据也一并给予，这就需要我们后端先开发完成并完成自测。虽然会变成串行开发，但这也是当下环境为数不多比较好的解法。&lt;/p>
+&lt;/blockquote>
+&lt;ol start="2">
+&lt;li>在技术评审完前后端接口定义完毕，数据结构确定后，前后端都需要自行mock数据，各自按照约定独立开发&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>当下现状是在联调前自测页面的交互等，还是依赖于后端数据返回，同上需要后端先开发；以及接口文档介于公司没有统一的接口测试平台，还是放在wiki方式给予出入参定义，以及字段含义，在给予时需要后端将数据返回&lt;/p>
+&lt;/blockquote>
+&lt;ol start="3">
+&lt;li>
+&lt;p>开发排期需要包括开发和自测，联调时间应该前后端在之前将项目部署泳道或者sit环境，双方可以直接在页面测试逻辑&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>（一定在技术详评完能双方直接进入开发，避免过多时间讨论）在技术方案评审时，把交互和对应接口都对齐，可以在详评前先找前端对一版有初步沟通&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>（联调前一天提前部署好项目在联调有环境，联调时双方直接测试）&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>（联调问题先群里发出来，问题多需要文档记录）&lt;/p>
+&lt;/li>
+&lt;/ol></description></item><item><title>毕业多年才知道工作的唯一意义就是赚钱</title><link>https://hi-ernest.github.io/blog/why-work/</link><pubDate>Wed, 25 Oct 2023 23:55:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/why-work/</guid><description>&lt;h3 id="工作的唯一意义就是赚钱">工作的唯一意义就是赚钱&lt;/h3>
 &lt;p>曾今的我：我要在工作中实现自我价值；我要不断进步；要把这个项目做成；在乎领导和同事的每一句评价&amp;hellip;&lt;/p>
 &lt;p>现在的我：按时给我发工资不损害我的利益；领导的话批判性的接受，没用的一个耳朵进另一个耳朵出；不在工作中浪费过多的情绪，职场关系没那么重要，和同事和领导不一定要成为知心朋友，有聊得来就聊也不强求。&lt;/p>
 &lt;p>&lt;strong>工作的意义就是为了赚钱，赚来的钱才能买来更多的快乐和意义！&lt;/strong>&lt;/p>
@@ -2380,52 +2419,52 @@ cursor: pointer;
 &lt;img src="https://i.vimeocdn.com/video/337401969-979f0cc9f55fdf305fb8984e90d92639ec9d7ecc4c9dfbc6536e28edb43784ce-d_640" srcset="https://i.vimeocdn.com/video/337401969-979f0cc9f55fdf305fb8984e90d92639ec9d7ecc4c9dfbc6536e28edb43784ce-d_640 1x, https://i.vimeocdn.com/video/337401969-979f0cc9f55fdf305fb8984e90d92639ec9d7ecc4c9dfbc6536e28edb43784ce-d_640 2x" alt="Sing Jan Swing - Kinetic Type">
 &lt;div class="play">&lt;svg version="1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61 61">&lt;circle cx="30.5" cy="30.5" r="30.5" opacity=".8" fill="#000">&lt;/circle>&lt;path d="M25.3 19.2c-2.1-1.2-3.8-.2-3.8 2.2v18.1c0 2.4 1.7 3.4 3.8 2.2l16.6-9.1c2.1-1.2 2.1-3.2 0-4.4l-16.6-9z" fill="#fff">&lt;/path>&lt;/svg>&lt;/div>&lt;/a>&lt;/div></description></item><item><title>sort algorithm</title><link>https://hi-ernest.github.io/blog/sort-algorithm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/sort-algorithm/</guid><description>&lt;p>排序算法是《数据结构与算法》中最基本的算法之一。
 排序算法可以分为内部排序和外部排序，内部排序是数据记录在内存中进行排序，而外部排序是因排序的数据很大，一次不能容纳全部的排序记录，在排序过程中需要访问外存。常见的内部排序算法有：插入排序、希尔排序、选择排序、冒泡排序、归并排序、快速排序、堆排序、基数排序等&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">//快速排序
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">sort&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span> nums&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#f92672">(&lt;/span>nums&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">length&lt;/span> &lt;span style="color:#f92672">&amp;lt;=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>&lt;span style="color:#f92672">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> quickSort&lt;span style="color:#f92672">(&lt;/span>nums&lt;span style="color:#f92672">,&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">,&lt;/span> nums&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">length&lt;/span> &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">)&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">//快速排序&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">sort&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span> nums) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (nums.&lt;span style="color:#a6e22e">length&lt;/span> &lt;span style="color:#f92672">&amp;lt;=&lt;/span> 1) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> quickSort(nums, 0, nums.&lt;span style="color:#a6e22e">length&lt;/span> &lt;span style="color:#f92672">-&lt;/span> 1)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">quickSort&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> nums&lt;span style="color:#f92672">,&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> left&lt;span style="color:#f92672">,&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> right&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#f92672">(&lt;/span>left &lt;span style="color:#f92672">&amp;gt;=&lt;/span> right&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>&lt;span style="color:#f92672">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> partition &lt;span style="color:#f92672">=&lt;/span> getPartition&lt;span style="color:#f92672">(&lt;/span>nums&lt;span style="color:#f92672">,&lt;/span> left&lt;span style="color:#f92672">,&lt;/span> right&lt;span style="color:#f92672">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> quickSort&lt;span style="color:#f92672">(&lt;/span>nums&lt;span style="color:#f92672">,&lt;/span> left&lt;span style="color:#f92672">,&lt;/span> partition &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> quickSort&lt;span style="color:#f92672">(&lt;/span>nums&lt;span style="color:#f92672">,&lt;/span> partition &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">,&lt;/span> right&lt;span style="color:#f92672">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">quickSort&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> nums, &lt;span style="color:#66d9ef">int&lt;/span> left, &lt;span style="color:#66d9ef">int&lt;/span> right) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (left &lt;span style="color:#f92672">&amp;gt;=&lt;/span> right) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> partition &lt;span style="color:#f92672">=&lt;/span> getPartition(nums, left, right);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> quickSort(nums, left, partition &lt;span style="color:#f92672">-&lt;/span> 1);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> quickSort(nums, partition &lt;span style="color:#f92672">+&lt;/span> 1, right);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">getPartition&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> nums&lt;span style="color:#f92672">,&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> left&lt;span style="color:#f92672">,&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> right&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> left&lt;span style="color:#f92672">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> sentry &lt;span style="color:#f92672">=&lt;/span> nums&lt;span style="color:#f92672">[&lt;/span>right&lt;span style="color:#f92672">];&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> &lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span> j &lt;span style="color:#f92672">=&lt;/span> left&lt;span style="color:#f92672">;&lt;/span> j &lt;span style="color:#f92672">&amp;lt;=&lt;/span> right &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">;&lt;/span> j&lt;span style="color:#f92672">++)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#f92672">(&lt;/span>nums&lt;span style="color:#f92672">[&lt;/span>j&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">&amp;lt;&lt;/span> sentry&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> swap&lt;span style="color:#f92672">(&lt;/span>nums&lt;span style="color:#f92672">,&lt;/span> i&lt;span style="color:#f92672">,&lt;/span> j&lt;span style="color:#f92672">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> i&lt;span style="color:#f92672">++;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> swap&lt;span style="color:#f92672">(&lt;/span>nums&lt;span style="color:#f92672">,&lt;/span> i&lt;span style="color:#f92672">,&lt;/span> right&lt;span style="color:#f92672">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> i&lt;span style="color:#f92672">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> &lt;span style="color:#a6e22e">getPartition&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> nums, &lt;span style="color:#66d9ef">int&lt;/span> left, &lt;span style="color:#66d9ef">int&lt;/span> right) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> left;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> sentry &lt;span style="color:#f92672">=&lt;/span> nums&lt;span style="color:#f92672">[&lt;/span>right&lt;span style="color:#f92672">]&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> (&lt;span style="color:#66d9ef">int&lt;/span> j &lt;span style="color:#f92672">=&lt;/span> left; j &lt;span style="color:#f92672">&amp;lt;=&lt;/span> right &lt;span style="color:#f92672">-&lt;/span> 1; j&lt;span style="color:#f92672">++&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (nums&lt;span style="color:#f92672">[&lt;/span>j&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">&amp;lt;&lt;/span> sentry) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> swap(nums, i, j);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> i&lt;span style="color:#f92672">++&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> swap(nums, i, right);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> i;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">//归并排序
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> &lt;span style="color:#a6e22e">mergeKNums&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[][]&lt;/span> nums&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> mergeSort&lt;span style="color:#f92672">(&lt;/span>nums&lt;span style="color:#f92672">,&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">,&lt;/span> nums&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">length&lt;/span> &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">//归并排序&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> &lt;span style="color:#a6e22e">mergeKNums&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[][]&lt;/span> nums) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> mergeSort(nums, 0, nums.&lt;span style="color:#a6e22e">length&lt;/span> &lt;span style="color:#f92672">-&lt;/span> 1);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> &lt;span style="color:#a6e22e">mergeSort&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[][]&lt;/span> nums&lt;span style="color:#f92672">,&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> left&lt;span style="color:#f92672">,&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> right&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#f92672">(&lt;/span>left &lt;span style="color:#f92672">==&lt;/span> right&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> nums&lt;span style="color:#f92672">[&lt;/span>left&lt;span style="color:#f92672">];&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> mid &lt;span style="color:#f92672">=&lt;/span> left &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#f92672">(&lt;/span>right &lt;span style="color:#f92672">-&lt;/span> left&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>&lt;span style="color:#f92672">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> nums1 &lt;span style="color:#f92672">=&lt;/span> mergeSort&lt;span style="color:#f92672">(&lt;/span>nums&lt;span style="color:#f92672">,&lt;/span> left&lt;span style="color:#f92672">,&lt;/span> mid&lt;span style="color:#f92672">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> nums2 &lt;span style="color:#f92672">=&lt;/span> mergeSort&lt;span style="color:#f92672">(&lt;/span>nums&lt;span style="color:#f92672">,&lt;/span> mid &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">,&lt;/span> right&lt;span style="color:#f92672">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> &lt;span style="color:#a6e22e">mergeSort&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[][]&lt;/span> nums, &lt;span style="color:#66d9ef">int&lt;/span> left, &lt;span style="color:#66d9ef">int&lt;/span> right) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (left &lt;span style="color:#f92672">==&lt;/span> right) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> nums&lt;span style="color:#f92672">[&lt;/span>left&lt;span style="color:#f92672">]&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> mid &lt;span style="color:#f92672">=&lt;/span> left &lt;span style="color:#f92672">+&lt;/span> (right &lt;span style="color:#f92672">-&lt;/span> left) &lt;span style="color:#f92672">/&lt;/span> 2;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> nums1 &lt;span style="color:#f92672">=&lt;/span> mergeSort(nums, left, mid);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> nums2 &lt;span style="color:#f92672">=&lt;/span> mergeSort(nums, mid &lt;span style="color:#f92672">+&lt;/span> 1, right);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
-&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">//堆排序
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">HeapSort&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">//堆排序&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">HeapSort&lt;/span> {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">/**
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 比较 + 交换
@@ -2437,10 +2476,10 @@ cursor: pointer;
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * @param nums 待排序的数组
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * @return 已好排序数组（从小到大）
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> &lt;span style="color:#a6e22e">sortArray&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> nums&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> heapSort&lt;span style="color:#f92672">(&lt;/span>nums&lt;span style="color:#f92672">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> nums&lt;span style="color:#f92672">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> &lt;span style="color:#a6e22e">sortArray&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> nums) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> heapSort(nums);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> nums;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">/**
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * 基于二叉堆中最大堆实现（抽象成完全二叉树）
@@ -2450,45 +2489,45 @@ cursor: pointer;
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> *
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * @param nums 待排序的数组
 &lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">heapSort&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> nums&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> len &lt;span style="color:#f92672">=&lt;/span> nums&lt;span style="color:#f92672">.&lt;/span>&lt;span style="color:#a6e22e">length&lt;/span>&lt;span style="color:#f92672">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">//构建大顶堆 O(N)
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">for&lt;/span> &lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> len&lt;span style="color:#f92672">/&lt;/span>&lt;span style="color:#ae81ff">2&lt;/span>&lt;span style="color:#f92672">;&lt;/span> i &lt;span style="color:#f92672">&amp;gt;=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">;&lt;/span> i&lt;span style="color:#f92672">--)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> heapify&lt;span style="color:#f92672">(&lt;/span>nums&lt;span style="color:#f92672">,&lt;/span> len&lt;span style="color:#f92672">,&lt;/span> i&lt;span style="color:#f92672">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> &lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> len &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">;&lt;/span> i &lt;span style="color:#f92672">&amp;gt;=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">;&lt;/span> i&lt;span style="color:#f92672">--)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> swap&lt;span style="color:#f92672">(&lt;/span>nums&lt;span style="color:#f92672">,&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">,&lt;/span> i&lt;span style="color:#f92672">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">//i：需要堆化的元素个数 0：下标
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> heapify&lt;span style="color:#f92672">(&lt;/span>nums&lt;span style="color:#f92672">,&lt;/span> i&lt;span style="color:#f92672">,&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>&lt;span style="color:#f92672">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">heapSort&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> nums) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> len &lt;span style="color:#f92672">=&lt;/span> nums.&lt;span style="color:#a6e22e">length&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">//构建大顶堆 O(N)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> (&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> len&lt;span style="color:#f92672">/&lt;/span>2; i &lt;span style="color:#f92672">&amp;gt;=&lt;/span> 0; i&lt;span style="color:#f92672">--&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> heapify(nums, len, i);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> (&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> len &lt;span style="color:#f92672">-&lt;/span> 1; i &lt;span style="color:#f92672">&amp;gt;=&lt;/span> 1; i&lt;span style="color:#f92672">--&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> swap(nums, 0, i);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">//i：需要堆化的元素个数 0：下标&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> heapify(nums, i, 0);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">//自上而下的堆化
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#75715e">//时间复杂度：O(N * logN)
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">heapify&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> nums&lt;span style="color:#f92672">,&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> len&lt;span style="color:#f92672">,&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> index&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">//index 是父节点
-&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> left &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#f92672">*&lt;/span> index &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>&lt;span style="color:#f92672">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> right &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span> &lt;span style="color:#f92672">*&lt;/span> index &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>&lt;span style="color:#f92672">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> maxIndex &lt;span style="color:#f92672">=&lt;/span> index&lt;span style="color:#f92672">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#f92672">(&lt;/span>left &lt;span style="color:#f92672">&amp;lt;&lt;/span> len &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> nums&lt;span style="color:#f92672">[&lt;/span>left&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> nums&lt;span style="color:#f92672">[&lt;/span>maxIndex&lt;span style="color:#f92672">])&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> maxIndex &lt;span style="color:#f92672">=&lt;/span> left&lt;span style="color:#f92672">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#f92672">(&lt;/span>right &lt;span style="color:#f92672">&amp;lt;&lt;/span> len &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> nums&lt;span style="color:#f92672">[&lt;/span>right&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> nums&lt;span style="color:#f92672">[&lt;/span>maxIndex&lt;span style="color:#f92672">])&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> maxIndex &lt;span style="color:#f92672">=&lt;/span> right&lt;span style="color:#f92672">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#f92672">(&lt;/span>maxIndex &lt;span style="color:#f92672">!=&lt;/span> index&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> swap&lt;span style="color:#f92672">(&lt;/span>nums&lt;span style="color:#f92672">,&lt;/span> index&lt;span style="color:#f92672">,&lt;/span> maxIndex&lt;span style="color:#f92672">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> heapify&lt;span style="color:#f92672">(&lt;/span>nums&lt;span style="color:#f92672">,&lt;/span> len&lt;span style="color:#f92672">,&lt;/span> maxIndex&lt;span style="color:#f92672">);&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">//自上而下的堆化&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">//时间复杂度：O(N * logN)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">heapify&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> nums, &lt;span style="color:#66d9ef">int&lt;/span> len, &lt;span style="color:#66d9ef">int&lt;/span> index) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">//index 是父节点&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> left &lt;span style="color:#f92672">=&lt;/span> 2 &lt;span style="color:#f92672">*&lt;/span> index &lt;span style="color:#f92672">+&lt;/span> 1;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> right &lt;span style="color:#f92672">=&lt;/span> 2 &lt;span style="color:#f92672">*&lt;/span> index &lt;span style="color:#f92672">+&lt;/span> 2;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> maxIndex &lt;span style="color:#f92672">=&lt;/span> index;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (left &lt;span style="color:#f92672">&amp;lt;&lt;/span> len &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> nums&lt;span style="color:#f92672">[&lt;/span>left&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> nums&lt;span style="color:#f92672">[&lt;/span>maxIndex&lt;span style="color:#f92672">]&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> maxIndex &lt;span style="color:#f92672">=&lt;/span> left;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (right &lt;span style="color:#f92672">&amp;lt;&lt;/span> len &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> nums&lt;span style="color:#f92672">[&lt;/span>right&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">&amp;gt;&lt;/span> nums&lt;span style="color:#f92672">[&lt;/span>maxIndex&lt;span style="color:#f92672">]&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> maxIndex &lt;span style="color:#f92672">=&lt;/span> right;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (maxIndex &lt;span style="color:#f92672">!=&lt;/span> index) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> swap(nums, index, maxIndex);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> heapify(nums, len, maxIndex);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">swap&lt;/span>&lt;span style="color:#f92672">(&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> nums&lt;span style="color:#f92672">,&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> i&lt;span style="color:#f92672">,&lt;/span> &lt;span style="color:#66d9ef">int&lt;/span> j&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#f92672">(&lt;/span>i &lt;span style="color:#f92672">==&lt;/span> j&lt;span style="color:#f92672">)&lt;/span> &lt;span style="color:#f92672">{&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>&lt;span style="color:#f92672">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> tmp &lt;span style="color:#f92672">=&lt;/span> nums&lt;span style="color:#f92672">[&lt;/span>i&lt;span style="color:#f92672">];&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> nums&lt;span style="color:#f92672">[&lt;/span>i&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">=&lt;/span> nums&lt;span style="color:#f92672">[&lt;/span>j&lt;span style="color:#f92672">];&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> nums&lt;span style="color:#f92672">[&lt;/span>j&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">=&lt;/span> tmp&lt;span style="color:#f92672">;&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">swap&lt;/span>(&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">[]&lt;/span> nums, &lt;span style="color:#66d9ef">int&lt;/span> i, &lt;span style="color:#66d9ef">int&lt;/span> j) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (i &lt;span style="color:#f92672">==&lt;/span> j) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> tmp &lt;span style="color:#f92672">=&lt;/span> nums&lt;span style="color:#f92672">[&lt;/span>i&lt;span style="color:#f92672">]&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> nums&lt;span style="color:#f92672">[&lt;/span>i&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">=&lt;/span> nums&lt;span style="color:#f92672">[&lt;/span>j&lt;span style="color:#f92672">]&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> nums&lt;span style="color:#f92672">[&lt;/span>j&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">=&lt;/span> tmp;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
