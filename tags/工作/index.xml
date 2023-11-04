@@ -1,4 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>工作 on Always Exploring</title><link>https://hi-ernest.github.io/tags/%E5%B7%A5%E4%BD%9C/</link><description>Recent content in 工作 on Always Exploring</description><generator>Hugo -- gohugo.io</generator><language>zh</language><managingEditor>chenhuarui2472071@gmail.com (Ernest Chen)</managingEditor><webMaster>chenhuarui2472071@gmail.com (Ernest Chen)</webMaster><copyright>2023 ErnestChen All rights reserved</copyright><lastBuildDate>Thu, 02 Nov 2023 09:24:00 +0800</lastBuildDate><atom:link href="https://hi-ernest.github.io/tags/%E5%B7%A5%E4%BD%9C/index.xml" rel="self" type="application/rss+xml"/><item><title>和前端沟通问题个人复盘</title><link>https://hi-ernest.github.io/blog/review-fe-cooperation-issues/</link><pubDate>Thu, 02 Nov 2023 09:24:00 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/review-fe-cooperation-issues/</guid><description>&lt;h3 id="回顾整个过程">回顾整个过程&lt;/h3>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>工作 on Always Exploring</title><link>https://hi-ernest.github.io/tags/%E5%B7%A5%E4%BD%9C/</link><description>Recent content in 工作 on Always Exploring</description><generator>Hugo -- gohugo.io</generator><language>zh</language><managingEditor>chenhuarui2472071@gmail.com (Ernest Chen)</managingEditor><webMaster>chenhuarui2472071@gmail.com (Ernest Chen)</webMaster><copyright>2023 ErnestChen All rights reserved</copyright><lastBuildDate>Sat, 04 Nov 2023 09:34:00 +0800</lastBuildDate><atom:link href="https://hi-ernest.github.io/tags/%E5%B7%A5%E4%BD%9C/index.xml" rel="self" type="application/rss+xml"/><item><title>和前端沟通问题个人复盘v2</title><link>https://hi-ernest.github.io/blog/review-myself-todo/</link><pubDate>Sat, 04 Nov 2023 09:34:00 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/review-myself-todo/</guid><description>&lt;h3 id="回顾过程">回顾过程&lt;/h3>
+&lt;p>昨天开始着手前天接到的新需求，比较简单加个字段，在不同页面前端增加勾选框，如果勾选就多传入一个参数即可，后端处理跳过校验逻辑。在群里抛出联调发现的问题（我吸取之前的经验，发的文字会注意些温和些，避免他人歧义），已经把截图和接口以及参数一并发送，外包老哥还不明白，临近饭点我发送“还不明白 速度过一下？”刚想打开视频会议，结果老哥不专业来了句“不明白 不写了 xxx写吧”。我整个人惊了，还能这样，紧接着也在思考是不是自己做的不合适&amp;hellip;上会议和正式前端老哥聊了聊，获取的信息是针对目前公司合作方式，那老哥希望私下沟通，而不是群里沟通，显得我push到他，显得他不干活，群里有老板担心会有意见啥的&amp;hellip;我一听整不会了，在群里抛出问题，是想要分享信息，发现问题解决问题，不是为了谴责某个人更不是帅锅，工作的专业度上合作方真的差点意思，体感上工作上还得哄着求着的感觉，而且就算你有这样的担心和不习惯这种方式，可以主动私聊沟通来说，找人传达是啥意思尼，为什么不自己主动沟通，寻找方法解决现状问题尼，难道是“我只是区区外包，没必要push我，我也没必要推进和解决问题”抱着这样的心态，做什么事能好尼。我不理解，但是尊重每个人想法和处理方式！&lt;/p>
+&lt;h3 id="困局">困局&lt;/h3>
+&lt;p>我现在做的产出依赖前端付出人力，我就需要主动兼容，寻找比较好的合作方式和习惯&lt;/p>
+&lt;h3 id="破局解法思考">破局解法思考&lt;/h3>
+&lt;blockquote>
+&lt;p>现在部门前端人太少需要支持多个组需求，而我现在做的产出依赖前端付出人力，说白了还是求他人办事，或者说别人不主动，那我就需要主动兼容，寻找比较好的合作方式&lt;/p>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>创建没有老板仅大头兵群，依然在群里沟通&lt;/li>
+&lt;li>注意发文字不要用反问句，改成陈述句沟通&lt;/li>
+&lt;li>细节上多注意，截图截详细些，给予的步骤明确1234每个点准确，避免歧义（想象对方啥都不懂背景，依然能够看懂并理解）&lt;/li>
+&lt;li>还是沟通不清楚，直接语音拉会，还不懂先和正式老哥沟通讲清楚，再让他们之间再做沟通&lt;/li>
+&lt;li>出现问题，还是得让他们给出明确解决的时间点，回过头在去review和验证&lt;/li>
+&lt;/ul></description></item><item><title>和前端沟通问题个人复盘</title><link>https://hi-ernest.github.io/blog/review-fe-cooperation-issues/</link><pubDate>Thu, 02 Nov 2023 09:24:00 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/review-fe-cooperation-issues/</guid><description>&lt;h3 id="回顾整个过程">回顾整个过程&lt;/h3>
 &lt;p>前天1031和前端沟通还是着急了，确实有点控制不住自几。主要是他老是说的有的没的，对解决当下问题没有任何帮助，感觉还把甩锅到我这边，大致意思他们还在解决问题，等解决了才能一起投入测试，不是他们不测试，说正常都是前端测一遍没问题，才让后端测试回归的。我笑了，这样算前后端联调？现在前端问题不断，那什么时候能解决，还没解决我后端就不投入测试了吗？在这干坐等你们解决？现在我发现问题大多集中前端样式？按照这样个人感觉无法达上线标准的。每个人都有各自的课题，我的课题是在排期内完成开发和自测，在前后端联调，测试全流程发现问题，解决问题，后端问题就修复，前端就抛给前端修复。你不需要对我个人评价，对事不对人，这件事你们做的不好，没有给我任何有益的输入点，整个联调测试压力都放在后端，这事情本身就是不合理的！&lt;/p>
 &lt;h3 id="沟通推进中我自身可以改进的地方">沟通推进中我自身可以改进的地方&lt;/h3>
 &lt;ul>
