@@ -1,4 +1,14 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Always Exploring</title><link>https://hi-ernest.github.io/</link><description>Recent content on Always Exploring</description><generator>Hugo -- gohugo.io</generator><language>zh</language><managingEditor>chenhuarui2472071@gmail.com (Ernest Chen)</managingEditor><webMaster>chenhuarui2472071@gmail.com (Ernest Chen)</webMaster><copyright>2023 ErnestChen All rights reserved</copyright><lastBuildDate>Sat, 04 Nov 2023 09:34:00 +0800</lastBuildDate><atom:link href="https://hi-ernest.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>自我复盘和前端协作问题</title><link>https://hi-ernest.github.io/blog/review-myself-todo/</link><pubDate>Sat, 04 Nov 2023 09:34:00 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/review-myself-todo/</guid><description>&lt;h3 id="回顾过程">回顾过程&lt;/h3>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Always Exploring</title><link>https://hi-ernest.github.io/</link><description>Recent content on Always Exploring</description><generator>Hugo -- gohugo.io</generator><language>zh</language><managingEditor>chenhuarui2472071@gmail.com (Ernest Chen)</managingEditor><webMaster>chenhuarui2472071@gmail.com (Ernest Chen)</webMaster><copyright>2023 ErnestChen All rights reserved</copyright><lastBuildDate>Mon, 06 Nov 2023 00:16:00 +0800</lastBuildDate><atom:link href="https://hi-ernest.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>20231105周记</title><link>https://hi-ernest.github.io/blog/weekly01/</link><pubDate>Mon, 06 Nov 2023 00:16:00 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/weekly01/</guid><description>&lt;h3 id="周末去了苏州时隔三年再次去到姑苏城">周末去了苏州（时隔三年再次去到姑苏城）&lt;/h3>
+&lt;p>终于去了心心念念的贝聿铭先生设计的苏州博物馆！顺便去了报恩寺（北寺塔）、苏州民俗馆、狮子林、平江路。
+阳光明媚，蓝天白云，心情不错开心愉悦！&lt;/p>
+&lt;h3 id="本周实施的目标可视化">本周实施的目标可视化&lt;/h3>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/hi-Ernest/imgbed/images/202311060053486.png" alt="1029">&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/hi-Ernest/imgbed/images/202311060059375.png" alt="1030">&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/hi-Ernest/imgbed/images/202311060100112.png" alt="1101">&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/hi-Ernest/imgbed/images/202311060101357.png" alt="1102">&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/hi-Ernest/imgbed/images/202311060101183.png" alt="1103">&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/hi-Ernest/imgbed/images/202311060102336.png" alt="1104">&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/hi-Ernest/imgbed/images/202311060102389.png" alt="1105">&lt;/p></description></item><item><title>自我复盘和前端协作问题</title><link>https://hi-ernest.github.io/blog/review-myself-todo/</link><pubDate>Sat, 04 Nov 2023 09:34:00 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/review-myself-todo/</guid><description>&lt;h3 id="回顾过程">回顾过程&lt;/h3>
 &lt;p>昨天开始着手前天接到的新需求，比较简单就加个字段，但涉及不同页面需要前端配合增加个勾选框，如果勾选就多传入一个参数即可，后端处理跳过校验逻辑。&lt;/p>
 &lt;p>下午在群里抛出联调发现的问题（我吸取之前的经验，发的文字会注意些温和些，避免他人歧义），已经把截图和接口以及参数一并发送，外包老哥还不明白，临近饭点我发送“还不明白 速度过一下？”刚想打开视频会议，结果老哥不专业来了句“不明白 不写了 xxx写吧”。我整个人惊了，还能这样，紧接着也在思考是不是自己哪儿做的不合适&amp;hellip;&lt;/p>
 &lt;p>上会议和正式前端老哥聊了聊，获取的信息是针对目前公司合作方式，那老哥希望私下沟通，而不是群里沟通，显得我push到他，显得他不干活，担心群里的老板会有意见啥的&amp;hellip;我一听整不会了，在群里抛出问题，是想要分享信息，发现问题一起解决问题，不是为了谴责某个人更不是摔锅。&lt;/p>
@@ -22,7 +32,7 @@
 &lt;li>细节上多注意，截图截详细些，给予的步骤明确1234每个点准确，避免歧义（想象对方啥都不懂背景，依然能够看懂并理解）&lt;/li>
 &lt;li>还是沟通不清楚，直接语音拉会，还不懂先和正式老哥沟通讲清楚，再让他们之间再做沟通&lt;/li>
 &lt;li>出现问题，还是得让他们给出明确解决的时间点，回过头在去review和验证（珍惜自己的时间，提高自己的工作效率，保证自己产出！）&lt;/li>
-&lt;/ul></description></item><item><title>2023倒计时todoList</title><link>https://hi-ernest.github.io/blog/2023-last-day/</link><pubDate>Fri, 03 Nov 2023 09:35:35 +0000</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/2023-last-day/</guid><description>&lt;h3 id="电影">电影&lt;/h3>
+&lt;/ul></description></item><item><title>2023倒计时todo赶due</title><link>https://hi-ernest.github.io/blog/2023-last-day/</link><pubDate>Fri, 03 Nov 2023 09:35:35 +0000</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/2023-last-day/</guid><description>&lt;h3 id="电影">电影&lt;/h3>
 &lt;ul>
 &lt;li>私人定制（10.04）&lt;/li>
 &lt;li>楚门的世界（10.05）&lt;/li>
@@ -137,8 +147,12 @@
 &lt;p>从机场到达新宿已是清晨7点多，出了地铁站直奔新宿巴士总站，他们之间仅隔着一条马路，我拖着行李通过天桥，阳光明媚，两侧街道是众多广告牌，车辆不多，两侧行人都是西装革履，手提公文包匆匆脚步&amp;hellip;
 在新宿巴士总站，自助售票机前买票去往河口湖，发现当日仅有8点45那班车刚好一个座位，返途18点55分的班车也仅有一个位置，我立马赛钱，选择出票，拿回票和零钱。当下和现在都觉得还是很幸运，刚好我是一个人刚好往返近有一张票，让
 刚来日本的我很强镇心剂，给我更多的勇气，因为一切都在好的方向！&lt;/p>
-&lt;p>一路上从市区开往近郊到乡下，小小房子，一片片部落群坐落在山间，天很蓝树木绿意盎然&amp;hellip;
-11点10左右到达河口湖站，犹豫很久去租自行车，前往山中浅间鸟居，一窥富士山的景色&amp;hellip;&lt;/p>
+&lt;p>一路上从市区开往近郊到乡下，小小房子，一片片部落群坐落在山间，天很蓝树木绿意盎然&amp;hellip;&lt;/p>
+&lt;p>11点10左右到达河口湖站，犹豫很久去租自行车，前往山中浅间鸟居，一窥富士山的景色&amp;hellip;&lt;/p>
+&lt;p>&amp;lt;照片&amp;gt;&lt;/p>
+&lt;p>&amp;lt;河口湖车站&amp;gt;&lt;/p>
+&lt;p>&amp;lt;台湾朋友&amp;gt;&lt;/p>
+&lt;p>&amp;lt;风景&amp;gt;&lt;/p>
 &lt;h3 id="交通出行感受新奇不急不躁想成为的样子">交通出行感受：新奇、不急不躁、想成为的样子&lt;/h3>
 &lt;p>日本交通分为四种：电车，新干线，出租车，公交车；电车分为地下铁（metro+都营）+JR+私铁），这次出行地下铁和公交都体验过。从羽田到新宿，早上五点多，每个站点陆续有人上下车，在车上看到有上年纪青年拿着实体书啃；也有爷爷辈拿着kindle在翻阅&amp;hellip;一下子刷新我的认知，难道日本人都是这样的吗，居然有这么好的阅读氛围。
 后面陆续几天观察，电车上也有滑手机的年轻人们&amp;hellip;但初入日本，清晨阳光透过车窗落在正在阅读的叔叔身上，这场景一直印象深刻，也激发我对阅读渴望。&lt;/p>
