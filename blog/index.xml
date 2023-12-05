@@ -6,7 +6,352 @@
 &lt;li>工作和生活和人打交道，有效沟通协作&lt;/li>
 &lt;li>养成规律的作息、合理饮食、运动健身&lt;/li>
 &lt;li>提升多语言能力（编程语言能力、英文、日语能力）&lt;/li>
-&lt;/ul></description></item><item><title>26岁!</title><link>https://hi-ernest.github.io/blog/25-years-old/</link><pubDate>Mon, 20 Nov 2023 00:29:45 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/25-years-old/</guid><description>&lt;p>2023.11.30 今天真正迈进26岁！三年前23乳臭未干的小子，没想到快要到三十而立之年！这三年多时间，从初入社会畏首畏尾，惶恐不安，担心做不好工作担心裁员担心做错事情&amp;hellip; 但现在慢慢了解了这个社会是怎样的，该怎么做事，怎么和不同的人交流协作，心态放平很多，认清了也许我们终其一生也只不过普通人， 但也没关系，那我就过好和享受自己普通人的人生，没有什么正确的事什么正确的路，不要被社会被别人的宣导的价值观影响，你自己就是你自己，你的人生掌握在自己手里，自己喜欢的事才是正确的事！从小厂到大厂到中厂，每一段经历都是无比宝贵的！每一步都是不可预料，但冥冥中也符合自己预期，冥冥中总要和一些人相遇，遭遇一些事，点点滴滴、喜悦或痛苦，我都张开双臂拥抱，任万物穿过自己，好与坏都接受，因为他们浇灌才成就了现在的我。欧内斯特，全新的26岁，加油！不停探索！找到自己热爱！保持情绪稳定，珍惜拥有的，美好未来还在等着你！&lt;/p></description></item><item><title>20231105周记</title><link>https://hi-ernest.github.io/blog/weekly01/</link><pubDate>Mon, 06 Nov 2023 00:16:00 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/weekly01/</guid><description>&lt;h3 id="周末总结去了苏州时隔三年再次去到姑苏城">周末总结：去了苏州（时隔三年再次去到姑苏城）&lt;/h3>
+&lt;/ul></description></item><item><title>Spring事务最佳实践【Java版】</title><link>https://hi-ernest.github.io/blog/spring-transactional/</link><pubDate>Tue, 28 Nov 2023 09:34:00 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/spring-transactional/</guid><description>&lt;h2 id="背景">背景&lt;/h2>
+&lt;p>在开发需求采用Java声明式事务对两个对象插入两张表
+下方代码编写，单测发现事务失效（release对象插入成功，action插入失败，但事务没有回滚，release对象还是插入成功）&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@Slf4j&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@Service&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">xxService&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> String &lt;span style="color:#a6e22e">xxx&lt;/span>(xxRequest request) &lt;span style="color:#66d9ef">throws&lt;/span> JsonProcessingException {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 参数校验&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> checkParam(request);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 前置查询校验信息...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">//省略xxx多行代码解析和build逻辑&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// ....&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ReleaseEntity release &lt;span style="color:#f92672">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> buildReleaseEntity(xxx);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> String reason &lt;span style="color:#f92672">=&lt;/span> request.&lt;span style="color:#a6e22e">getReason&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ActionEntity action &lt;span style="color:#f92672">=&lt;/span> buildActionEntity(xxx);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 执行db操作&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>execute(release, action)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 返回执行记录id&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> action.&lt;span style="color:#a6e22e">getUid&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">@Transactional&lt;/span>(rollbackFor &lt;span style="color:#f92672">=&lt;/span> Exception.&lt;span style="color:#a6e22e">class&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">execute&lt;/span>(ReleaseEntity release, ActionEntity action) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">try&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 新增release&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>releaseService.&lt;span style="color:#a6e22e">create&lt;/span>(release);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 新增action&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>actionService.&lt;span style="color:#a6e22e">create&lt;/span>(action);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">catch&lt;/span> (BizException &lt;span style="color:#f92672">|&lt;/span> JsonProcessingException ex) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">throw&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> BizException(&lt;span style="color:#e6db74">&amp;#34;执行流量分发报错,请重试err:&amp;#34;&lt;/span> &lt;span style="color:#f92672">+&lt;/span> ex.&lt;span style="color:#a6e22e">getMessage&lt;/span>());
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@Slf4j&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@Service&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">ReleaseService&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">@Resource&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">private&lt;/span> ReleaseMapper releaseMapper;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">create&lt;/span>(ReleaseEntity entity ) &lt;span style="color:#66d9ef">throws&lt;/span> JsonProcessingException {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> log.&lt;span style="color:#a6e22e">info&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;新增执行版本 entity:{}&amp;#34;&lt;/span>, JsonUtils.&lt;span style="color:#a6e22e">getMapper&lt;/span>().&lt;span style="color:#a6e22e">writeValueAsString&lt;/span>(entity));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">try&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> releaseMapper.&lt;span style="color:#a6e22e">insertSelective&lt;/span>(entity);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">catch&lt;/span> (Exception e) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">throw&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> BizException(String.&lt;span style="color:#a6e22e">format&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;新增执行版本,请重试err:%s&amp;#34;&lt;/span>, e.&lt;span style="color:#a6e22e">getMessage&lt;/span>()));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> List&lt;span style="color:#f92672">&amp;lt;&lt;/span>ReleaseEntity&lt;span style="color:#f92672">&amp;gt;&lt;/span> &lt;span style="color:#a6e22e">getReleaseListByPlanId&lt;/span>(String planId) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> releaseMapper.&lt;span style="color:#a6e22e">getReleaseListByPlanId&lt;/span>(planId);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@Slf4j&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@Service&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">ActionService&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">@Resource&lt;/span> &lt;span style="color:#66d9ef">private&lt;/span> ActionMapper actionMapper;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">create&lt;/span>(ActionEntity entity) &lt;span style="color:#66d9ef">throws&lt;/span> JsonProcessingException {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> log.&lt;span style="color:#a6e22e">info&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;新增执行记录 entity:{}&amp;#34;&lt;/span>, JsonUtils.&lt;span style="color:#a6e22e">getMapper&lt;/span>().&lt;span style="color:#a6e22e">writeValueAsString&lt;/span>(entity));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">try&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> actionMapper.&lt;span style="color:#a6e22e">insertSelective&lt;/span>(entity);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">catch&lt;/span> (Exception e) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">throw&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> BizException(String.&lt;span style="color:#a6e22e">format&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;新增执行记录报错,请重试err:%s&amp;#34;&lt;/span>, e.&lt;span style="color:#a6e22e">getMessage&lt;/span>()));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="排查经过">排查经过&lt;/h2>
+&lt;p>尝试：将数据库操作函数代码放在函数distribute中，在distribute方法上增加@Transactional注解&lt;/p>
+&lt;p>结论：执行单测，事务没有失效，成功事务回滚没有问题&lt;/p>
+&lt;blockquote>
+&lt;p>疑问思考：是不是spring方法中传递事物有什么黑魔法？如果按照这样写能实现需要会不会大事务（原则：尽可能事务的开启在db操作代码前后，尽可能缩小事务影响范围），还是spring会在运行到db操作代码时候，智能的开启事务和提交事务？？&lt;/p>
+&lt;/blockquote>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@Slf4j&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@Service&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">RgwService&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@Transactional&lt;/span>(rollbackFor &lt;span style="color:#f92672">=&lt;/span> Exception.&lt;span style="color:#a6e22e">class&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> String &lt;span style="color:#a6e22e">distribute&lt;/span>(DistributeRequest request) &lt;span style="color:#66d9ef">throws&lt;/span> JsonProcessingException {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 参数校验&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> checkDistributeParam(request);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 前置查询校验预案信息...&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">//省略xxx多行代码解析和build逻辑&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// ....&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ReleaseEntity release &lt;span style="color:#f92672">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> buildReleaseEntity(planId, newParam, description, operator, curReleaseVersion);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> String reason &lt;span style="color:#f92672">=&lt;/span> request.&lt;span style="color:#a6e22e">getReason&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ActionEntity action &lt;span style="color:#f92672">=&lt;/span> buildActionEntity(planId, release.&lt;span style="color:#a6e22e">getUid&lt;/span>(), reason, operator);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 执行db操作&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>execute(release, action)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">try&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 新增release&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> releaseService.&lt;span style="color:#a6e22e">create&lt;/span>(release);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 新增action&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> actionService.&lt;span style="color:#a6e22e">create&lt;/span>(action);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">catch&lt;/span> (BizException &lt;span style="color:#f92672">|&lt;/span> JsonProcessingException ex) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">throw&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> BizException(&lt;span style="color:#e6db74">&amp;#34;执行流量分发报错,请重试err:&amp;#34;&lt;/span> &lt;span style="color:#f92672">+&lt;/span> ex.&lt;span style="color:#a6e22e">getMessage&lt;/span>());
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 返回执行记录id&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> action.&lt;span style="color:#a6e22e">getUid&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="问题根因">问题根因&lt;/h2>
+&lt;p>由于使用Spring AOP代理造成的，因为只有当事务方法被当前类以外的代码调用时，才会由Spring生成的代理对象来管理
+ps：在springAOP的用法中，只有代理的类才会被切入，我们在controller层调用service的方法的时候，是可以被切入的， 但是如果我们在service层 A方法中，调用B方法，切点切的是B方法，那么这时候是不会切入的&lt;/p>
+&lt;h2 id="解决方式">解决方式&lt;/h2>
+&lt;h3 id="使用编程式事务管理">使用编程式事务管理&lt;/h3>
+&lt;p>在这种方式下，我们显式地管理事务，手动开启、提交和回滚事务，确保methodA和methodB都能在自己的事务中执行&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>优点&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>1. 更细粒度的控制控制事务影响范围&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>2. 方便处理条件式回滚可以&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>3. 手动处理特定的异常&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>缺点&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>1. 代码冗余：开启事务、提交事务、回滚事务和异常处理等&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>2. 可读性差：事务的边界和处理通常会散布在业务逻辑中&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@Service&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">MyService&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">@Autowired&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">private&lt;/span> PlatformTransactionManager transactionManager;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">methodA&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> DefaultTransactionDefinition def &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> DefaultTransactionDefinition();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> TransactionStatus status &lt;span style="color:#f92672">=&lt;/span> transactionManager.&lt;span style="color:#a6e22e">getTransaction&lt;/span>(def);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">try&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 执行一些业务逻辑&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 调用methodB&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> methodB();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> transactionManager.&lt;span style="color:#a6e22e">commit&lt;/span>(status);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">catch&lt;/span> (Exception e) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> transactionManager.&lt;span style="color:#a6e22e">rollback&lt;/span>(status);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">throw&lt;/span> e;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">@Transactional&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">methodB&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 执行一些业务逻辑&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 抛出异常&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">throw&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> RuntimeException(&lt;span style="color:#e6db74">&amp;#34;Something went wrong&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;!-- raw HTML omitted -->
+&lt;h3 id="拆分到不同的类中">拆分到不同的类中&lt;/h3>
+&lt;p>通过将methodA和methodB拆分到不同的类中，每个方法都有自己的代理，事务注解不会相互影响，可以正常工作。&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>优点&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>简单明了，易于维护，不需要复杂的额外配置；不需要显式的编程式事务管理或AOP配置&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>缺点&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>容易冗余多个类，职责不清晰&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@Service&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">MyService&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">@Autowired&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">private&lt;/span> MyOtherService otherService;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">@Transactional&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">methodA&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 执行一些业务逻辑&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 调用MyOtherService中的methodB&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> otherService.&lt;span style="color:#a6e22e">methodB&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@Service&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">MyOtherService&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">@Transactional&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">methodB&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 执行一些业务逻辑&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 抛出异常&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">throw&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> RuntimeException(&lt;span style="color:#e6db74">&amp;#34;Something went wrong&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="使用applicationcontext获取当前代理对象">使用ApplicationContext获取当前代理对象&lt;/h3>
+&lt;p>使用ApplicationContext来获取Bean的实例，从而确保事务生效；就是在该类中自动注入本类bean，使用@Autowired即可，然后使用这个注入的bean去调用本类方法，即可达到两方法事务都起效&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>优点&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>不需要引入额外的配置或依赖于特定的AOP框架功能&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>缺点&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>1. 潜在性能问题：一定的性能开销，因为它需要在运行时动态确定Bean的实例&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>2. 可读性差：读者可能难以理解为什么需要在同一个类中的方法之间使用它&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>3. 潜在的递归问题： 需要小心避免在同一个方法内部产生无限递归调用问题，导致栈溢出异常&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> org.springframework.beans.BeansException;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> org.springframework.context.ApplicationContext;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> org.springframework.context.ApplicationContextAware;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> org.springframework.stereotype.Service;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> org.springframework.transaction.annotation.Transactional;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@Service&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">MyService&lt;/span> &lt;span style="color:#66d9ef">implements&lt;/span> ApplicationContextAware {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">private&lt;/span> ApplicationContext applicationContext;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@Override&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">setApplicationContext&lt;/span>(ApplicationContext applicationContext) &lt;span style="color:#66d9ef">throws&lt;/span> BeansException {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">this&lt;/span>.&lt;span style="color:#a6e22e">applicationContext&lt;/span> &lt;span style="color:#f92672">=&lt;/span> applicationContext;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">@Transactional&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">methodA&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 执行一些业务逻辑&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 获取MyService的代理实例&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> MyService proxy &lt;span style="color:#f92672">=&lt;/span> applicationContext.&lt;span style="color:#a6e22e">getBean&lt;/span>(MyService.&lt;span style="color:#a6e22e">class&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 调用methodB&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> proxy.&lt;span style="color:#a6e22e">methodB&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">@Transactional&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">methodB&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 执行一些业务逻辑&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 抛出异常&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">throw&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> RuntimeException(&lt;span style="color:#e6db74">&amp;#34;Something went wrong&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="使用aopcontextcurrentproxy获取当前代理对象推荐">使用AopContext.currentProxy()获取当前代理对象【推荐】&lt;/h3>
+&lt;p>methodA中使用了AopContext.currentProxy()获取了当前代理对象，并调用了methodB。这样，methodB将会在相同的事务中执行，而不会失效&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>优点&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>简化代码；避免了不必要的类拆分和编程式事务代码&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>缺点&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>1. 潜在性能问题：引入一定的性能开销，因为它需要在运行时动态确定代理对象。这可能对高性能应用程序产生一定影响，特别是在高并发case&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>2. 线程安全问题：可能会引入线程安全问题，因为它涉及到共享状态（当前代理对象）。在多线程应用中，需要谨慎使用，并确保适当的同步机制可读性差&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> org.springframework.aop.framework.AopContext;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> org.springframework.stereotype.Service;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#f92672">import&lt;/span> org.springframework.transaction.annotation.Transactional;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@Service&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@EnableAspectJAutoProxy&lt;/span>(proxyTargetClass &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">true&lt;/span>, exposeProxy &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">true&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">MyService&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">@Transactional&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">methodA&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 执行一些业务逻辑&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 调用methodB&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> MyService proxy &lt;span style="color:#f92672">=&lt;/span> (MyService) AopContext.&lt;span style="color:#a6e22e">currentProxy&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> proxy.&lt;span style="color:#a6e22e">methodB&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#a6e22e">@Transactional&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> &lt;span style="color:#66d9ef">void&lt;/span> &lt;span style="color:#a6e22e">methodB&lt;/span>() {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 执行一些业务逻辑&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 抛出异常&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">throw&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> RuntimeException(&lt;span style="color:#e6db74">&amp;#34;Something went wrong&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="其他资料">其他资料&lt;/h2>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/hi-Ernest/imgbed/images/202312052347147.png" alt="">&lt;/p></description></item><item><title>26岁!</title><link>https://hi-ernest.github.io/blog/25-years-old/</link><pubDate>Mon, 20 Nov 2023 00:29:45 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/25-years-old/</guid><description>&lt;p>2023.11.30 今天真正迈进26岁！三年前23乳臭未干的小子，没想到快要到三十而立之年！这三年多时间，从初入社会畏首畏尾，惶恐不安，担心做不好工作担心裁员担心做错事情&amp;hellip; 但现在慢慢了解了这个社会是怎样的，该怎么做事，怎么和不同的人交流协作，心态放平很多，认清了也许我们终其一生也只不过普通人， 但也没关系，那我就过好和享受自己普通人的人生，没有什么正确的事什么正确的路，不要被社会被别人的宣导的价值观影响，你自己就是你自己，你的人生掌握在自己手里，自己喜欢的事才是正确的事！从小厂到大厂到中厂，每一段经历都是无比宝贵的！每一步都是不可预料，但冥冥中也符合自己预期，冥冥中总要和一些人相遇，遭遇一些事，点点滴滴、喜悦或痛苦，我都张开双臂拥抱，任万物穿过自己，好与坏都接受，因为他们浇灌才成就了现在的我。欧内斯特，全新的26岁，加油！不停探索！找到自己热爱！保持情绪稳定，珍惜拥有的，美好未来还在等着你！!&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/hi-Ernest/imgbed/images/DSCF1580.JPG" alt="">&lt;/p></description></item><item><title>20231105周记</title><link>https://hi-ernest.github.io/blog/weekly01/</link><pubDate>Mon, 06 Nov 2023 00:16:00 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/weekly01/</guid><description>&lt;h3 id="周末总结去了苏州时隔三年再次去到姑苏城">周末总结：去了苏州（时隔三年再次去到姑苏城）&lt;/h3>
 &lt;p>周日终于去了心心念念的贝聿铭先生设计的苏州博物馆！顺便去了报恩寺（北寺塔）、苏州民俗馆、狮子林、平江路。
 阳光明媚，蓝天白云，心情不错开心愉悦！！行走在苏州古色古香小巷，一个想法不由自主冒出来：什么时候能在苏州工作生活一段时间，如果有这样的机会就太好了！姑苏城给的感觉，恬静开阔，有着小桥流水人家闲情逸致&amp;hellip;
 身处在这个城市环境中，情不自禁代入在这儿生活是怎样的场景，这里的生活吸引着我，我希望能早日有机会到此生活一段时间，融入和体验当地生活，是否和预期想着这般舒适有趣！&lt;/p>
