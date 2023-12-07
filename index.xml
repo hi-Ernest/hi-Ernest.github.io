@@ -1,4 +1,107 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Always Exploring</title><link>https://hi-ernest.github.io/</link><description>Recent content on Always Exploring</description><generator>Hugo -- gohugo.io</generator><language>zh</language><managingEditor>chenhuarui2472071@gmail.com (Ernest Chen)</managingEditor><webMaster>chenhuarui2472071@gmail.com (Ernest Chen)</webMaster><copyright>2023 ErnestChen All rights reserved</copyright><lastBuildDate>Tue, 28 Nov 2023 23:23:37 +0800</lastBuildDate><atom:link href="https://hi-ernest.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>六个想要达成的目标</title><link>https://hi-ernest.github.io/blog/six-goals/</link><pubDate>Tue, 28 Nov 2023 23:23:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/six-goals/</guid><description>&lt;h1 id="六个想要达成的目标">六个想要达成的目标&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Always Exploring</title><link>https://hi-ernest.github.io/</link><description>Recent content on Always Exploring</description><generator>Hugo -- gohugo.io</generator><language>zh</language><managingEditor>chenhuarui2472071@gmail.com (Ernest Chen)</managingEditor><webMaster>chenhuarui2472071@gmail.com (Ernest Chen)</webMaster><copyright>2023 ErnestChen All rights reserved</copyright><lastBuildDate>Wed, 06 Dec 2023 19:17:08 +0800</lastBuildDate><atom:link href="https://hi-ernest.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>使用Guava优雅解决代码边界判断</title><link>https://hi-ernest.github.io/blog/use-guava/</link><pubDate>Wed, 06 Dec 2023 19:17:08 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/use-guava/</guid><description>&lt;h3 id="背景">背景&lt;/h3>
+&lt;p>在Java编程中需要对数据库操作、RPC请求等返回的数据进行空值判断，以避免空指针错误和数据越界等问题。
+此外需要在边界情况下提前进行断言并包装友好的错误信息，以便向用户提供清晰的报错信息。&lt;/p>
+&lt;p>&lt;strong>由于容易忽略边界情况的空值判断，每一步都需要考虑这些情况，导致模板代码过多，缺乏直观和统一的风格&lt;/strong>&lt;/p>
+&lt;h3 id="现状code">现状code&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> SceneInfo &lt;span style="color:#a6e22e">getSceneInfo&lt;/span>(GetSceneInfoRequest request) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// getPlanId 在调用方法入口 强制判空了&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> String planId &lt;span style="color:#f92672">=&lt;/span> request.&lt;span style="color:#a6e22e">getPlanId&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> TPlanEntity entity &lt;span style="color:#f92672">=&lt;/span> tPlanMapper.&lt;span style="color:#a6e22e">getPlanInfo&lt;/span>(planId);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> logger.&lt;span style="color:#a6e22e">info&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;预案信息 planEntity:{}&amp;#34;&lt;/span>, JsonUtils.&lt;span style="color:#a6e22e">toJsonString&lt;/span>(planEntity));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 判断是否为null&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (entity &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#66d9ef">null&lt;/span>) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">throw&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> BizException(&lt;span style="color:#e6db74">&amp;#34;预案不存在&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> SceneInfo info &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> SceneInfo();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> String sceneName &lt;span style="color:#f92672">=&lt;/span> planEntity.&lt;span style="color:#a6e22e">getSceneName&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (StringUtils.&lt;span style="color:#a6e22e">isNotBlank&lt;/span>(sceneName)) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> List&lt;span style="color:#f92672">&amp;lt;&lt;/span>SceneDto&lt;span style="color:#f92672">&amp;gt;&lt;/span> sceneDtoList &lt;span style="color:#f92672">=&lt;/span> RedHaClient.&lt;span style="color:#a6e22e">sceneDtoMap&lt;/span>.&lt;span style="color:#a6e22e">get&lt;/span>(sceneName);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 判断是否list是否为空&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (sceneDtoList &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#66d9ef">null&lt;/span> &lt;span style="color:#f92672">||&lt;/span> sceneDtoList.&lt;span style="color:#a6e22e">isEmpty&lt;/span>()) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">throw&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> BizException(&lt;span style="color:#e6db74">&amp;#34;预案绑定的业务场景不存在&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> sceneDtoList.&lt;span style="color:#a6e22e">stream&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .&lt;span style="color:#a6e22e">findFirst&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .&lt;span style="color:#a6e22e">ifPresent&lt;/span>(
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dto &lt;span style="color:#f92672">-&amp;gt;&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> info.&lt;span style="color:#a6e22e">setName&lt;/span>(dto.&lt;span style="color:#a6e22e">getName&lt;/span>());
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> info.&lt;span style="color:#a6e22e">setNameZh&lt;/span>(dto.&lt;span style="color:#a6e22e">getNameZh&lt;/span>());
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> });
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 校验预案是否绑定的业务场景id&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Integer id &lt;span style="color:#f92672">=&lt;/span> planEntity.&lt;span style="color:#a6e22e">getSceneId&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 继续判断&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (id &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#66d9ef">null&lt;/span> &lt;span style="color:#f92672">||&lt;/span> id &lt;span style="color:#f92672">==&lt;/span> 0) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">throw&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> BizException(&lt;span style="color:#e6db74">&amp;#34;该预案没有绑定业务场景&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 查询预案绑定的业务场景信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> SceneEntity entity &lt;span style="color:#f92672">=&lt;/span> sceneService.&lt;span style="color:#a6e22e">getSceneEntity&lt;/span>(id);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> String sceneZhName &lt;span style="color:#f92672">=&lt;/span> entity.&lt;span style="color:#a6e22e">getNameZh&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> String sceneZhName &lt;span style="color:#f92672">=&lt;/span> entity.&lt;span style="color:#a6e22e">getNameZh&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 继续判断&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (sceneZhName &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#66d9ef">null&lt;/span> &lt;span style="color:#f92672">||&lt;/span> sceneZhName.&lt;span style="color:#a6e22e">equals&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;&amp;#34;&lt;/span>)) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">throw&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> BizException(&lt;span style="color:#e6db74">&amp;#34;该预案绑定的业务场景信息为空&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">//xxxx其他操作&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> info;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="优雅处理边界byguava">优雅处理边界byGuava&lt;/h3>
+&lt;h4 id="什么是guava">什么是Guava&lt;/h4>
+&lt;p>Guava是由Google开发的Java集合库，旨在提供处理Java集合的实用工具。它包括许多功能，如基本工具、集合、不可变集合、新的集合类型、图形、缓存、功能习语、并发、字符串、原始类型、范围等。Guava的目标是减少编码错误，促进标准编码实践，并通过使代码简洁易读来提高生产效率；总的来说，Guava是一个功能强大的Java集合库，旨在简化Java编程，并提供各种实用工具和功能，以提高开发效率和减少错误。&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;a href="https://github.com/google/guava">https://github.com/google/guava&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="show-code-避免遗漏空值判断精简代码减少模版代码">show code （避免遗漏空值判断、精简代码减少模版代码）&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">public&lt;/span> SceneInfo &lt;span style="color:#a6e22e">getSceneInfo&lt;/span>(GetSceneInfoRequest request) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> String planId &lt;span style="color:#f92672">=&lt;/span> request.&lt;span style="color:#a6e22e">getPlanId&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 查询预案信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 链式方式获取数据时候，顺便判断边界条件 + 不符合条件的报错信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> TPlanEntity planEntity &lt;span style="color:#f92672">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Preconditions.&lt;span style="color:#a6e22e">checkNotNull&lt;/span>(tPlanMapper.&lt;span style="color:#a6e22e">getPlanInfo&lt;/span>(planId), &lt;span style="color:#e6db74">&amp;#34;预案不存在 planId: %s&amp;#34;&lt;/span>, planId);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> logger.&lt;span style="color:#a6e22e">info&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;预案信息 planEntity:{}&amp;#34;&lt;/span>, JsonUtils.&lt;span style="color:#a6e22e">toJsonString&lt;/span>(planEntity));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 新预案有记录ha业务场景name直接返回&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> SceneInfo info &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> SceneInfo();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> String sceneName &lt;span style="color:#f92672">=&lt;/span> planEntity.&lt;span style="color:#a6e22e">getSceneName&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (StringUtils.&lt;span style="color:#a6e22e">isNotBlank&lt;/span>(sceneName)) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 链式方式获取数据时候，顺便判断边界条件 + 不符合条件的报错信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> List&lt;span style="color:#f92672">&amp;lt;&lt;/span>SceneDto&lt;span style="color:#f92672">&amp;gt;&lt;/span> sceneDtoList &lt;span style="color:#f92672">=&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Preconditions.&lt;span style="color:#a6e22e">checkNotNull&lt;/span>(
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> RedHaClient.&lt;span style="color:#a6e22e">sceneDtoMap&lt;/span>.&lt;span style="color:#a6e22e">get&lt;/span>(sceneName), &lt;span style="color:#e6db74">&amp;#34;该预案绑定的业务场景英文映射在HA平台不一致&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 这里获取sceneDtoList 保证百分之百不为空&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> sceneDtoList.&lt;span style="color:#a6e22e">stream&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .&lt;span style="color:#a6e22e">findFirst&lt;/span>()
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> .&lt;span style="color:#a6e22e">ifPresent&lt;/span>(
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dto &lt;span style="color:#f92672">-&amp;gt;&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> info.&lt;span style="color:#a6e22e">setName&lt;/span>(dto.&lt;span style="color:#a6e22e">getName&lt;/span>());
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> info.&lt;span style="color:#a6e22e">setNameZh&lt;/span>(dto.&lt;span style="color:#a6e22e">getNameZh&lt;/span>());
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> });
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> info;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 校验预案是否绑定的业务场景id&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 使用Optional包装返回数据，强制下一步判断边界，现有api名称见面直意&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> Optional&lt;span style="color:#f92672">&amp;lt;&lt;/span>Integer&lt;span style="color:#f92672">&amp;gt;&lt;/span> sceneIdOptional &lt;span style="color:#f92672">=&lt;/span> Optional.&lt;span style="color:#a6e22e">ofNullable&lt;/span>(planEntity.&lt;span style="color:#a6e22e">getSceneId&lt;/span>());
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (&lt;span style="color:#f92672">!&lt;/span>sceneIdOptional.&lt;span style="color:#a6e22e">isPresent&lt;/span>() &lt;span style="color:#f92672">||&lt;/span> sceneIdOptional.&lt;span style="color:#a6e22e">get&lt;/span>() &lt;span style="color:#f92672">==&lt;/span> 0) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">throw&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> BizException(&lt;span style="color:#e6db74">&amp;#34;该预案没有绑定业务场景&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 查询预案绑定的业务场景信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> SceneEntity entity &lt;span style="color:#f92672">=&lt;/span> sceneService.&lt;span style="color:#a6e22e">getSceneEntity&lt;/span>(sceneIdOptional.&lt;span style="color:#a6e22e">get&lt;/span>());
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> String sceneZhName &lt;span style="color:#f92672">=&lt;/span> entity.&lt;span style="color:#a6e22e">getNameZh&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (Strings.&lt;span style="color:#a6e22e">isNullOrEmpty&lt;/span>(sceneZhName)) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">throw&lt;/span> &lt;span style="color:#66d9ef">new&lt;/span> BizException(&lt;span style="color:#e6db74">&amp;#34;该预案绑定的业务场景信息为空&amp;#34;&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// 或者这个case &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// 期望数据为true，不满足则报错&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// Preconditions.checkArgument(!Strings.isNullOrEmpty(sceneZhName), &amp;#34;预案绑定的业务场景信息为空&amp;#34;);&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#75715e">// xxxx其他操作&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> info;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="quick-start">Quick Start&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-xml" data-lang="xml">&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;dependency&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;groupId&amp;gt;&lt;/span>com.google.guava&lt;span style="color:#f92672">&amp;lt;/groupId&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;artifactId&amp;gt;&lt;/span>guava&lt;span style="color:#f92672">&amp;lt;/artifactId&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;version&amp;gt;&lt;/span>32.1.3-jre&lt;span style="color:#f92672">&amp;lt;/version&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">&amp;lt;/dependency&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>六个想要达成的目标</title><link>https://hi-ernest.github.io/blog/six-goals/</link><pubDate>Tue, 28 Nov 2023 23:23:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/six-goals/</guid><description>&lt;h1 id="六个想要达成的目标">六个想要达成的目标&lt;/h1>
 &lt;ul>
 &lt;li>提升收入水平、增加储蓄、学习金融投资知识（建立金钱观书籍）&lt;/li>
 &lt;li>提升专业技能水平、领域知识学习（国外开源课程视频和lab）&lt;/li>
