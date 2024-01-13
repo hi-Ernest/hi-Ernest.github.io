@@ -3,7 +3,6 @@ date: 2023-10-15T19:54:45+08:00
 title: "国庆日本旅行开销"
 description: "记录开销"
 tags: ["旅行"]
-featured: true
 ---
 
 ## 前言
