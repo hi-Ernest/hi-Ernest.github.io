@@ -1,4 +1,81 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Always Exploring</title><link>https://hi-ernest.github.io/blog/</link><description>Recent content in Blogs on Always Exploring</description><generator>Hugo -- gohugo.io</generator><language>zh</language><managingEditor>chenhuarui2472071@gmail.com (Ernest Chen)</managingEditor><webMaster>chenhuarui2472071@gmail.com (Ernest Chen)</webMaster><copyright>2023 ErnestChen All rights reserved</copyright><lastBuildDate>Sun, 07 Jan 2024 20:50:37 +0800</lastBuildDate><atom:link href="https://hi-ernest.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>2024年1月7日01周</title><link>https://hi-ernest.github.io/blog/24-01-weekly/</link><pubDate>Sun, 07 Jan 2024 20:50:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/24-01-weekly/</guid><description>&lt;h3 id="前序">前序&lt;/h3>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Always Exploring</title><link>https://hi-ernest.github.io/blog/</link><description>Recent content in Blogs on Always Exploring</description><generator>Hugo -- gohugo.io</generator><language>zh</language><managingEditor>chenhuarui2472071@gmail.com (Ernest Chen)</managingEditor><webMaster>chenhuarui2472071@gmail.com (Ernest Chen)</webMaster><copyright>2023 ErnestChen All rights reserved</copyright><lastBuildDate>Sun, 14 Jan 2024 18:32:37 +0800</lastBuildDate><atom:link href="https://hi-ernest.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>2024年1月14日02周</title><link>https://hi-ernest.github.io/blog/24-02-weekly/</link><pubDate>Sun, 14 Jan 2024 18:32:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/24-02-weekly/</guid><description>&lt;h3 id="前序">前序&lt;/h3>
+&lt;p>   现在是2024年的1月14号我在复旦大学邯郸校区旁，经世书局二楼休息区，正对面是红白装饰的复旦教学楼&amp;hellip;&lt;/p>
+&lt;p>   尝试探索办公空间，昨天静安区星巴克，今天在经世书局&amp;hellip;&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/hi-Ernest/imgbed/images/20240113.png" alt="静安区星巴克">&lt;/p>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/hi-Ernest/imgbed/images/20240114.jpg" alt="复旦经世书局">&lt;/p>
+&lt;h3 id="工作">工作&lt;/h3>
+&lt;p>   本周的主题是自己找活干，所有方都投在验证交付业务使用的系统功能，出现问题发现问题，开发来投入解决问题。基本不涉及自己这边，于是reivew下涉及的功能代码；文档记录各个执行器功能的验证；梳理现状login的逻辑；补充链路打点、日志监控等，写一下自己思考产出的文章等（&lt;a href="https://hi-ernest.noto.so/where-is-the-way-out-for-the-future">敢问路在何方&lt;/a>、&lt;a href="https://hi-ernest.noto.so/think-about-restful-api">Restful API&lt;/a>、&lt;a href="https://hi-ernest.noto.so/how-to-use-search-engine-optimization-to-drive-sales">使用Google Gemini查询问题by curl&lt;/a>
+）总而言之，工作量不大，总体偏摸鱼为主，偏自己找活干（也主动过找组长，组长好像也没想好分配程度，想一出是一出，还是鸡架做对内系统就是这样？）虽然有时间，但也不好直接干工作无关的事情，还是贴着工作内容来更深一步学习涉及领域知识，比如http的restful-api设计、如何设计一个账号登陆，如何鉴权等，都可以进一步研究和思考。&lt;/p>
+&lt;h4 id="遇到的问题">遇到的问题&lt;/h4>
+&lt;ul>
+&lt;li>组长没想好需求工作量分配问题，有时候做着做完了不知道接下来做什么&lt;/li>
+&lt;/ul>
+&lt;h4 id="解法">解法&lt;/h4>
+&lt;ul>
+&lt;li>
+&lt;p>主动思考当下或者之后项目会遇到的问题，文档列出问题，出技术方案来解决问题，对清楚然后实施&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>主动向组长沟通询问，接下来我们要做的内容，提前了解和介入执行&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>对项目中遇到的问题，将深思和好奇的点用telegram记录下来，有时间去利用搜索引擎来补充该知识&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>额外：时间上还是早10点之前到，吃早餐，晚20:30下班，保持作息规律&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="看的书带来的思考">看的书带来的思考&lt;/h3>
+&lt;blockquote>
+&lt;p>意识到你既是一切又什么都不是，并决定你想成为什么样子
+个体的人既是一切又什么都不是，这是一个巨大的悖论。在我们自己看来，我们就是一切，例如，我们的生命终止了，对于我们而言，全世界也就消失了。因此对大多数人（以及其他物种）而言，失去生命是最糟糕不过的事情，因此尽量拥有最好的生活就是无比重要的。但是，如果从自然的视角俯视自身，我们显然又是毫无分量的。现实是，今天的每个人都只是约70亿人类中的一员，而人类又只是地球上约1 000万物种中的一个。地球只是银河系约1 000亿颗行星中的一个，而全宇宙有约2万亿个星系。人的寿命只是人类历史的约3 000分之一，而人类历史又只是地球历史的2万分之一。换言之，我们渺小、短命得不可思议，无论取得什么样的成就，其影响都是微不足道的。同时，我们又本能地希望有意义，希望进化，而我们只能产生一丁点儿意义。所有这些一点点的意义加起来，才是宇宙进化的推动力。
+|《原则》瑞·达利欧&lt;/p>
+&lt;/blockquote>
+&lt;p>   夜晚在书桌前看到这一段话，数字和文字化作一道光从眼球直刺到灵魂深处，紧接着大脑一阵眩晕&amp;hellip;是的，我就是一个人，我的生命在浩瀚宇宙是如此的渺小，那我该过怎样的人生呢？现在的人生是我想要度过的吗？&lt;/p>
+&lt;h3 id="自我反思一些想法上转变">自我反思：一些想法上转变&lt;/h3>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>之前&lt;/th>
+&lt;th>现在&lt;/th>
+&lt;th>备注&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>过节过年，挨个发祝福&lt;!-- raw HTML omitted -->（想要微信的家人们和好友们都能有紧密联系）&lt;/td>
+&lt;td>只对母亲、姥爷等当下状况联系有来有往的好友&lt;/td>
+&lt;td>不同人在不同时期，不同人对待你的感情也是不一样的，只需要关注有互动真正关心你的人即可，也不需要所有人都密切和值得信赖&lt;!-- raw HTML omitted -->（eg.只有你发祝福，别人从来不主动发过你）&lt;!-- raw HTML omitted -->意识到不同阶段，人是会变的，不能要求别人怎样怎样，最重要是改变自己的心态；&lt;!-- raw HTML omitted -->当下环境是怎样的，和哪些人相遇，那就好好相处了解互相帮助，分开就既往不恋，纵情向跃&lt;!-- raw HTML omitted -->（eg.之前关系不错的朋友，后续再没有主动联系）不要活在自己在别人的印象里&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>畏首畏尾，事情还没开始做，就担心遭遇不好的结果，担心丢脸&lt;/td>
+&lt;td>深刻了解learning-by-doning；大部分人草台没啥好怕的；&lt;!-- raw HTML omitted -->心里大前提做的事情不违法、不损害他人，那想做那就去做；&lt;!-- raw HTML omitted -->人生就是一场体验而已，这次失败了我就吸取教训下次变得更好，&lt;!-- raw HTML omitted -->坦诚清晰对待自己，暴露问题和解决问题&lt;/td>
+&lt;td>对待感情也是，喜欢人往往处于对某人的第一印象，首先长相、身材、穿着打扮等，&lt;!-- raw HTML omitted -->大胆寻找交集破冰，真诚表达&amp;hellip;接触下来发现自己不喜欢或者人家冷漠不搭理不喜欢，那就换一个。&lt;!-- raw HTML omitted -->要有“你不喜欢我，我也懒着喜欢你”的勇气，要想想这个世界80多亿的人，找到合适你喜欢她喜欢你的人，几率还是蛮小的，&lt;!-- raw HTML omitted -->只有多尝试才能知道自己喜欢是怎样的和什么样是合适自己的，怀抱着真诚和敢于试错的勇气&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>知道要多读书，但没有沉下读书，每当浅尝辄止&lt;/td>
+&lt;td>抱着目的去读书（为了解决什么问题）使用略读和精读，先浏览大纲，直接看自己最想要了解的知识，&lt;!-- raw HTML omitted -->书不一定要读完，解决了你的问题，读书任务就完成了&lt;/td>
+&lt;td>先列出自己的问题清单，一次解决一个问题，日积月累，搭建起来自己的知识体系；&lt;!-- raw HTML omitted -->今年开年最好投资之一，得到读书会员；书籍不需要花费心智采用额外途径找到书，而是想看就直接看；&lt;!-- raw HTML omitted -->直接划线；做笔记&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>注意力不够集中，每次被wx之前组伙伴聊天吸引；被xhs笔记帖子消磨了时间；&lt;!-- raw HTML omitted -->每次分享欲在专注时候占领大脑，分享后又感觉没用或者没有反馈，就后悔当初为啥要发出来&lt;/td>
+&lt;td>做事情之前先问问自己，我这样做的目的是啥，做了能不能达到目的，不能那就不要去做&lt;!-- raw HTML omitted -->&lt;!-- raw HTML omitted -->自己才是人生的主角，不需要观众，做对自己有利成长的事情才是最重要的&lt;!-- raw HTML omitted -->&amp;ldquo;我不再装模作样的拥有很多朋友，而是回到孤独之中，以真正的我开始独自的生活&amp;rdquo;《在细雨中呼喊》&lt;/td>
+&lt;td>意识到并开始doing的事情&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>和别人沟通不畅情绪上头&lt;/td>
+&lt;td>很想发泄回去叼人，那就做事情之前先问问自己，我这样做的目的是啥，做了能不能达到目的，会出现哪些结果，这些结果是我可以接受的吗？&lt;!-- raw HTML omitted -->允许自己产生情绪，但需要通过合理方式宣泄，eg.转移场所，喝点吃点做点其他的转移注意力，冷静下来再思考当下处境需要怎么处理&lt;/td>
+&lt;td>长期需要磨练的事情&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="想法和行动">想法和行动&lt;/h3>
+&lt;ul>
+&lt;li>开始复习极客时间的王争老师的数据结构，刷剑指offer和leetcode（剑和hot各两遍）&lt;/li>
+&lt;li>完善简历年后投递微软SDE岗位，有面试机会就好好把握一波&lt;/li>
+&lt;li>看极客时间的Java核心技术课程，配合工作上使用&lt;/li>
+&lt;li>尝试使用Cambly和外国人英文对话todo&lt;/li>
+&lt;/ul></description></item><item><title>2024年1月7日01周</title><link>https://hi-ernest.github.io/blog/24-01-weekly/</link><pubDate>Sun, 07 Jan 2024 20:50:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/24-01-weekly/</guid><description>&lt;h3 id="前序">前序&lt;/h3>
 &lt;p>   现在是2024年1月7日23点15分，我在上海小屋书桌前，黄昏版灯光洒在键盘上，空调热风呼呼作响，手机放着《房间》这首歌，仿佛回到了大一独自走在两江黑暗的街道，耳机听着这首歌，眼皮也不由自主的开始打架&amp;hellip;&lt;/p>
 &lt;h3 id="工作">工作&lt;/h3>
 &lt;p>   这周确实比之前忙了稍许，因为到年底需要做好业务稳定性工作（大的要来！卖个关子过年就晓得），加了趁这次项目把老系统剩下功能迁移到新平台（使用爪哇重构）到了周六和组长沟通，才真正了解到时间紧迫以及现在项目进度的滞后，组内同事在周五纷纷提报周日加班，我却没有（本周六是上班by大小周）
