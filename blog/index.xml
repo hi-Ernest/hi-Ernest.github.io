@@ -1,47 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Always Exploring</title><link>https://hi-ernest.github.io/blog/</link><description>Recent content in Blogs on Always Exploring</description><generator>Hugo -- gohugo.io</generator><language>zh</language><managingEditor>chenhuarui2472071@gmail.com (Ernest Chen)</managingEditor><webMaster>chenhuarui2472071@gmail.com (Ernest Chen)</webMaster><copyright>2023 ErnestChen All rights reserved</copyright><lastBuildDate>Sun, 21 Jan 2024 22:51:37 +0800</lastBuildDate><atom:link href="https://hi-ernest.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>2024年01月21日03周</title><link>https://hi-ernest.github.io/blog/24-03-weekly/</link><pubDate>Sun, 21 Jan 2024 22:51:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/24-03-weekly/</guid><description>&lt;h3 id="前序">前序&lt;/h3>
-&lt;p>   现在是2024年的1月31号我在出租房书桌前，昏暗台灯，思绪万千，手指在键盘上飞快的舞动&amp;hellip;&lt;/p>
-&lt;h3 id="工作">工作&lt;/h3>
-&lt;p>   这周依然是修修补补，解决业务方对新平台使用过程中遇到的问题，不断领任务和完成任务。这周的感受做事情不够高效，比如两个接口修改和自测一天就过去了，然后第二天的sit环境的验证和合并master以及上线。逐步适应对于简单需求，没写设计方案直接动手修改；这边还没上线直接合并master；也遇到Java的一些问题，为啥直接请求GO老服务返回有数据，但restTemple返回500（因为老服务返回httpStatus非200）等&lt;/p>
-&lt;h4 id="遇到的问题">遇到的问题&lt;/h4>
-&lt;ul>
-&lt;li>对时间掌控和紧迫感不够，完成需求（敲代码、排查问题）效率比较低，时间消耗长&lt;/li>
-&lt;/ul>
-&lt;h4 id="解法">解法&lt;/h4>
-&lt;ul>
-&lt;li>【加快拥抱熟悉Java】
-&lt;ul>
-&lt;li>参考别人写的项目代码&lt;/li>
-&lt;li>阅读极客时间的Java课程；&lt;/li>
-&lt;li>记录开发过程中遇到的问题，是用搜索引擎搞懂原理是用telegram记录下来；&lt;/li>
-&lt;li>学习写Java的单测，确保逻辑分支测通过；&lt;/li>
-&lt;li>使用Java刷Leetcode、剑指offer&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>简单需求，不写技术方案，也要有白纸画出流程/IDEA先todo每个步骤，思考清楚涉及的逻辑分支，再动手操作&lt;/li>
-&lt;li>电脑或者手机设置番茄时间，来预估每个功能点完成时间，严格执行，复盘实际完成时间（完成工时的评估）&lt;/li>
-&lt;li>计算机网络知识的欠缺，需要补习计算机网络知识（看书和实践）todo 找项目&lt;/li>
-&lt;/ul>
-&lt;h3 id="过好自己的生活向内索取">过好自己的生活，向内索取&lt;/h3>
-&lt;ul>
-&lt;li>
-&lt;p>上周的想法和行动没有一点水花，本周感觉整个人特没劲，感觉很疲倦，最近干的支持型工作加上年底想回家了，情绪带动人的状态都down了下来。突然感觉每天做的事情毫无意义，没啥意思，想要gap一段时间想要好好放松，啥都不想啥也不干，回到海南找片海滩，躺着晒晒太阳&amp;hellip;想想是挺美的，现实还是搬砖日复一日&amp;hellip;&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>今天和母亲和姥爷视频聊会，发现家人真的是我坚实的后盾。每次和母亲聊完，我好像获得的一些力量。&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;blockquote>
-&lt;p>是的呀，生活本就如此，总会起起伏伏，人的情绪也是总会有一阵会低落emo，我能做了解当下自己的处境，向内修心，而非向外索取。去找到一些事情去做，不要计较成果，专注去做去享受过程，慢慢地不知不觉熬过这段时间。&lt;/p>
-&lt;/blockquote>
-&lt;h3 id="周五电影夜时空旅恋人">周五电影夜《时空旅恋人》&lt;/h3>
-&lt;blockquote>
-&lt;p>不出意外，每周五都是My Movies Night&lt;/p>
-&lt;/blockquote>
-&lt;p>   重温这部《时空恋旅人 About Time》电影，这好像是我第三次看这部电影，每次看总会有不同的感受和收获。这次让我不禁泪水在眼眶里打转的点是Tim穿梭过去和尚未去世的父亲打乒乓球，然后相拥做最后的告别。生活要继续往前走，那就不得不向过去告别，纵使过去是如此的美好，时间不会等我们，与其沉浸过去，不如收拾好心情，奔赴和探索未知的未来。第二点就是他们父亲和儿子的爱，Tim家充满爱，有点唠叨的母亲，总有点不正经的父亲，疯疯癫癫的妹妹，家里总会周末在户外一起看电影&amp;hellip;父亲去世，电影镜头下Tim就一直带着父亲金色手表，仿佛父亲从未离开，也许这也是Tim缅怀父亲的一种方式。我被他们感染，也融入Tim温暖的家里氛围，跟着他们经历幸福快乐和生活酸甜苦辣！&lt;/p>
-&lt;h3 id="周六夜晚和旭总去啊燕家做客">周六夜晚和旭总去啊燕家做客&lt;/h3>
-&lt;p>   终于去到啊燕家做客，认识到姐夫和另一个啊燕女性朋友栗子。从公司做十五站地铁加打车七分钟，达到小区。啊燕他们在小区门口等我们，我用手机记录了那一刻，蛮有趣2024第一次老友聚会！
-边吃火锅边聊天调侃从工作、2023去哪儿玩了、2024有什么新规划等等；学习和体验手搓打上海麻将，摸到花色牌可以在摸，不像川麻可以多种牌色可以吃可以碰等；玩耍扑克牌「干瞪眼」从一开始赢到后面输大发了哈哈哈哈&lt;/p>
-&lt;p>   欢乐的时候总是很快结束，19点到23点半离开，赶了最晚的地铁回来住所已然1点半左右。&lt;/p></description></item><item><title>2024年01月28日04周</title><link>https://hi-ernest.github.io/blog/24-04-weekly/</link><pubDate>Sun, 21 Jan 2024 22:51:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/24-04-weekly/</guid><description>&lt;h3 id="前序">前序&lt;/h3>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blogs on Always Exploring</title><link>https://hi-ernest.github.io/blog/</link><description>Recent content in Blogs on Always Exploring</description><generator>Hugo -- gohugo.io</generator><language>zh</language><managingEditor>chenhuarui2472071@gmail.com (Ernest Chen)</managingEditor><webMaster>chenhuarui2472071@gmail.com (Ernest Chen)</webMaster><copyright>2023 ErnestChen All rights reserved</copyright><lastBuildDate>Sun, 28 Jan 2024 19:51:37 +0800</lastBuildDate><atom:link href="https://hi-ernest.github.io/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>2024年01月28日04周</title><link>https://hi-ernest.github.io/blog/24-04-weekly/</link><pubDate>Sun, 28 Jan 2024 19:51:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/24-04-weekly/</guid><description>&lt;h3 id="前序">前序&lt;/h3>
 &lt;p>   现在是2024年01月28号19:53分，我在凯德LuOne30FLe cafe坐在实木桌子旁，我的对面是巨大的落地窗，一眼望去外面乌黑乌黑的，夜幕中一个个林立的住宅楼，一格一格不一样的灯光镶嵌在这幕布当中。&lt;/p>
 &lt;h3 id="工作">工作&lt;/h3>
 &lt;p>   这周的工作依然是对CNY预案平台的保障（对预案平台的预案）组长就像是一个MQ发送需求消息，我作为消费者进行接收一个消费一个，一如既往没有啥规划，忙于快过年的把能想到的保障工作，能做就做了然后下周演练来验证是否符合预期，这种本质上就是做support工作，对我个人确实情绪不会高涨，内心驱动积极性也不高。&lt;/p>
@@ -94,7 +51,50 @@
 &lt;h3 id="周日">周日&lt;/h3>
 &lt;p>   拖到下午五点半推着公路车，去让老师傅帮忙看看修好，自己打满了气，人都挺好的没收我的钱
 吃了附近的黄焖鸡20RMB，味道还行让我一下回想到大学时候在正门对面经常吃了黄焖鸡，时光已逝
-在想要不要去星巴克，发现又贵又不好喝还要提前打烊，想到了凯德luOne工区，30F的咖啡厅蛮大的挺好，是我今天做的最正确的选择了哈哈哈&lt;/p></description></item><item><title>2024年01月14日02周</title><link>https://hi-ernest.github.io/blog/24-02-weekly/</link><pubDate>Sun, 14 Jan 2024 18:32:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/24-02-weekly/</guid><description>&lt;h3 id="前序">前序&lt;/h3>
+在想要不要去星巴克，发现又贵又不好喝还要提前打烊，想到了凯德luOne工区，30F的咖啡厅蛮大的挺好，是我今天做的最正确的选择了哈哈哈&lt;/p></description></item><item><title>2024年01月21日03周</title><link>https://hi-ernest.github.io/blog/24-03-weekly/</link><pubDate>Sun, 21 Jan 2024 22:51:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/24-03-weekly/</guid><description>&lt;h3 id="前序">前序&lt;/h3>
+&lt;p>   现在是2024年的1月31号我在出租房书桌前，昏暗台灯，思绪万千，手指在键盘上飞快的舞动&amp;hellip;&lt;/p>
+&lt;h3 id="工作">工作&lt;/h3>
+&lt;p>   这周依然是修修补补，解决业务方对新平台使用过程中遇到的问题，不断领任务和完成任务。这周的感受做事情不够高效，比如两个接口修改和自测一天就过去了，然后第二天的sit环境的验证和合并master以及上线。逐步适应对于简单需求，没写设计方案直接动手修改；这边还没上线直接合并master；也遇到Java的一些问题，为啥直接请求GO老服务返回有数据，但restTemple返回500（因为老服务返回httpStatus非200）等&lt;/p>
+&lt;h4 id="遇到的问题">遇到的问题&lt;/h4>
+&lt;ul>
+&lt;li>对时间掌控和紧迫感不够，完成需求（敲代码、排查问题）效率比较低，时间消耗长&lt;/li>
+&lt;/ul>
+&lt;h4 id="解法">解法&lt;/h4>
+&lt;ul>
+&lt;li>【加快拥抱熟悉Java】
+&lt;ul>
+&lt;li>参考别人写的项目代码&lt;/li>
+&lt;li>阅读极客时间的Java课程；&lt;/li>
+&lt;li>记录开发过程中遇到的问题，是用搜索引擎搞懂原理是用telegram记录下来；&lt;/li>
+&lt;li>学习写Java的单测，确保逻辑分支测通过；&lt;/li>
+&lt;li>使用Java刷Leetcode、剑指offer&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>简单需求，不写技术方案，也要有白纸画出流程/IDEA先todo每个步骤，思考清楚涉及的逻辑分支，再动手操作&lt;/li>
+&lt;li>电脑或者手机设置番茄时间，来预估每个功能点完成时间，严格执行，复盘实际完成时间（完成工时的评估）&lt;/li>
+&lt;li>计算机网络知识的欠缺，需要补习计算机网络知识（看书和实践）todo 找项目&lt;/li>
+&lt;/ul>
+&lt;h3 id="过好自己的生活向内索取">过好自己的生活，向内索取&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>上周的想法和行动没有一点水花，本周感觉整个人特没劲，感觉很疲倦，最近干的支持型工作加上年底想回家了，情绪带动人的状态都down了下来。突然感觉每天做的事情毫无意义，没啥意思，想要gap一段时间想要好好放松，啥都不想啥也不干，回到海南找片海滩，躺着晒晒太阳&amp;hellip;想想是挺美的，现实还是搬砖日复一日&amp;hellip;&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>今天和母亲和姥爷视频聊会，发现家人真的是我坚实的后盾。每次和母亲聊完，我好像获得的一些力量。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>是的呀，生活本就如此，总会起起伏伏，人的情绪也是总会有一阵会低落emo，我能做了解当下自己的处境，向内修心，而非向外索取。去找到一些事情去做，不要计较成果，专注去做去享受过程，慢慢地不知不觉熬过这段时间。&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="周五电影夜时空旅恋人">周五电影夜《时空旅恋人》&lt;/h3>
+&lt;blockquote>
+&lt;p>不出意外，每周五都是My Movies Night&lt;/p>
+&lt;/blockquote>
+&lt;p>   重温这部《时空恋旅人 About Time》电影，这好像是我第三次看这部电影，每次看总会有不同的感受和收获。这次让我不禁泪水在眼眶里打转的点是Tim穿梭过去和尚未去世的父亲打乒乓球，然后相拥做最后的告别。生活要继续往前走，那就不得不向过去告别，纵使过去是如此的美好，时间不会等我们，与其沉浸过去，不如收拾好心情，奔赴和探索未知的未来。第二点就是他们父亲和儿子的爱，Tim家充满爱，有点唠叨的母亲，总有点不正经的父亲，疯疯癫癫的妹妹，家里总会周末在户外一起看电影&amp;hellip;父亲去世，电影镜头下Tim就一直带着父亲金色手表，仿佛父亲从未离开，也许这也是Tim缅怀父亲的一种方式。我被他们感染，也融入Tim温暖的家里氛围，跟着他们经历幸福快乐和生活酸甜苦辣！&lt;/p>
+&lt;h3 id="周六夜晚和旭总去啊燕家做客">周六夜晚和旭总去啊燕家做客&lt;/h3>
+&lt;p>   终于去到啊燕家做客，认识到姐夫和另一个啊燕女性朋友栗子。从公司做十五站地铁加打车七分钟，达到小区。啊燕他们在小区门口等我们，我用手机记录了那一刻，蛮有趣2024第一次老友聚会！
+边吃火锅边聊天调侃从工作、2023去哪儿玩了、2024有什么新规划等等；学习和体验手搓打上海麻将，摸到花色牌可以在摸，不像川麻可以多种牌色可以吃可以碰等；玩耍扑克牌「干瞪眼」从一开始赢到后面输大发了哈哈哈哈&lt;/p>
+&lt;p>   欢乐的时候总是很快结束，19点到23点半离开，赶了最晚的地铁回来住所已然1点半左右。&lt;/p></description></item><item><title>2024年01月14日02周</title><link>https://hi-ernest.github.io/blog/24-02-weekly/</link><pubDate>Sun, 14 Jan 2024 18:32:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/24-02-weekly/</guid><description>&lt;h3 id="前序">前序&lt;/h3>
 &lt;p>   现在是2024年的1月14号我在复旦大学邯郸校区旁，经世书局二楼休息区，正对面是红白装饰的复旦教学楼&amp;hellip;&lt;/p>
 &lt;p>   尝试探索办公空间，昨天静安区星巴克，今天在经世书局&amp;hellip;&lt;/p>
 &lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/hi-Ernest/imgbed/images/20240113.png" alt="静安区星巴克">&lt;/p>
