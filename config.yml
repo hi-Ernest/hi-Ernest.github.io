@@ -36,9 +36,9 @@ menu:
 params:
   brand: HOME
   avatarURL: /images/avatar.png
-  author: ErnestChen
-  authorDescription: 不断探索,日拱一卒！
-  info:
+  author: hi-Ernest
+  authorDescription: 保持情绪稳定，专注当下，遇到问题解决问题
+  info: 珍惜和感恩当下，勇气至上，NOTHING TO LOSE
   favicon: /images/avatar.png
   options:
     showDarkMode: true
@@ -102,8 +102,8 @@ languages:
     authorDescription: 
     info:
     guestbook:
-      title: 留言板
-      description: 您的评论，会让该网站更精彩！
+      title: 苟且与诗和远方
+      description: 记录日常生活中的碎片化、未经(太多)审查的想法「如有侵权 请联系我删除」
     menu:
       main:
         - name: 文章
@@ -118,7 +118,7 @@ languages:
         - name: 历史
           url: /archives
           weight: 3
-        - name: 留言板
+        - name: 短想法
           url: /guestbook
           weight: 4
         - name: 统计
