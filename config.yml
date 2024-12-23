@@ -12,38 +12,32 @@ hasCJKLanguage: true
 copyright: "2023 ErnestChen All rights reserved"
 Author:
   name: "Ernest Chen"
-  email: "chenhuarui2472071@gmail.com"
+  email: "ernestchen247@gmail.com"
 menu:
   main:
     - name: Blog
       url: /blog
       weight: 1
-    # - name: Art
-    #   url: /art
-    #   weight: 2
-    # - name: Tags
-    #   url: /tags
-    #   weight: 3
     - name: Archive
       url: /archives
-      weight: 4
+      weight: 2
     - name: Guest
       url: /guestbook
-      weight: 5
+      weight: 3
     - name: Monitor
       url: https://umami-blog-analyze-30k29jpw4-hi-ernest.vercel.app/share/F0HNiV8DX3mdMGa3/hi-Ernest
-      weight: 6
+      weight: 4
 params:
   brand: HOME
   avatarURL: /images/avatar.png
   author: hi-Ernest
-  authorDescription: 保持情绪稳定，专注当下，遇到问题解决问题
-  info: 珍惜和感恩当下，勇气至上，NOTHING TO LOSE
+  authorDescription:
+  info:
   favicon: /images/avatar.png
   options:
     showDarkMode: true
     enableImgZooming: true
-    enableMultiLang: false
+    enableMultiLang: true
     showMetaTags: true
   darkModeTheme: data-dark-mode
   sponsors:
@@ -52,7 +46,7 @@ params:
     buymeaCoffee:
       enable: true
       url: https://www.buymeacoffee.com/iguangzhengli
-      buttom_api: https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=iguangzhengli&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff
+      button_api: https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=iguangzhengli&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff
       qr: https://storage.guangzhengli.com/images/buymeacoffee_sponsors.png
     wechat:
       enable: true
@@ -71,59 +65,49 @@ params:
       position: top
       lang: zh-CN # pick a language from https://github.com/giscus/giscus/tree/main/locales
     utteranc:
-      enable: false
+      enable: false 
       repo:
       issueTerm:
   analytics:
     google:
-      SiteVerificationTag: xxx
+      SiteVerificationTag: xxx 
     umami:
-      enable: true
-      website_id: f3deb06c-5a53-49a7-a8e1-b4ce23c412ba
-      url: https://umami-blog-analyze-30k29jpw4-hi-ernest.vercel.app/hugo-ladder
+      enable: true 
+      website_id: f3deb06c-5a53-49a7-a8e1-b4ce23c412ba 
+      url: https://umami-blog-analyze-30k29jpw4-hi-ernest.vercel.app/hugo-ladder 
   guestbook:
-    title: Guestbook
+    title: Guestbook 
     description: Leave a comment below. It could be anything –- question, appreciation, information, or even humor.
-  social:
-    - name: Resume
-      pre: >-
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-      url: 'https://github.com/hi-Ernest/resume/blob/master/resume-zh.pdf'
-    # - name: Dashboard
-    #   pre: >-
-    #   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-box"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-    #   url: 'https://umami-ochre-nu.vercel.app/share/R1lHz7QY/hugo-ladder-exampleSite'
+  # social:
+  #   - name: Resume 
+  #     pre: >-
+  #       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77A5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42,3.3,6.61,6.44,7A3.37,3.37,0,0,0,9,18.13V22"></path></svg>
+  #     url:'https://github.com/hi-Ernest/resume/blob/master/resume-zh.pdf'
 languages:
-#   en:
-#     languageName: EN
+  # en:
+  #   languageName: EN 
   zh:
-    languageName: 中
-    author:
-    authorDescription: 
-    info:
-    guestbook:
-      title: 苟且与诗和远方
-      description: 记录日常生活中的碎片化、未经(太多)审查的想法「如有侵权 请联系我删除」
-    menu:
-      main:
-        - name: 文章
-          url: /blog
-          weight: 1
-        # - name: 生活
-        #   url: /art
-        #   weight: 2
-        # - name: 标签
-        #   url: /tags
-        # weight: 3
-        - name: 历史
-          url: /archives
-          weight: 3
-        - name: 短想法
-          url: /guestbook
-          weight: 4
-        - name: 统计
-          url: https://umami-blog-analyze-30k29jpw4-hi-ernest.vercel.app/share/F0HNiV8DX3mdMGa3/hi-Ernest
-          weight: 5
+    languageName: 中 
+    params:
+      authorDescription: 专注当下，感恩当下 
+      info: 不断探索！日拱一卒！ 
+      guestbook:
+        title: 留言板 
+        description: 留下痕迹 
+      menu:
+        main:
+          - name: 文章
+            url: /blog
+            weight: 1
+          - name: 历史
+            url: /archives
+            weight: 2
+          - name: 留言板
+            url: /guestbook
+            weight: 3
+          - name: 统计 
+            url: https://umami-blog-analyze-30k29jpw4-hi-ernest.vercel.app/share/F0HNiV8DX3mdMGa3/hi-Ernest 
+            weight: 4
 taxonomies:
   series: series
   tag: tags
