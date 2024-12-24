@@ -1,7 +1,7 @@
 timeout: 60000
 baseURL: 'https://hi-ernest.github.io/'
 title: Always Exploring
-theme: theme-ladder
+theme: hugo-theme-ladder
 license: MIT
 licenselink: 'https://github.com/guangzhengli/hugo-theme-ladder/blob/master/LICENSE'
 description: ''
