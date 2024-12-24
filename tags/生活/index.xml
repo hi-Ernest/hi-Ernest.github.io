@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>生活 on Always Exploring</title><link>https://hi-ernest.github.io/tags/%E7%94%9F%E6%B4%BB/</link><description>Recent content in 生活 on Always Exploring</description><generator>Hugo -- gohugo.io</generator><language>zh</language><managingEditor>chenhuarui2472071@gmail.com (Ernest Chen)</managingEditor><webMaster>chenhuarui2472071@gmail.com (Ernest Chen)</webMaster><copyright>2023 ErnestChen All rights reserved</copyright><lastBuildDate>Thu, 20 Jul 2023 14:58:37 +0800</lastBuildDate><atom:link href="https://hi-ernest.github.io/tags/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml"/><item><title>经典项目问题</title><link>https://hi-ernest.github.io/blog/work-porject/</link><pubDate>Thu, 20 Jul 2023 14:58:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/work-porject/</guid><description>&lt;h3 id="经典问题">经典问题&lt;/h3>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>生活 on Always Exploring</title><link>https://hi-ernest.github.io/tags/%E7%94%9F%E6%B4%BB/</link><description>Recent content in 生活 on Always Exploring created by</description><generator>Hugo -- gohugo.io</generator><language>zh</language><copyright>2023 ErnestChen All rights reserved</copyright><lastBuildDate>Thu, 20 Jul 2023 14:58:37 +0800</lastBuildDate><atom:link href="https://hi-ernest.github.io/tags/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml"/><item><title>经典项目问题</title><link>https://hi-ernest.github.io/blog/work-porject/</link><pubDate>Thu, 20 Jul 2023 14:58:37 +0800</pubDate><guid>https://hi-ernest.github.io/blog/work-porject/</guid><description>&lt;h3 id="经典问题">经典问题&lt;/h3>
 &lt;ul>
 &lt;li>主要负责模块是哪块？整体业务流程是怎样的？云仓是什么？&lt;/li>
 &lt;li>讲一下做的项目中遇到的问题（挑战和复杂是什么）？怎么解决的？（技术难点问题、业务复杂度问题）&lt;/li>
@@ -81,7 +81,7 @@
 实践场景：fass消费MySQL的binLog信息，AC单据同步ES（查询uas、wms、货主信息）组合同步到ES中
 优点：降低查询多个服务的开销；提升查询模块高可用；具有数据一致性
 缺点：实现比api组合方式复杂&lt;/li>
-&lt;/ul></description></item><item><title>母亲的话&amp;自己思考</title><link>https://hi-ernest.github.io/blog/23-05-20-think/</link><pubDate>Sat, 20 May 2023 23:06:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/23-05-20-think/</guid><description>&lt;p>焦虑的事情多半源于三个字：不甘心！容易陷于患得患失情绪当中，既放不下现在所得到的又对未来不确定性担忧以及大环境不好带来忧虑。&lt;/p>
+&lt;/ul></description></item><item><title>母亲的话&amp;自己思考</title><link>https://hi-ernest.github.io/blog/23-05-20-think/</link><pubDate>Sat, 20 May 2023 23:06:37 +0800</pubDate><guid>https://hi-ernest.github.io/blog/23-05-20-think/</guid><description>&lt;p>焦虑的事情多半源于三个字：不甘心！容易陷于患得患失情绪当中，既放不下现在所得到的又对未来不确定性担忧以及大环境不好带来忧虑。&lt;/p>
 &lt;p>Q：如何解决？&lt;/p>
 &lt;p>A: 自己要清楚，什么是自己能控制，什么是自己不能控制的。&lt;/p>
 &lt;hr>
@@ -91,7 +91,7 @@
 &lt;blockquote>
 &lt;p>“勇敢是当你还未开始就已知道自己会输，可你依然要去做，而且无论如何都要把它坚持到底。你很少能赢，但有时也会”
 《杀死一只知更鸟》&lt;/p>
-&lt;/blockquote></description></item><item><title>2022-07-20</title><link>https://hi-ernest.github.io/blog/22-07-20/</link><pubDate>Wed, 20 Jul 2022 23:00:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/22-07-20/</guid><description>&lt;p>今天开会错过了按摩时间，今天在某个瞬间感觉事情的多和杂造成时间的紧迫。再加上好久没做需求了，这次一做总会有细小的点没有考虑周全。&lt;/p>
+&lt;/blockquote></description></item><item><title>2022-07-20</title><link>https://hi-ernest.github.io/blog/22-07-20/</link><pubDate>Wed, 20 Jul 2022 23:00:37 +0800</pubDate><guid>https://hi-ernest.github.io/blog/22-07-20/</guid><description>&lt;p>今天开会错过了按摩时间，今天在某个瞬间感觉事情的多和杂造成时间的紧迫。再加上好久没做需求了，这次一做总会有细小的点没有考虑周全。&lt;/p>
 &lt;p>对于需求的方案设计以及流转上，还需要更加深刻理解和钻研，不仅仅在处理我方侧功能更好的实现上，还需要多问为什么，去关心别人链路是怎样的，他们这样设计的优缺点是什么，我想只有这样在各种不同场景下，考虑问题思考问题能力才能步步提升，增强自我的系统设计能力。梳理系统的链路，发现是否存在不合理的地方，以及想办法去解决，与其埋怨抱怨烦闷，不如主动出击，拥抱问题，思考和解决问题。只有遇到各种各样的棘手的问题，靠自己能力攻克，个人能力才能得以提升。&lt;/p>
 &lt;p>今天是修复了QA提出了bug，针对发起/取消拦截进行解耦，现在回想：是不是可以抽成接口、结构体对象来处理，针对创建、更新、调rpc、记录日志等操作。这个需要评估一下是否需要修改，感觉如果是有精力和资源在投入也不迟。以及调用rpc，目前是for循环一个个调用，是否改成多协程调用，这样方式的写法需要考量一下。
 导出功能发现，货主端是已完成配置并导出，解决了字段的问题，这个需要验证下商家端导出，显示导出成功但页面的查询展示并没有展示，这个需要排查订正
@@ -110,7 +110,7 @@
 &lt;li>&lt;input checked="" disabled="" type="checkbox"> 修改调用lo -&amp;gt; 多协程&lt;/li>
 &lt;li>&lt;input checked="" disabled="" type="checkbox"> 确定灰度方案 - 写灰度控制逻辑&lt;/li>
 &lt;li>&lt;input checked="" disabled="" type="checkbox"> 三端的导出&lt;/li>
-&lt;/ul></description></item><item><title>记22/05/14夜跑思考</title><link>https://hi-ernest.github.io/blog/night-run-think/</link><pubDate>Sun, 15 May 2022 21:55:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/night-run-think/</guid><description>&lt;p>晚上九点多开始户外漫无目的的跑步，五公里的酣畅淋漓给我前进方向多了许多有用思考
+&lt;/ul></description></item><item><title>记22/05/14夜跑思考</title><link>https://hi-ernest.github.io/blog/night-run-think/</link><pubDate>Sun, 15 May 2022 21:55:37 +0800</pubDate><guid>https://hi-ernest.github.io/blog/night-run-think/</guid><description>&lt;p>晚上九点多开始户外漫无目的的跑步，五公里的酣畅淋漓给我前进方向多了许多有用思考
 为了什么学习算法和数据结构？目前自己最重要的任务是什么？未来的我该何去何从？
 书到用时方恨少，现在的勤勉孜孜不倦的学习是为了不错过未来的好机会，机会/机遇是最难得的，人生能有几次改变命运的机会，纵观历史长河中那些前人重大选择和改变的机会是屈指可数的，我们不知道什么命运时刻会什么时候到来，我们能做的就是在来之前，竭尽全力完善自己、沉淀自己，宝剑锋从磨砺出，梅花香自苦寒来，趁年轻机会成本低，勇于尝试和探索，不畏惧失败，积极乐观心态迎接问题，思考问题，解决问题。
 既然选择了这个行业，那就认清现实，先把这个行业所需要具备的能力，学习到不断实践将其融会贯通，成为自己的知识/能力体系。万事万物都是有迹可循，总结规律，沉淀自己方法论，根据场景调整和适配，大胆实践。&lt;/p>
@@ -144,7 +144,7 @@
 &lt;ul>
 &lt;li>减少说脏话，让心态总趋向平静，不对外散发负能量情绪&lt;/li>
 &lt;li>不要过于表达，有时候说的精简有力好过冗余软绵绵&lt;/li>
-&lt;/ul></description></item><item><title>「Software Engineering at Google」</title><link>https://hi-ernest.github.io/blog/software-engineering-at-google/</link><pubDate>Wed, 11 May 2022 23:23:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/software-engineering-at-google/</guid><description>&lt;blockquote>
+&lt;/ul></description></item><item><title>「Software Engineering at Google」</title><link>https://hi-ernest.github.io/blog/software-engineering-at-google/</link><pubDate>Wed, 11 May 2022 23:23:37 +0800</pubDate><guid>https://hi-ernest.github.io/blog/software-engineering-at-google/</guid><description>&lt;blockquote>
 &lt;p>&lt;a href="https://qiangmzsx.github.io/Software-Engineering-at-Google/#/./zh-cn/Chapter-1_What_Is_Software_Engineering/Chapter-1_What_Is_Software_Engineering">《Software Engineering at Google》online&lt;/a>&lt;/p>
 &lt;/blockquote>
 &lt;h3 id="第一章什么是软件工程">第一章「什么是软件工程」&lt;/h3>
@@ -317,7 +317,7 @@ humility, respect, and trust&lt;/p>
 &lt;/ul>
 &lt;blockquote>
 &lt;p>os: &lt;strong>保持一颗真诚助人的心，保持稳定的情绪，帮忙别人同样是帮助自己！（回顾复习知识+帮忙合作方大家任务早点完成下班）&lt;/strong>&lt;/p>
-&lt;/blockquote></description></item><item><title>「时间之书」余世存</title><link>https://hi-ernest.github.io/blog/book-of-time/</link><pubDate>Sat, 30 Apr 2022 23:19:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/book-of-time/</guid><description>&lt;blockquote>
+&lt;/blockquote></description></item><item><title>「时间之书」余世存</title><link>https://hi-ernest.github.io/blog/book-of-time/</link><pubDate>Sat, 30 Apr 2022 23:19:37 +0800</pubDate><guid>https://hi-ernest.github.io/blog/book-of-time/</guid><description>&lt;blockquote>
 &lt;p>年轻人，你的职责是平整土地，而非焦虑时光。你做三四月的事，在八九月自有答案&lt;/p>
 &lt;/blockquote>
 &lt;blockquote>
@@ -363,7 +363,7 @@ humility, respect, and trust&lt;/p>
 &lt;/blockquote>
 &lt;blockquote>
 &lt;p>《燕京岁时记》记载说： “那时的四大冰食佳品， 一是酸梅汤，二是西瓜汁，三是杏仁豆腐，四是什锦盘，均以冰镇 之。”&lt;/p>
-&lt;/blockquote></description></item><item><title>来字节的一周年了</title><link>https://hi-ernest.github.io/blog/bytedancer-one-year/</link><pubDate>Tue, 26 Apr 2022 23:37:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/bytedancer-one-year/</guid><description>&lt;p>今天是来字节的一周年。从刚开始的跌跌撞撞，磨磨碰碰，想过逃离、想过放弃，到后面打开自己封闭的内心，用积极的心态去迎接每一天所遇到的难题，去不断思考、去和团队伙伴进行讨论，积极的推进让事情更好更快解决。千言万语还是一句话，勿忘初心！&lt;/p>
+&lt;/blockquote></description></item><item><title>来字节的一周年了</title><link>https://hi-ernest.github.io/blog/bytedancer-one-year/</link><pubDate>Tue, 26 Apr 2022 23:37:37 +0800</pubDate><guid>https://hi-ernest.github.io/blog/bytedancer-one-year/</guid><description>&lt;p>今天是来字节的一周年。从刚开始的跌跌撞撞，磨磨碰碰，想过逃离、想过放弃，到后面打开自己封闭的内心，用积极的心态去迎接每一天所遇到的难题，去不断思考、去和团队伙伴进行讨论，积极的推进让事情更好更快解决。千言万语还是一句话，勿忘初心！&lt;/p>
 &lt;ul>
 &lt;li>想清楚自己到底是为了什么？&lt;/li>
 &lt;li>为什么来到这儿，什么东西对自己是最最重要的？&lt;/li>
@@ -374,13 +374,13 @@ humility, respect, and trust&lt;/p>
 &lt;p>经历一年多社会的毒打，才入门理解前人道出这句话的苦涩和智慧。在工作中，人之间合作实在太重要了，交流沟通是人成长路上必修课，敢于拒绝不合适的需求/要求，关键处据理力争、冲突时于情委婉的表达，各自求同存异，找到平衡多方的解决方案等等。一开始总想一件一件的事情，按序就班解决，后面发现其实不然，很多情况下就是开多线程进行多任务的处理，而且事情的最终结果也不是个人能决定的，不要抱有太多的希望，期望会是最理想的方式去导向，大多情况不然，积极推进做好自己能做的部分，剩下的慢慢推动就好，有问题不要死扛，而是同步老板进度，尤其需求/优化的调研思考过后产出方案各有优缺，可以有自己倾向，但拍板的事就交给老板好了，一定要想好了再去做，否者可能直接做其实都是无用功。&lt;/p>
 &lt;blockquote>
 &lt;p>最近晚上困的早，早上醒的早，最近状态还是蛮舒服！希望自己继续探索找到最长的坡和最厚的雪!&lt;/p>
-&lt;/blockquote></description></item><item><title>梳理历史代码结论</title><link>https://hi-ernest.github.io/blog/sorting-out-historical-code/</link><pubDate>Wed, 13 Apr 2022 10:48:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/sorting-out-historical-code/</guid><description>&lt;ul>
+&lt;/blockquote></description></item><item><title>梳理历史代码结论</title><link>https://hi-ernest.github.io/blog/sorting-out-historical-code/</link><pubDate>Wed, 13 Apr 2022 10:48:37 +0800</pubDate><guid>https://hi-ernest.github.io/blog/sorting-out-historical-code/</guid><description>&lt;ul>
 &lt;li>业务的校验和处理进行分开，避免杂糅在一起&lt;/li>
 &lt;li>方法名和参数名需要见名直意&lt;/li>
 &lt;li>方法内聚合、模块化，对外职责单一&lt;/li>
 &lt;li>方法的传参尽量少，需要什么就传什么，而不是直接一个结构体，然后取其他一个字段&lt;/li>
 &lt;li>方法By哪个参数A进行唯一确定，建议把参数A放在方法入参第一位置&lt;/li>
-&lt;/ul></description></item><item><title>25岁的一年</title><link>https://hi-ernest.github.io/blog/in-25-year-old/</link><pubDate>Mon, 04 Apr 2022 12:36:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/in-25-year-old/</guid><description>&lt;p>随着时间，发现自己就是一个普通人，想让生活过着不那么苟且，多一些阳光和憧憬
+&lt;/ul></description></item><item><title>25岁的一年</title><link>https://hi-ernest.github.io/blog/in-25-year-old/</link><pubDate>Mon, 04 Apr 2022 12:36:37 +0800</pubDate><guid>https://hi-ernest.github.io/blog/in-25-year-old/</guid><description>&lt;p>随着时间，发现自己就是一个普通人，想让生活过着不那么苟且，多一些阳光和憧憬
 接受自己的普通，接受自己不足，过好眼前的生活&lt;/p>
 &lt;p>发现的不足：&lt;/p>
 &lt;ol>
@@ -394,7 +394,7 @@ humility, respect, and trust&lt;/p>
 &lt;blockquote>
 &lt;p>我很讨厌别人带人来住处 这到底是什么样的心理活动
 很烦很讨厌的感受，一应该是自己很讨厌不认识的人，二不喜欢需要共享的方式，自己想用的时候别人占有&lt;/p>
-&lt;/blockquote></description></item><item><title>绩效沟通前准备</title><link>https://hi-ernest.github.io/blog/performance-communication/</link><pubDate>Mon, 04 Apr 2022 02:18:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/performance-communication/</guid><description>&lt;blockquote>
+&lt;/blockquote></description></item><item><title>绩效沟通前准备</title><link>https://hi-ernest.github.io/blog/performance-communication/</link><pubDate>Mon, 04 Apr 2022 02:18:37 +0800</pubDate><guid>https://hi-ernest.github.io/blog/performance-communication/</guid><description>&lt;blockquote>
 &lt;p>Q: 说一下一年了感觉&lt;/p>
 &lt;/blockquote>
 &lt;blockquote>
@@ -412,7 +412,7 @@ humility, respect, and trust&lt;/p>
 &lt;h3 id="之前打算目前">之前打算目前&lt;/h3>
 &lt;p>问题的拆解，把大的抽象业务问题，拆解小的可实施的小任务 【多练习】
 多学习别人好的业务模型设计，流程交互
-在咱们物流团队承担更多的职责，多锻炼自己跨部门沟通能力&lt;/p></description></item><item><title>「人生的智慧」叔本华</title><link>https://hi-ernest.github.io/blog/schopenhauer/</link><pubDate>Tue, 08 Feb 2022 13:00:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/schopenhauer/</guid><description>&lt;blockquote>
+在咱们物流团队承担更多的职责，多锻炼自己跨部门沟通能力&lt;/p></description></item><item><title>「人生的智慧」叔本华</title><link>https://hi-ernest.github.io/blog/schopenhauer/</link><pubDate>Tue, 08 Feb 2022 13:00:37 +0800</pubDate><guid>https://hi-ernest.github.io/blog/schopenhauer/</guid><description>&lt;blockquote>
 &lt;p>所说的钟摆，人生就在这两头之间摆来摆
 去，在一端的人总想摆到另一端，其实只有摆的那一瞬间是快乐的&lt;/p>
 &lt;/blockquote>
@@ -421,7 +421,7 @@ humility, respect, and trust&lt;/p>
 &lt;/blockquote>
 &lt;blockquote>
 &lt;p>“拥有丰富的内在，即丰富的精神才是人生幸福的关键，才能避免痛苦和无聊。要想保持幸福的内在源泉畅通无阻，条件是拥有独立和闲暇，而独立和闲暇则是以俭朴和节制来换取的。一个人自身的精神价值越高的时候，他就越能耐得住简单的生活和孤独的侵袭。”&lt;/p>
-&lt;/blockquote></description></item><item><title>四人语录(禹神、达咩、啊焦、睿总)</title><link>https://hi-ernest.github.io/blog/four-people-talk/</link><pubDate>Tue, 08 Feb 2022 13:00:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/four-people-talk/</guid><description>&lt;blockquote>
+&lt;/blockquote></description></item><item><title>四人语录(禹神、达咩、啊焦、睿总)</title><link>https://hi-ernest.github.io/blog/four-people-talk/</link><pubDate>Tue, 08 Feb 2022 13:00:37 +0800</pubDate><guid>https://hi-ernest.github.io/blog/four-people-talk/</guid><description>&lt;blockquote>
 &lt;p>最近工作小组成员口头禅&lt;/p>
 &lt;/blockquote>
 &lt;ul>
@@ -451,7 +451,7 @@ humility, respect, and trust&lt;/p>
 &lt;li>“别闹了”&lt;/li>
 &lt;li>“撤回吧 别丢人了”&lt;/li>
 &lt;li>“写的很好 下次别写了”&lt;/li>
-&lt;/ul></description></item><item><title>2022年1月28日下午1:56</title><link>https://hi-ernest.github.io/blog/go-home-2022/</link><pubDate>Fri, 28 Jan 2022 14:20:37 +0800</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/go-home-2022/</guid><description>&lt;p>自从确定了回家的日期，每天上班的动力就是离回家的日子越来越近了。从刚开始的漫长到最后临近，心里也从充溢的期盼到有些空荡荡的。来北京的这九个月，有过痛苦有过迷茫，想过逃避想过放弃，但终归坚持下来，虽然年中绩效考核不是理想，但自己也做了一些改变，到现在感觉自己掌握些什么但又好像没掌握，有几种可能性&lt;/p>
+&lt;/ul></description></item><item><title>2022年1月28日下午1:56</title><link>https://hi-ernest.github.io/blog/go-home-2022/</link><pubDate>Fri, 28 Jan 2022 14:20:37 +0800</pubDate><guid>https://hi-ernest.github.io/blog/go-home-2022/</guid><description>&lt;p>自从确定了回家的日期，每天上班的动力就是离回家的日子越来越近了。从刚开始的漫长到最后临近，心里也从充溢的期盼到有些空荡荡的。来北京的这九个月，有过痛苦有过迷茫，想过逃避想过放弃，但终归坚持下来，虽然年中绩效考核不是理想，但自己也做了一些改变，到现在感觉自己掌握些什么但又好像没掌握，有几种可能性&lt;/p>
 &lt;ul>
 &lt;li>
 &lt;ol>
@@ -469,7 +469,7 @@ humility, respect, and trust&lt;/p>
 &lt;/ol>
 &lt;/li>
 &lt;/ul>
-&lt;p>｜上空 11582km&lt;/p></description></item><item><title>2021/04/19有感</title><link>https://hi-ernest.github.io/blog/2021-04-19/</link><pubDate>Mon, 19 Apr 2021 00:00:00 +0000</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/2021-04-19/</guid><description>&lt;p>周五晚上回老家看望了阿婆，老人1934年生人，今年也87了。有时候不免感到生老病死，时光流转更替，老一辈是这个时代甩在身后的人了，他们不懂抖音，不懂游戏，但饱饭、电视和熟人之间的闲聊也是他们最大的娱乐方式，对于老一辈的岁数难免疾病缠身，我们身为后辈其实能做的就只有常回家看看，围绕在她跟前聆听唠叨听听那些简单到不能简单的琐事，说说自己现在目前的情况，不懂他们懂不懂尽可能用简单话语解释，其实就是虽然偶尔遇到困难，但总体一切顺利，一直在路上，勿念我会照顾好自己。这次回去最大触动，就是阿婆那句话，她看着大伯给我钱，在一旁说道，“阿婆没有钱给你了，都花在看病上了”&amp;hellip;现在想想，心里的弦仿佛被狠狠的触动，泪水小小的在眼眶中打转，对时间不断向前谁也改变不了，生老病死是人一生的必修课，很残忍但也必须去面对去经历&amp;hellip;.&lt;/p>
+&lt;p>｜上空 11582km&lt;/p></description></item><item><title>2021/04/19有感</title><link>https://hi-ernest.github.io/blog/2021-04-19/</link><pubDate>Mon, 19 Apr 2021 00:00:00 +0000</pubDate><guid>https://hi-ernest.github.io/blog/2021-04-19/</guid><description>&lt;p>周五晚上回老家看望了阿婆，老人1934年生人，今年也87了。有时候不免感到生老病死，时光流转更替，老一辈是这个时代甩在身后的人了，他们不懂抖音，不懂游戏，但饱饭、电视和熟人之间的闲聊也是他们最大的娱乐方式，对于老一辈的岁数难免疾病缠身，我们身为后辈其实能做的就只有常回家看看，围绕在她跟前聆听唠叨听听那些简单到不能简单的琐事，说说自己现在目前的情况，不懂他们懂不懂尽可能用简单话语解释，其实就是虽然偶尔遇到困难，但总体一切顺利，一直在路上，勿念我会照顾好自己。这次回去最大触动，就是阿婆那句话，她看着大伯给我钱，在一旁说道，“阿婆没有钱给你了，都花在看病上了”&amp;hellip;现在想想，心里的弦仿佛被狠狠的触动，泪水小小的在眼眶中打转，对时间不断向前谁也改变不了，生老病死是人一生的必修课，很残忍但也必须去面对去经历&amp;hellip;.&lt;/p>
 &lt;p>有时候不敢前面的道路有多难，我都会想到那些支持我的人，还有我自己要相信自己，相信的力量一直会坚持着我！&lt;/p>
 &lt;p>信念感！！&lt;/p>
 &lt;p>付出行动：有了工资和积蓄，过年过节给阿婆红包表达自己一份孝心的挂念（转给大姑让大姑代为转达）&lt;/p>
@@ -487,7 +487,7 @@ humility, respect, and trust&lt;/p>
 &lt;li>多帮助母亲收拾家里卫生和洗碗等，多聊聊天&lt;/li>
 &lt;li>继续算法和学习GO语言&lt;/li>
 &lt;li>滴滴去机场&lt;/li>
-&lt;/ul></description></item><item><title>2021/08/16有感</title><link>https://hi-ernest.github.io/blog/2020-08-16/</link><pubDate>Sun, 16 Aug 2020 00:00:00 +0000</pubDate><author>chenhuarui2472071@gmail.com (Ernest Chen)</author><guid>https://hi-ernest.github.io/blog/2020-08-16/</guid><description>&lt;p>在周五时候，人更加的迷茫和不知所措，好像每次在不同的环境，阶段都会有疑惑和无力感。
+&lt;/ul></description></item><item><title>2021/08/16有感</title><link>https://hi-ernest.github.io/blog/2020-08-16/</link><pubDate>Sun, 16 Aug 2020 00:00:00 +0000</pubDate><guid>https://hi-ernest.github.io/blog/2020-08-16/</guid><description>&lt;p>在周五时候，人更加的迷茫和不知所措，好像每次在不同的环境，阶段都会有疑惑和无力感。
 昨天去跑步，时隔好多天的运动，在过程中我也在思考自己的现阶段到底顾虑什么，焦虑什么，那如何解决尼&lt;/p>
 &lt;p>我想把这些东西列出：
 工作上：工作的意义到底是什么？很多老套说为了赚更多的钱，给自己和家人过更好的生活，我想这毫无疑问，但是更多的钱，怎样才算多得多的钱，赚更多的钱挤压更少的时间吗，还是说拿命去换钱？&lt;/p>
