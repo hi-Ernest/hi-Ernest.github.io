@@ -1,32 +1,19 @@
 timeout: 60000
 baseURL: 'https://hi-ernest.github.io/'
 title: Always Exploring
-theme: hugo-theme-ladder
+theme: theme-ladder
 license: MIT
 licenselink: 'https://github.com/guangzhengli/hugo-theme-ladder/blob/master/LICENSE'
 description: ''
 homepage: 'https://hi-ernest.github.io/'
 defaultContentLanguage: 'zh'
-paginate: 10
+pagination:
+  pagerSize: 10
 hasCJKLanguage: true
 copyright: "2023 ErnestChen All rights reserved"
 Author:
-  name: "Ernest Chen"
+  name: "Ernest Chen" 
   email: "ernestchen247@gmail.com"
-menu:
-  main:
-    - name: Blog
-      url: /blog
-      weight: 1
-    - name: Archive
-      url: /archives
-      weight: 2
-    - name: Guest
-      url: /guestbook
-      weight: 3
-    - name: Monitor
-      url: https://umami-blog-analyze-30k29jpw4-hi-ernest.vercel.app/share/F0HNiV8DX3mdMGa3/hi-Ernest
-      weight: 4
 params:
   brand: HOME
   avatarURL: /images/avatar.png
@@ -84,8 +71,28 @@ params:
   #       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77A5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42,3.3,6.61,6.44,7A3.37,3.37,0,0,0,9,18.13V22"></path></svg>
   #     url:'https://github.com/hi-Ernest/resume/blob/master/resume-zh.pdf'
 languages:
-  # en:
-  #   languageName: EN 
+  en:
+    languageName: EN 
+    params:
+      authorDescription: Focus on the present! Grateful for the present! 
+      info: Keep exploring! Step by step! 
+      guestbook:
+        title: Message Board 
+        description: Leave a trace 
+    menu:
+      main:
+        - name: Blog
+          url: /blog
+          weight: 1
+        - name: Archive
+          url: /archives
+          weight: 2
+        - name: Guest
+          url: /guestbook
+          weight: 3
+        - name: Monitor
+          url: https://umami-blog-analyze-30k29jpw4-hi-ernest.vercel.app/share/F0HNiV8DX3mdMGa3/hi-Ernest
+          weight: 4
   zh:
     languageName: 中 
     params:
@@ -93,21 +100,21 @@ languages:
       info: 不断探索！日拱一卒！ 
       guestbook:
         title: 留言板 
-        description: 留下痕迹 
-      menu:
-        main:
-          - name: 文章
-            url: /blog
-            weight: 1
-          - name: 历史
-            url: /archives
-            weight: 2
-          - name: 留言板
-            url: /guestbook
-            weight: 3
-          - name: 统计 
-            url: https://umami-blog-analyze-30k29jpw4-hi-ernest.vercel.app/share/F0HNiV8DX3mdMGa3/hi-Ernest 
-            weight: 4
+        description: 留下足迹 
+    menu:
+      main:
+        - name: 文章
+          url: /blog
+          weight: 1
+        - name: 历史
+          url: /archives
+          weight: 2
+        - name: 留言板
+          url: /guestbook
+          weight: 3
+        - name: 统计 
+          url: https://umami-blog-analyze-30k29jpw4-hi-ernest.vercel.app/share/F0HNiV8DX3mdMGa3/hi-Ernest 
+          weight: 4
 taxonomies:
   series: series
   tag: tags

@@ -2,19 +2,18 @@
 title: 2024年01月14日02周
 date: 2024-01-14T18:32:37+08:00
 tags: ["周记"]
-featured: true
+featured:
 ---
 
-### 前序
+现在是2024年的1月14号我在复旦大学邯郸校区旁，经世书局二楼休息区，正对面是红白装饰的复旦教学楼...
 
-&ensp;&ensp; 现在是2024年的1月14号我在复旦大学邯郸校区旁，经世书局二楼休息区，正对面是红白装饰的复旦教学楼...
+<!-- more -->
 
-&ensp;&ensp; 尝试探索办公空间，昨天静安区星巴克，今天在经世书局...
+尝试探索办公空间，昨天静安区星巴克，今天在经世书局...
 
 ![静安区星巴克](https://cdn.jsdelivr.net/gh/hi-Ernest/imgbed/images/20240113.png)
 
 ![复旦经世书局](https://cdn.jsdelivr.net/gh/hi-Ernest/imgbed/images/20240114.jpg)
-
 
 ### 工作
 
