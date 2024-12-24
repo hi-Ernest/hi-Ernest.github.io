@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>生活 on Always Exploring</title><link>https://hi-ernest.github.io/en/tags/%E7%94%9F%E6%B4%BB/</link><description>Recent content in 生活 on Always Exploring created by</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>2023 ErnestChen All rights reserved</copyright><lastBuildDate>Wed, 20 Jul 2022 23:00:37 +0800</lastBuildDate><atom:link href="https://hi-ernest.github.io/en/tags/%E7%94%9F%E6%B4%BB/index.xml" rel="self" type="application/rss+xml"/><item><title>2022-07-20</title><link>https://hi-ernest.github.io/en/blog/en/22-07-20/</link><pubDate>Wed, 20 Jul 2022 23:00:37 +0800</pubDate><guid>https://hi-ernest.github.io/en/blog/en/22-07-20/</guid><description>&lt;p>今天开会错过了按摩时间，今天在某个瞬间感觉事情的多和杂造成时间的紧迫。再加上好久没做需求了，这次一做总会有细小的点没有考虑周全。&lt;/p>
+&lt;p>对于需求的方案设计以及流转上，还需要更加深刻理解和钻研，不仅仅在处理我方侧功能更好的实现上，还需要多问为什么，去关心别人链路是怎样的，他们这样设计的优缺点是什么，我想只有这样在各种不同场景下，考虑问题思考问题能力才能步步提升，增强自我的系统设计能力。梳理系统的链路，发现是否存在不合理的地方，以及想办法去解决，与其埋怨抱怨烦闷，不如主动出击，拥抱问题，思考和解决问题。只有遇到各种各样的棘手的问题，靠自己能力攻克，个人能力才能得以提升。&lt;/p>
+&lt;p>今天是修复了QA提出了bug，针对发起/取消拦截进行解耦，现在回想：是不是可以抽成接口、结构体对象来处理，针对创建、更新、调rpc、记录日志等操作。这个需要评估一下是否需要修改，感觉如果是有精力和资源在投入也不迟。以及调用rpc，目前是for循环一个个调用，是否改成多协程调用，这样方式的写法需要考量一下。
+导出功能发现，货主端是已完成配置并导出，解决了字段的问题，这个需要验证下商家端导出，显示导出成功但页面的查询展示并没有展示，这个需要排查订正
+以及关键的灰度方案计划。&lt;/p>
+&lt;p>今天聊了40来分钟，过程中头脑思绪杂乱无章，我很容易被他人言语影响，这种场景我回想，应该先听清楚问题，自己先思考用假设的方式，进一步推敲是否可行，为什么可行/不可行。方案没有十全十美的，可以先抛出来，有的方案不一定需要技术来解决，而是通过其他途径就可以解决，换各个角度来思考，别人能想到，我却没有想到是什么原因呢，这个也是需要深入挖掘的，填补自己的短板，走的更好更远。
+旭总反馈的销退入库单的消息根据某条件见过滤，以及自己测出来的取消日志会生成多个fixed
+还有就是拦截状态，可能系统拦截-&amp;gt;工单拦截（72小时未发货的场景），方案如下：
+接收消息，拦截中-&amp;gt;拦截中，取类型字段，if系统拦截then更新为工单拦截，需要增加日志，否者特判逻辑恶心
+同步调用接口，拦截中的不返回拦截类型字段，在消息移步回告时更新（拦截成功、失败、取消等）需要详细再看看&lt;/p>
+&lt;p>目前遗留问题：&lt;/p>
+&lt;ul>
+&lt;li>&lt;input disabled="" type="checkbox"> 创建/取消是否抽象下-解耦清晰些&lt;/li>
+&lt;li>&lt;input disabled="" type="checkbox"> 上线新加的逻辑 - setEexpress&lt;/li>
+&lt;li>&lt;input disabled="" type="checkbox"> Ppe刷数据-要写好-用一次之后不再用了&lt;/li>
+&lt;li>&lt;input disabled="" type="checkbox"> Ppe的准备工作（上线的准备）&lt;/li>
+&lt;li>&lt;input checked="" disabled="" type="checkbox"> 修改调用lo -&amp;gt; 多协程&lt;/li>
+&lt;li>&lt;input checked="" disabled="" type="checkbox"> 确定灰度方案 - 写灰度控制逻辑&lt;/li>
+&lt;li>&lt;input checked="" disabled="" type="checkbox"> 三端的导出&lt;/li>
+&lt;/ul></description></item></channel></rss>

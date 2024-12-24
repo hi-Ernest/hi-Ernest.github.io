@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Java on Always Exploring</title><link>https://hi-ernest.github.io/tags/java/</link><description>Recent content in Java on Always Exploring created by</description><generator>Hugo -- gohugo.io</generator><language>zh</language><copyright>2023 ErnestChen All rights reserved</copyright><lastBuildDate>Tue, 28 Nov 2023 09:34:00 +0800</lastBuildDate><atom:link href="https://hi-ernest.github.io/tags/java/index.xml" rel="self" type="application/rss+xml"/><item><title>Spring事务最佳实践【Java版】</title><link>https://hi-ernest.github.io/blog/spring-transactional/</link><pubDate>Tue, 28 Nov 2023 09:34:00 +0800</pubDate><guid>https://hi-ernest.github.io/blog/spring-transactional/</guid><description>&lt;h2 id="背景">背景&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Java on Always Exploring</title><link>https://hi-ernest.github.io/tags/java/</link><description>Recent content in Java on Always Exploring created by</description><generator>Hugo -- gohugo.io</generator><language>zh</language><copyright>2023 ErnestChen All rights reserved</copyright><lastBuildDate>Tue, 28 Nov 2023 09:34:00 +0800</lastBuildDate><atom:link href="https://hi-ernest.github.io/tags/java/index.xml" rel="self" type="application/rss+xml"/><item><title>Spring事务最佳实践【Java版】</title><link>https://hi-ernest.github.io/blog/zh/spring-transactional/</link><pubDate>Tue, 28 Nov 2023 09:34:00 +0800</pubDate><guid>https://hi-ernest.github.io/blog/zh/spring-transactional/</guid><description>&lt;h2 id="背景">背景&lt;/h2>
 &lt;p>在开发需求采用Java声明式事务对两个对象插入两张表
 下方代码编写，单测发现事务失效（release对象插入成功，action插入失败，但事务没有回滚，release对象还是插入成功）&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-java" data-lang="java">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#a6e22e">@Slf4j&lt;/span>
@@ -342,7 +342,7 @@ ps：在springAOP的用法中，只有代理的类才会被切入，我们在con
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="其他资料">其他资料&lt;/h2>
-&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/hi-Ernest/imgbed/images/202312052347147.png" alt="">&lt;/p></description></item><item><title>垃圾回收GC</title><link>https://hi-ernest.github.io/blog/gc/</link><pubDate>Mon, 13 Dec 2021 01:21:40 +0800</pubDate><guid>https://hi-ernest.github.io/blog/gc/</guid><description>&lt;h2 id="什么是gc">什么是GC&lt;/h2>
+&lt;p>&lt;img src="https://cdn.jsdelivr.net/gh/hi-Ernest/imgbed/images/202312052347147.png" alt="">&lt;/p></description></item><item><title>垃圾回收GC</title><link>https://hi-ernest.github.io/blog/zh/gc/</link><pubDate>Mon, 13 Dec 2021 01:21:40 +0800</pubDate><guid>https://hi-ernest.github.io/blog/zh/gc/</guid><description>&lt;h2 id="什么是gc">什么是GC&lt;/h2>
 &lt;blockquote>
 &lt;p>GC指一种自动的&lt;a href="https://zh.wikipedia.org/wiki/%E8%A8%98%E6%86%B6%E9%AB%94%E7%AE%A1%E7%90%86">存储器管理&lt;/a>机制，当某个程序占用的一部分内存空间不再被这个程序访问时，这个程序会借助&lt;strong>垃圾回收&lt;/strong>算法向操作系统归还这部分内存空间。垃圾回收器可以减轻程序员的负担，也减少程序中的错误。&lt;/p>
 &lt;/blockquote>
@@ -514,7 +514,7 @@ ps：在springAOP的用法中，只有代理的类才会被切入，我们在con
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>   &lt;span style="color:#a6e22e">fc&lt;/span>()
 &lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Java知识点记忆点-补充</title><link>https://hi-ernest.github.io/blog/java-knowledge-more/</link><pubDate>Sun, 11 Apr 2021 10:52:00 +0800</pubDate><guid>https://hi-ernest.github.io/blog/java-knowledge-more/</guid><description>&lt;h3 id="什么是微服务">什么是微服务？&lt;/h3>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Java知识点记忆点-补充</title><link>https://hi-ernest.github.io/blog/zh/java-knowledge-more/</link><pubDate>Sun, 11 Apr 2021 10:52:00 +0800</pubDate><guid>https://hi-ernest.github.io/blog/zh/java-knowledge-more/</guid><description>&lt;h3 id="什么是微服务">什么是微服务？&lt;/h3>
 &lt;p>将单体系统拆分职责相对于单一的一个个项目，每个项目提供不同的服务内容，服务之间的通过rpc来调用&lt;/p>
 &lt;p>一个服务的宕机、不可用，不会影响上下游服务，做到服务熔断隔离。根据每个服务访问流量的大小，指定服务的扩容和缩容，更加独立的进行，减少不必要资源的消耗。&lt;/p>
 &lt;hr>
@@ -1223,7 +1223,7 @@ ps：在springAOP的用法中，只有代理的类才会被切入，我们在con
 &lt;blockquote>
 &lt;p>核心线程数、最大线程数、空闲时间存活时间、存活时间单位unit、阻塞队列、拒绝策略&lt;/p>
 &lt;p>拒绝策略：静默丢弃、直接抛异常、交给调用方处理、丢弃队伍中最老的任务&lt;/p>
-&lt;/blockquote></description></item><item><title>Java基础知识点归纳</title><link>https://hi-ernest.github.io/blog/java-basic-knowledge-points/</link><pubDate>Fri, 02 Apr 2021 20:56:09 +0800</pubDate><guid>https://hi-ernest.github.io/blog/java-basic-knowledge-points/</guid><description>&lt;h3 id="面向对象">面向对象&lt;/h3>
+&lt;/blockquote></description></item><item><title>Java基础知识点归纳</title><link>https://hi-ernest.github.io/blog/zh/java-basic-knowledge-points/</link><pubDate>Fri, 02 Apr 2021 20:56:09 +0800</pubDate><guid>https://hi-ernest.github.io/blog/zh/java-basic-knowledge-points/</guid><description>&lt;h3 id="面向对象">面向对象&lt;/h3>
 &lt;ul>
 &lt;li>
 &lt;p>怎么理解什么是面向对象？&lt;/p>
