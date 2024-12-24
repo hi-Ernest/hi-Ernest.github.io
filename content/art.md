@@ -1,4 +1,4 @@
 ---
-title: "Art"
+title: "22"
 layout: "art"
 ---
