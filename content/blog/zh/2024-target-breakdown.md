@@ -2,7 +2,7 @@
 title: 2024年目标的拆解
 date: 2024-01-01T20:50:37+08:00
 tags:
-featured: true
+featured:
 ---
 
 一些目标的拆解
